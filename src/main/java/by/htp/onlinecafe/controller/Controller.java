@@ -10,9 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * Created by Mike Yaremenko on 15.06.2017.
- */
 public class Controller extends HttpServlet {
 
     @Override

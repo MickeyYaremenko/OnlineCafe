@@ -33,7 +33,8 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-12">
-                            <form id="login-form" action="sign_in" method="post" role="form" style="display: block;">
+                            <form id="login-form" action="Controller" method="post" role="form" style="display: block;">
+                                <input type="hidden" value="sign_in" name="command">
                                 <div class="form-group">
                                     <input type="text" name="login" id="login" tabindex="1" class="form-control" placeholder="Login" value="">
                                 </div>
@@ -48,7 +49,8 @@
                                     </div>
                                 </div>
                             </form>
-                            <form id="register-form" action="register" method="post" role="form" style="display: none;">
+                            <form id="register-form" action="Controller" method="post" role="form" style="display: none;">
+                                <input type="hidden" value="register" name="command">
                                 <div class="form-group">
                                     <input type="text" name="login" id="login" tabindex="1" class="form-control" placeholder="Login" value="">
                                 </div>
@@ -56,7 +58,7 @@
                                     <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm password">
+                                    <input type="password" name="confirm_password" id="confirm_password" tabindex="2" class="form-control" placeholder="Confirm password">
                                 </div>
                                 <div class="form-group">
                                     <input type="text" name="first_name" id="first_name" tabindex="1" class="form-control" placeholder="First name" value="">

@@ -1,8 +1,5 @@
 package by.htp.onlinecafe.service.Exception;
 
-/**
- * Created by Mike Yaremenko on 18.06.2017.
- */
 public class ServiceException extends Exception{
 
     public ServiceException() {

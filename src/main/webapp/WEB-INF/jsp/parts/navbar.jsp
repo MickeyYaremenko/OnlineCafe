@@ -36,6 +36,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="#">Salads</a></li>
                         <li><a href="#">Soups</a></li>
+                        <li><a href="#">Appetizers</a></li>
                         <li><a href="#">Hot</a></li>
                         <li><a href="#">Deserts</a></li>
                         <li><a href="#">Drinks</a></li>
@@ -43,7 +44,7 @@
             </ul>
             <form class="navbar-form form-inline pull-right" role="search"
                   action="Controller" method="POST">
-                <input type="hidden" value="Sign_in_page" name="command" />
+                <input type="hidden" value="sign_in_page" name="command" />
                 <button type="submit" class="btn btn-default">Sign In</button>
             </form>
         </div>

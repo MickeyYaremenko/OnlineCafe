@@ -3,9 +3,6 @@ package by.htp.onlinecafe.entity;
 import java.time.LocalDateTime;
 import java.util.List;
 
-/**
- * Created by Mike Yaremenko on 17.06.2017.
- */
 public class Order {
     private int id;
     private int userID;

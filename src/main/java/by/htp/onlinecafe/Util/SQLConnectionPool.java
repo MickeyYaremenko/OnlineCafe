@@ -6,9 +6,6 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-/**
- * Created by Mike Yaremenko on 18.06.2017.
- */
 public class SQLConnectionPool {
 
     private static InitialContext initialContext;
