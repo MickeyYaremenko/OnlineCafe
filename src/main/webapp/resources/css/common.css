@@ -40,13 +40,14 @@ html, body {
     color: #fff !important;
 }
 
-.container {
+#menu-container {
     width: 80%;
     margin: 10px auto;
     text-align: center;
+    padding-top: 5%;
 }
 
-.container h3 {
+#menu-container h3 {
     font-size: 55px;
     font-weight: bold;
     color: #5F5F5F;

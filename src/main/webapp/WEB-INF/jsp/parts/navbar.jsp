@@ -1,11 +1,12 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page session="true" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <html>
 <head>
     <link href="https://fonts.googleapis.com/css?family=Bree+Serif"
           rel="stylesheet">
-    <link rel='stylesheet' href='//resources/css/bootstrap.css'
+    <link rel='stylesheet' href='resources/css/bootstrap.css'
           type='text/css' media='all'>
     <title>Title</title>
     <style>
@@ -28,6 +29,21 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
+                <c:choose>
+                    <c:when test="${empty sessionScope.client.login}">
+                        <li>
+                        <form class="navbar-form form-inline pull-right" role="search"
+                              action="Controller" method="POST">
+                            <input type="hidden" value="sign_in_page" name="command" />
+                            <button type="submit" class="btn btn-default">Sign In</button>
+                        </form>
+                        </li>
+                    </c:when>
+                    <c:otherwise>
+                        <li><a href="Controller?command=open_client_acc">
+                            <c:out value="${fn:toUpperCase(sessionScope.client.login)}"/></a></li>
+                    </c:otherwise>
+                </c:choose>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="#places">Places</a></li>
                 <li class="dropdown"><a class="dropdown-toggle"
@@ -42,11 +58,7 @@
                         <li><a href="#">Drinks</a></li>
                     </ul></li>
             </ul>
-            <form class="navbar-form form-inline pull-right" role="search"
-                  action="Controller" method="POST">
-                <input type="hidden" value="sign_in_page" name="command" />
-                <button type="submit" class="btn btn-default">Sign In</button>
-            </form>
+
         </div>
     </div>
 </nav>

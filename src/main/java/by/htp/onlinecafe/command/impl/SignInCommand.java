@@ -12,16 +12,17 @@ import javax.servlet.http.HttpSession;
 public class SignInCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) {
-        String page = "/WEB-INF/jsp/menu.jsp";
+        String page = "/index.jsp";
         ClientService clientService = ClientServiceImpl.getInstance();
 
-        String login = request.getParameter("signIn");
+        String login = request.getParameter("login");
         String password = request.getParameter("password");
 
         try {
             Client client = clientService.signIn(login, password);
             HttpSession session = request.getSession();
             session.setAttribute("client", client);
+            page = "/WEB-INF/jsp/menu.jsp";
         } catch (ServiceException e) {
             e.printStackTrace();
         }

@@ -1,9 +1,6 @@
 package by.htp.onlinecafe.command;
 
-import by.htp.onlinecafe.command.impl.ChooseCategoryCommand;
-import by.htp.onlinecafe.command.impl.RegisterCommand;
-import by.htp.onlinecafe.command.impl.SignInCommand;
-import by.htp.onlinecafe.command.impl.SignInPageCommand;
+import by.htp.onlinecafe.command.impl.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +15,7 @@ public class CommandManager {
         commandMap.put("sign_in_page", new SignInPageCommand());
         commandMap.put("register", new RegisterCommand());
         commandMap.put("choose_category", new ChooseCategoryCommand());
+        commandMap.put("open_client_acc", new OpenClientAccount());
     }
 
     public static CommandManager getInstance() {

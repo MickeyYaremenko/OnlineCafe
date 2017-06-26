@@ -18,11 +18,11 @@ public class ChooseCategoryCommand implements Command{
         try {
             List<MenuItem> menuItemList =  menuItemService.showByCategory(category);
             request.setAttribute("menuItemList", menuItemList);
-            page = "menu_category.jsp";
+            page = "/WEB-INF/jsp/item_list.jsp";
             return page;
         } catch (ServiceException e) {
             e.printStackTrace();
         }
-        return null;
+        return page;
     }
 }
