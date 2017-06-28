@@ -12,7 +12,7 @@
     <script src='resources/js/passvalidation.js'></script>
     <title>Your Account</title>
 </head>
-<body>
+<body class="client-acc-body">
 <%@include file="/WEB-INF/jsp/parts/navbar.jsp"%>
 <div class="main-field">
     <div class="tab">
@@ -33,8 +33,6 @@
                             <input type="password" class="input-md form-control" id="oldpass" name="oldpass"
                                    placeholder="Old Password" autocomplete="off">
                             <br/>
-
-
                             <label for="password1">New password:</label>
                             <input type="password" class="input-md form-control" name="newpass1" id="password1"
                                    placeholder="New Password" autocomplete="off">
@@ -50,7 +48,7 @@
                             <input type="hidden" name="action" value="change_user_password" />
                             <div class="col-sm-10 col-sm-offset-1">
                                 <button type="submit" id="Button" class="btn btn-default btn-sm btn-block"
-                                        name="action" value="change_user_password">
+                                        name="command" value="change_client_pass">
                                     Change password
                                 </button>
                             </div>
@@ -62,10 +60,10 @@
             <c:otherwise>
                 <h3><c:out value="${changepass}"></c:out></h3>
                 <form action="Controller" method="POST">
-                    <input type="hidden" name="action" value="open_user_acc" />
+                    <input type="hidden" name="command" value="open_client_acc" />
                     <div class="col-sm-4">
                         <button type="submit" id="Button" class="btn btn-default btn-sm btn-block"
-                                name="action" value="open_user_acc">
+                                name="action" value="open_client_acc">
                             Retry
                         </button>
                     </div>

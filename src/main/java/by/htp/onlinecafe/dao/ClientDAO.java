@@ -6,4 +6,5 @@ import by.htp.onlinecafe.entity.Client;
 public interface ClientDAO {
     Client register(Client client) throws DAOException;
     Client signIn(String login, String password) throws DAOException;
+    boolean changePssword(String login, String newPass) throws DAOException;
 }

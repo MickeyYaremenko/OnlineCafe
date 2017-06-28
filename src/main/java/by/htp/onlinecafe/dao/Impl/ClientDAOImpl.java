@@ -13,8 +13,9 @@ public class ClientDAOImpl implements ClientDAO {
     private static ClientDAOImpl instance;
 
     private static final String SQL_GET_USER_BY_LOGIN = "SELECT * FROM client WHERE login=?";
-    private static final String SQL_REGISTER="INSERT INTO client" +
+    private static final String SQL_REGISTER= "INSERT INTO client" +
             "(login, password, first_name, last_name, email) VALUES(?,?,?,?,?)";
+    private static final String SQL_CHANGE_CLIENT_PASSWORD = "UPDATE client SET password = ? WHERE login = ?";
 
     private ClientDAOImpl(){
     }
@@ -68,6 +69,22 @@ public class ClientDAOImpl implements ClientDAO {
             throw new DAOException(e);
         }
         return null;
+    }
+
+    @Override
+    public boolean changePssword(String login, String newPass) throws DAOException {
+        try (Connection connection = SQLConnectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(SQL_CHANGE_CLIENT_PASSWORD)) {
+            ps.setString(1, newPass);
+            ps.setString(2, login);
+            int rows = ps.executeUpdate();
+            if (rows > 0) {
+                return true;
+            }
+        } catch (SQLException | NamingException e) {
+            throw new DAOException(e);
+        }
+        return false;
     }
 
     private boolean alreadyExist(Client client) throws DAOException {

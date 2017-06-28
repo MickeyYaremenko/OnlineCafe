@@ -51,4 +51,22 @@ public class ClientServiceImpl implements ClientService {
             throw new ServiceException(e);
         }
     }
+
+    @Override
+    public boolean changePassword(Client client, String oldPass, String newPass1, String newPass2) throws ServiceException {
+        ClientDAO clientDAO = ClientDAOImpl.getInstance();
+        try {
+            Client tempClient = clientDAO.signIn(client.getLogin(), oldPass);
+            if (tempClient == null){
+                return false;
+            }
+            if (newPass1.equals(newPass2) && tempClient.getLogin().equals(client.getLogin())) {
+                boolean success = clientDAO.changePssword(client.getLogin(), newPass1);
+                return success;
+            }
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+        return false;
+    }
 }

@@ -2,11 +2,9 @@ html {
     height: 100%;
 }
 
-body {
+.client-acc-body {
     height: 100%;
-    background-image:url('//resources/images/meat.jpg');
-    background-attachment:fixed;
-    background-repeat: no-repeat;
+    background: url('/resources/images/meat.jpg') no-repeat fixed;
     background-size: cover;
     font-family: 'Bree Serif', serif;
 }
@@ -99,3 +97,4 @@ div.tab button.active {
     display: block;
 
 }
+

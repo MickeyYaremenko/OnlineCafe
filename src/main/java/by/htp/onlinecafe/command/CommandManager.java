@@ -16,6 +16,9 @@ public class CommandManager {
         commandMap.put("register", new RegisterCommand());
         commandMap.put("choose_category", new ChooseCategoryCommand());
         commandMap.put("open_client_acc", new OpenClientAccount());
+        commandMap.put("change_client_pass", new ChangePasswordCommand());
+        commandMap.put("open_menu", new OpenMenuCommand());
+        commandMap.put("add_to_order", new AddToOrderCommand());
     }
 
     public static CommandManager getInstance() {
@@ -23,6 +26,7 @@ public class CommandManager {
     }
 
     public Command getCommand(String title) {
+        System.out.println(title);
         Command command = commandMap.get(title);
         if (command != null) {
             return command;
