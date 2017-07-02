@@ -58,7 +58,7 @@
 
             </c:when>
             <c:otherwise>
-                <h3><c:out value="${changepass}"></c:out></h3>
+                <h3><c:out value="${changepass}"/></h3>
                 <form action="Controller" method="POST">
                     <input type="hidden" name="command" value="open_client_acc" />
                     <div class="col-sm-4">
@@ -86,6 +86,7 @@
             <thead>
             <tr>
                 <th>Bill #</th>
+                <th>Date and time</th>
                 <th>Sum of a bill</th>
             </tr>
             </thead>
@@ -96,13 +97,7 @@
                 <tr>
 
                     <td><c:out value = "${commentLoop.index+1}"/></td>
-                    <td>
-                        <c:forEach items = "${i.equipList}" var="j">
-                            <c:out value = "${j.name}"/><br/>
-                        </c:forEach>
-                    </td>
-                    <td><c:out value = "${i.dateStart}"/></td>
-                    <td><c:out value = "${i.dateEnd}"/></td>
+                    <td><c:out value = "${i.dateTime}"/></td>
                     <td><c:out value = "${i.sum}"/></td>
                 </tr>
             </c:forEach>

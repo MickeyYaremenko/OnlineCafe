@@ -1,6 +1,5 @@
 package by.htp.onlinecafe.dao.Impl;
 
-
 import by.htp.onlinecafe.Util.SQLConnectionPool;
 import by.htp.onlinecafe.dao.BillDAO;
 import by.htp.onlinecafe.dao.Exception.DAOException;
@@ -16,7 +15,7 @@ public class BillDAOImpl implements BillDAO{
 
     private static BillDAOImpl instance;
 
-    private static final String SQL_CLIENT_HISTORY = "SELECT * FROM bill JOIN cafe.order ON " +
+    private static final String SQL_CLIENT_HISTORY = "SELECT * FROM bill JOIN order ON " +
             "bill.id_order = order.id_order WHERE order.id_client = ?";
     private static final String SQL_ALL_HISTORY = null;
 

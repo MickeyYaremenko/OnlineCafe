@@ -1,25 +1,25 @@
 package by.htp.onlinecafe.command.impl;
 
 import by.htp.onlinecafe.command.Command;
-import by.htp.onlinecafe.entity.Bill;
 import by.htp.onlinecafe.entity.Client;
-import by.htp.onlinecafe.service.BillService;
+import by.htp.onlinecafe.entity.DTO.OrderTO;
 import by.htp.onlinecafe.service.Exception.ServiceException;
-import by.htp.onlinecafe.service.Impl.BillServiceImpl;
+import by.htp.onlinecafe.service.Impl.OrderServiceImpl;
+import by.htp.onlinecafe.service.OrderService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-public class OpenClientAccount implements Command{
+public class OpenClientAccountCommand implements Command{
     @Override
     public String execute(HttpServletRequest request) {
-        String page = "default.jsp";
+        String page = "index.jsp";
         HttpSession session = request.getSession();
         Client client = (Client) session.getAttribute("client");
         try {
-            BillService billService = BillServiceImpl.getInstance();
-            List<Bill> clientHistory = billService.clientHistory(client);
+            OrderService billService = OrderServiceImpl.getInstance();
+            List<OrderTO> clientHistory = billService.clientHistory(client);
             request.setAttribute("history", clientHistory);
             page = "/WEB-INF/jsp/client_account.jsp";
             return page;

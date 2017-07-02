@@ -32,4 +32,14 @@ public class MenuItemServiceImpl implements MenuItemService{
             throw new ServiceException(e);
         }
     }
+
+    @Override
+    public MenuItem getByTitle(String title) throws ServiceException {
+        MenuItemDAO menuItemDAO = MenuItemDAOImpl.getInstance();
+        try {
+            return menuItemDAO.getByTitle(title);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+    }
 }

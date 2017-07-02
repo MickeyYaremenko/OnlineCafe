@@ -15,10 +15,12 @@ public class CommandManager {
         commandMap.put("sign_in_page", new SignInPageCommand());
         commandMap.put("register", new RegisterCommand());
         commandMap.put("choose_category", new ChooseCategoryCommand());
-        commandMap.put("open_client_acc", new OpenClientAccount());
+        commandMap.put("open_client_acc", new OpenClientAccountCommand());
         commandMap.put("change_client_pass", new ChangePasswordCommand());
         commandMap.put("open_menu", new OpenMenuCommand());
         commandMap.put("add_to_order", new AddToOrderCommand());
+        commandMap.put("update_order", new UpdateOrderCommand());
+        commandMap.put("make_order", new MakeOrderCommand());
     }
 
     public static CommandManager getInstance() {

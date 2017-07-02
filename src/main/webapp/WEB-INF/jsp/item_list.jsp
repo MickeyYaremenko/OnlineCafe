@@ -15,35 +15,41 @@
 <body>
 <%@include file="/WEB-INF/jsp/parts/navbar.jsp"%>
 
-    <div class="container" id="item-list-container">
+<div class="wrapper">
+    <div class="container-fluid">
         <form action="Controller" method="POST">
-        <ul class="list-group">
             <c:forEach items="${menuItemList}" var="item">
-                <input type="hidden" name="item" value="${item.title}">
-                <li class="list-group-item">
-                    <h4 class="list-group-item-heading">
-                        <b><c:out value="${item.title}" /></b>
-                    </h4>
-                    <p class="list-group-item-text">
-                            <c:out value="${item.description}" />
-                    </p>
-                    <div class="input-group number-spinner">
+                <div class="row item-box-list">
+                    <div class="col-lg-8 col-md-12 item-info-list">
+                        <div class="col-lg-12 item-name-list">
+                            <input type="hidden" name="item" value="${item.title}">
+                            <h2><c:out value="${item.title}" /></h2>
+                        </div>
+                        <div class="col-lg-12 item-text-list">
+                            <p><c:out value="${item.description}" /> </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 item-check-list">
+                        <div class="col-lg-6 col-md-6 col-xs-6 item-price-list">
+                            <h3><c:out value="${item.price}"/> $<br>Price</h3></div>
+                        <div class="my-spinner">
+                        <div class="input-group number-spinner">
                         <span class="input-group-btn data-dwn">
                             <button type="button" class="btn btn-default btn-info" data-dir="dwn">
                             <span class="glyphicon glyphicon-minus"></span>
                             </button>
                         </span>
-                        <input type="text" class="form-control text-center" name="quant" value="0" min="0" max="40">
-                        <span class="input-group-btn data-up">
+                            <input type="text" class="form-control text-center" name="quant" value="0" min="0" max="40">
+                            <span class="input-group-btn data-up">
                             <button type="button" class="btn btn-default btn-info" data-dir="up">
                             <span class="glyphicon glyphicon-plus"></span>
                             </button>
                         </span>
+                        </div>
                     </div>
-                </li>
+                    </div>
+                </div>
             </c:forEach>
-
-        </ul>
 
             <input type="hidden" name="command" value="add_to_order" />
             <div class="col-sm-4 col-sm-push-7">
@@ -65,6 +71,7 @@
             </div>
         </form>
     </div>
+</div>
 
 </body>
 </html>

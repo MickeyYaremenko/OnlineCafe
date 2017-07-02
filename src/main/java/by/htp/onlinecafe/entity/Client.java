@@ -9,7 +9,7 @@ public class Client {
     private String firstName;
     private String lastName;
     private String email;
-    private BigDecimal account;
+    private BigDecimal balance;
     private Role role;
 
     public Client(){}
@@ -63,12 +63,12 @@ public class Client {
         this.email = email;
     }
 
-    public BigDecimal getAccount() {
-        return account;
+    public BigDecimal getBalance() {
+        return balance;
     }
 
-    public void setAccount(BigDecimal account) {
-        this.account = account;
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
     }
 
     public Role getRole() {
@@ -77,6 +77,50 @@ public class Client {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Client client = (Client) o;
+
+        if (id != client.id) return false;
+        if (login != null ? !login.equals(client.login) : client.login != null) return false;
+        if (password != null ? !password.equals(client.password) : client.password != null) return false;
+        if (firstName != null ? !firstName.equals(client.firstName) : client.firstName != null) return false;
+        if (lastName != null ? !lastName.equals(client.lastName) : client.lastName != null) return false;
+        if (email != null ? !email.equals(client.email) : client.email != null) return false;
+        if (balance != null ? !balance.equals(client.balance) : client.balance != null) return false;
+        return role == client.role;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (login != null ? login.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (balance != null ? balance.hashCode() : 0);
+        result = 31 * result + (role != null ? role.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", balance=" + balance +
+                ", role=" + role +
+                '}';
     }
 
     enum Role{

@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface MenuItemService {
 
-    public List<MenuItem> showByCategory(String category) throws ServiceException;
+    List<MenuItem> showByCategory(String category) throws ServiceException;
+    MenuItem getByTitle(String title) throws ServiceException;
 }
