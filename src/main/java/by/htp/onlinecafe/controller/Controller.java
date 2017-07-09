@@ -24,18 +24,14 @@ public class Controller extends HttpServlet {
 
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Command command = CommandManager.getInstance().getCommand(req.getParameter("command"));
-        String page = null;
+        String page;
         if (command != null) {
             page = command.execute(req);
         } else {
             page = "/index.jsp";
         }
-//        if (req.getAttribute(ATTR_PAGE) == REDIRECT_PAGE) {
-//            resp.sendRedirect(page);
-//        } else {
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
-            dispatcher.forward(req, resp);
-//        }
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
+        dispatcher.forward(req, resp);
     }
 }
 

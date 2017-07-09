@@ -1,4 +1,4 @@
-package by.htp.onlinecafe.command.impl;
+package by.htp.onlinecafe.command.impl.client;
 
 import by.htp.onlinecafe.command.Command;
 import by.htp.onlinecafe.entity.MenuItem;

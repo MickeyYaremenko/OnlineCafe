@@ -22,7 +22,10 @@ public class SignInCommand implements Command {
             Client client = clientService.signIn(login, password);
             HttpSession session = request.getSession();
             session.setAttribute("client", client);
-            page = "/WEB-INF/jsp/menu.jsp";
+            if (client.getRole().equals(Client.Role.CLIENT)){
+                page = "/WEB-INF/jsp/menu.jsp";
+            }
+
         } catch (ServiceException e) {
             e.printStackTrace();
         }

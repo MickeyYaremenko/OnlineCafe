@@ -1,4 +1,4 @@
-package by.htp.onlinecafe.command.impl;
+package by.htp.onlinecafe.command.impl.client;
 
 import by.htp.onlinecafe.command.Command;
 import by.htp.onlinecafe.entity.Client;
@@ -18,9 +18,11 @@ public class OpenClientAccountCommand implements Command{
         HttpSession session = request.getSession();
         Client client = (Client) session.getAttribute("client");
         try {
-            OrderService billService = OrderServiceImpl.getInstance();
-            List<OrderTO> clientHistory = billService.clientHistory(client);
+            OrderService orderService = OrderServiceImpl.getInstance();
+            List<OrderTO> clientHistory = orderService.clientHistory(client);
+            List<OrderTO> currentOrders = orderService.currentClientOrders(client);
             request.setAttribute("history", clientHistory);
+            request.setAttribute("current", currentOrders);
             page = "/WEB-INF/jsp/client_account.jsp";
             return page;
         } catch (ServiceException e) {

@@ -1,4 +1,4 @@
-package by.htp.onlinecafe.command.impl;
+package by.htp.onlinecafe.command.impl.client;
 
 import by.htp.onlinecafe.command.Command;
 import by.htp.onlinecafe.entity.MenuItem;
@@ -21,7 +21,6 @@ public class UpdateOrderCommand implements Command{
         return page;
     }
 
-
     private Map<MenuItem, Integer> updateOrder(HttpServletRequest request, Map<MenuItem, Integer> order) {
         MenuItemService menuItemService = MenuItemServiceImpl.getInstance();
         String[] tempOrderItems = request.getParameterValues("item");
@@ -37,7 +36,6 @@ public class UpdateOrderCommand implements Command{
                 } else {
                     order.remove(menuItem);
                 }
-                return order;
             } catch (ServiceException e) {
                 e.printStackTrace();
             }

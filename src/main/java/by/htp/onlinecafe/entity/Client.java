@@ -123,7 +123,7 @@ public class Client {
                 '}';
     }
 
-    enum Role{
+    public enum Role{
         CLIENT,
         ADMIM
     }

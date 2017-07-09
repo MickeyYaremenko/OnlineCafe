@@ -7,6 +7,8 @@ import by.htp.onlinecafe.entity.Client;
 import by.htp.onlinecafe.service.ClientService;
 import by.htp.onlinecafe.service.Exception.ServiceException;
 
+import java.math.BigDecimal;
+
 public class ClientServiceImpl implements ClientService {
 
     private static ClientServiceImpl instance;
@@ -61,12 +63,22 @@ public class ClientServiceImpl implements ClientService {
                 return false;
             }
             if (newPass1.equals(newPass2) && tempClient.getLogin().equals(client.getLogin())) {
-                boolean success = clientDAO.changePssword(client.getLogin(), newPass1);
+                boolean success = clientDAO.changePassword(client.getLogin(), newPass1);
                 return success;
             }
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
         return false;
+    }
+
+    @Override
+    public boolean addFunds(Client client, BigDecimal sum) throws ServiceException {
+        ClientDAO clientDAO = ClientDAOImpl.getInstance();
+        try {
+            return clientDAO.addFunds(client, sum);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
     }
 }

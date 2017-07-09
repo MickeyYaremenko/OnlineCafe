@@ -1,5 +1,6 @@
 package by.htp.onlinecafe.entity.DTO;
 
+import by.htp.onlinecafe.entity.Client;
 import by.htp.onlinecafe.entity.MenuItem;
 
 import java.math.BigDecimal;
@@ -9,7 +10,7 @@ import java.util.Map;
 public class OrderTO {
 
     private int id;
-    private int clientID;
+    private Client client;
     private Map<MenuItem, Integer> items;
     private LocalDateTime dateTime;
     private Status status;
@@ -23,12 +24,12 @@ public class OrderTO {
         this.id = id;
     }
 
-    public int getClientID() {
-        return clientID;
+    public Client getClient() {
+        return client;
     }
 
-    public void setClientID(int clientID) {
-        this.clientID = clientID;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     public Map<MenuItem, Integer> getItems() {
@@ -63,6 +64,13 @@ public class OrderTO {
         this.sum = sum;
     }
 
+    public void countSum(){
+        this.sum = BigDecimal.ZERO;
+        for (Map.Entry<MenuItem, Integer> entry: this.getItems().entrySet()){
+            this.sum = this.sum.add(entry.getKey().getPrice().multiply(new BigDecimal(entry.getValue())));
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -71,7 +79,8 @@ public class OrderTO {
         OrderTO orderTO = (OrderTO) o;
 
         if (getId() != orderTO.getId()) return false;
-        if (getClientID() != orderTO.getClientID()) return false;
+        if (getClient() != null ? !getClient().equals(orderTO.getClient()) : orderTO.getClient() != null)
+            return false;
         if (getItems() != null ? !getItems().equals(orderTO.getItems()) : orderTO.getItems() != null) return false;
         if (getDateTime() != null ? !getDateTime().equals(orderTO.getDateTime()) : orderTO.getDateTime() != null)
             return false;
@@ -82,7 +91,7 @@ public class OrderTO {
     @Override
     public int hashCode() {
         int result = getId();
-        result = 31 * result + getClientID();
+        result = 31 * result + (getClient() != null ? getClient().hashCode() : 0);
         result = 31 * result + (getItems() != null ? getItems().hashCode() : 0);
         result = 31 * result + (getDateTime() != null ? getDateTime().hashCode() : 0);
         result = 31 * result + (getStatus() != null ? getStatus().hashCode() : 0);
@@ -94,7 +103,7 @@ public class OrderTO {
     public String toString() {
         return "OrderTO{" +
                 "id=" + id +
-                ", clientID=" + clientID +
+                ", client=" + client +
                 ", items=" + items +
                 ", dateTime=" + dateTime +
                 ", status=" + status +
@@ -102,9 +111,10 @@ public class OrderTO {
                 '}';
     }
 
-    enum Status {
+    public enum Status {
         ON_APPROVAL,
         COOKING,
-        READY
+        READY,
+        SERVED
     }
 }
