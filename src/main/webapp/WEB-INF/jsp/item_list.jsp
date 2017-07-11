@@ -20,33 +20,36 @@
         <form action="Controller" method="POST">
             <c:forEach items="${menuItemList}" var="item">
                 <div class="row item-box-list">
-                    <div class="col-lg-8 col-md-12 item-info-list">
+                    <div class="col-lg-10 col-md-12 item-info-list">
                         <div class="col-lg-12 item-name-list">
                             <input type="hidden" name="item" value="${item.title}">
                             <h2><c:out value="${item.title}" /></h2>
                         </div>
                         <div class="col-lg-12 item-text-list">
                             <p><c:out value="${item.description}" /> </p>
+                            <p><i><c:out value="${item.weight}" /></i></p>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-12 item-check-list">
-                        <div class="col-lg-6 col-md-6 col-xs-6 item-price-list">
-                            <h3><c:out value="${item.price}"/> $<br>Price</h3></div>
-                        <div class="my-spinner">
-                        <div class="input-group number-spinner">
-                        <span class="input-group-btn data-dwn">
-                            <button type="button" class="btn btn-default btn-info" data-dir="dwn">
-                            <span class="glyphicon glyphicon-minus"></span>
-                            </button>
-                        </span>
-                            <input type="text" class="form-control text-center" name="quant" value="0" min="0" max="40">
-                            <span class="input-group-btn data-up">
-                            <button type="button" class="btn btn-default btn-info" data-dir="up">
-                            <span class="glyphicon glyphicon-plus"></span>
-                            </button>
-                        </span>
+                    <div class="col-lg-2 col-md-12 item-check-list">
+                        <div class="item-price-list">
+                            <h3><c:out value="${item.price}"/> $<br>Price</h3>
+                            <div class="my-spinner">
+                                <div class="input-group number-spinner">
+                                <span class="input-group-btn data-dwn">
+                                    <button type="button" class="btn btn-default btn-info" data-dir="dwn">
+                                    <span class="glyphicon glyphicon-minus"></span>
+                                    </button>
+                                </span>
+                                    <input type="text" class="form-control text-center" name="quant" value="0" min="0" max="40">
+                                    <span class="input-group-btn data-up">
+                                    <button type="button" class="btn btn-default btn-info" data-dir="up">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                    </button>
+                                </span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+
                     </div>
                 </div>
             </c:forEach>

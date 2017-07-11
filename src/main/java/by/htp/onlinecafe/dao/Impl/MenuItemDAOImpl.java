@@ -19,6 +19,9 @@ public class MenuItemDAOImpl implements MenuItemDAO{
 
     private static final String SQL_MENU_ITEM_BY_CATEGORY = "SELECT * FROM menu_item WHERE category = ?";
     private static final String SQL_MENU_ITEM_BY_TITLE = "SELECT * FROM menu_item WHERE title = ?";
+    private static final String SQL_ALL_MENU_ITEM = "SELECT * FROM menu_item";
+    private static final String SQL_UPDATE_MENU_ITEM = "UPDATE menu_item SET title = ?, weight = ?," +
+            "price = ?, category = ?, description = ? WHERE id_menu_item = ?";
 
     private MenuItemDAOImpl(){
     }
@@ -41,9 +44,10 @@ public class MenuItemDAOImpl implements MenuItemDAO{
                 MenuItem menuItem = new MenuItem();
                 menuItem.setId(resultSet.getInt(1));
                 menuItem.setTitle(resultSet.getString(2));
-                menuItem.setPrice(resultSet.getBigDecimal(3));
-                menuItem.setCategory(resultSet.getString(4));
-                menuItem.setDescription(resultSet.getString(5));
+                menuItem.setWeight(resultSet.getString(3));
+                menuItem.setPrice(resultSet.getBigDecimal(4));
+                menuItem.setCategory(resultSet.getString(5));
+                menuItem.setDescription(resultSet.getString(6));
                 menuItemList.add(menuItem);
             }
             return menuItemList;
@@ -62,9 +66,10 @@ public class MenuItemDAOImpl implements MenuItemDAO{
             if (resultSet.next()) {
                 menuItem.setId(resultSet.getInt(1));
                 menuItem.setTitle(resultSet.getString(2));
-                menuItem.setPrice(resultSet.getBigDecimal(3));
-                menuItem.setCategory(resultSet.getString(4));
-                menuItem.setDescription(resultSet.getString(5));
+                menuItem.setWeight(resultSet.getString(3));
+                menuItem.setPrice(resultSet.getBigDecimal(4));
+                menuItem.setCategory(resultSet.getString(5));
+                menuItem.setDescription(resultSet.getString(6));
             } else {
                 throw new DAOException("There is no item with this title");
             }
@@ -73,4 +78,45 @@ public class MenuItemDAOImpl implements MenuItemDAO{
             throw new DAOException(e);
         }
     }
+
+    @Override
+    public List<MenuItem> showAll() throws DAOException {
+        try (Connection connection = SQLConnectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(SQL_ALL_MENU_ITEM)) {
+            ResultSet resultSet = ps.executeQuery();
+            List <MenuItem> menuItemList = new ArrayList<>();
+            while (resultSet.next()) {
+                MenuItem menuItem = new MenuItem();
+                menuItem.setId(resultSet.getInt(1));
+                menuItem.setTitle(resultSet.getString(2));
+                menuItem.setWeight(resultSet.getString(3));
+                menuItem.setPrice(resultSet.getBigDecimal(4));
+                menuItem.setCategory(resultSet.getString(5));
+                menuItem.setDescription(resultSet.getString(6));
+                menuItemList.add(menuItem);
+            }
+            return menuItemList;
+        } catch (SQLException | NamingException e) {
+            throw new DAOException(e);
+        }
+    }
+
+    @Override
+    public void updateItem(MenuItem menuItem) throws DAOException {
+        try (Connection connection = SQLConnectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(SQL_UPDATE_MENU_ITEM)) {
+            ps.setString(1, menuItem.getTitle());
+            ps.setString(2, menuItem.getWeight());
+            ps.setBigDecimal(3, menuItem.getPrice());
+            ps.setString(4, menuItem.getCategory());
+            ps.setString(5, menuItem.getDescription());
+            ps.setInt(6, menuItem.getId());
+            ps.executeUpdate();
+        } catch (SQLException | NamingException e) {
+            throw new DAOException(e);
+        }
+
+    }
+
+
 }

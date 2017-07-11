@@ -6,7 +6,7 @@
     <link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
     <link rel='stylesheet' href='resources/css/bootstrap.css' type='text/css' media='all'>
     <link rel='stylesheet' href='resources/css/common.css' type='text/css' media='all'>
-    <link rel='stylesheet' href='resources/css/sign_in.css' type='text/css' media='all'>
+    <link rel='stylesheet' href='resources/css/form.css' type='text/css' media='all'>
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
     <script src='resources/js/bootstrap.js'></script>
     <script src='resources/js/sign_in.js'></script>
@@ -18,7 +18,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <div id="my_panel" class="panel panel-login">
+            <div id="my-panel" class="panel panel-login">
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-6">

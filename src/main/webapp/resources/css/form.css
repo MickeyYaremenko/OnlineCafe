@@ -1,19 +1,19 @@
 body {
     padding-top: 90px;
 }
-#my_panel {
+#my-panel {
     border-color: #ccc;
     -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
     -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
     box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
 }
-#my_panel>.panel-heading {
+#my-panel>.panel-heading {
     color: #00415d;
     background-color: #fff;
     border-color: #fff;
     text-align:center;
 }
-#my_panel>.panel-heading a{
+#my-panel>.panel-heading a{
     text-decoration: none;
     color: #666;
     font-weight: bold;
@@ -22,11 +22,11 @@ body {
     -moz-transition: all 0.1s linear;
     transition: all 0.1s linear;
 }
-#my_panel>.panel-heading a.active{
+#my-panel>.panel-heading a.active{
     color: #029f5b;
     font-size: 18px;
 }
-#my_panel>.panel-heading hr{
+#my-panel>.panel-heading hr{
     margin-top: 10px;
     margin-bottom: 0px;
     clear: both;
@@ -37,7 +37,7 @@ body {
     background-image: -ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
     background-image: -o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
 }
-#my_panel input[type="text"],#my_panel input[type="email"],#my_panel input[type="password"] {
+#my-panel input[type="text"],#my-panel input[type="email"],#my-panel input[type="password"] {
     height: 45px;
     border: 1px solid #ddd;
     font-size: 16px;
@@ -45,8 +45,8 @@ body {
     -moz-transition: all 0.1s linear;
     transition: all 0.1s linear;
 }
-#my_panel input:hover,
-#my_panel input:focus {
+#my-panel input:hover,
+#my-panel input:focus {
     outline:none;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;

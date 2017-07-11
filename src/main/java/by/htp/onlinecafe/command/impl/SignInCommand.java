@@ -24,6 +24,8 @@ public class SignInCommand implements Command {
             session.setAttribute("client", client);
             if (client.getRole().equals(Client.Role.CLIENT)){
                 page = "/WEB-INF/jsp/menu.jsp";
+            } else if (client.getRole().equals(Client.Role.ADMIN)){
+                page = "/WEB-INF/jsp/admin/admin_page.jsp";
             }
 
         } catch (ServiceException e) {

@@ -25,7 +25,7 @@
                 <span class="icon-bar"></span> <span class="icon-bar"></span> <span
                     class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">Online Cafe</a>
+            <a class="navbar-brand" href="Controller?command=open_main_page">Online Cafe</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
@@ -44,7 +44,10 @@
                             <c:out value="${fn:toUpperCase(sessionScope.client.login)}"/></a></li>
                     </c:otherwise>
                 </c:choose>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="Controller?command=open_order_page">Order
+                    <span class="badge"><c:out value="${sessionScope.order.size()}"/></span>
+                </a> </li>
+                <li><a href="Controller?command=open_main_page">Home</a></li>
                 <li><a href="#places">Places</a></li>
                 <li class="dropdown"><a class="dropdown-toggle"
                                         data-toggle="dropdown" href="#">Menu <span class="caret"></span>

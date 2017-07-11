@@ -7,6 +7,7 @@ import by.htp.onlinecafe.entity.MenuItem;
 import by.htp.onlinecafe.service.Exception.ServiceException;
 import by.htp.onlinecafe.service.MenuItemService;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class MenuItemServiceImpl implements MenuItemService{
@@ -41,5 +42,36 @@ public class MenuItemServiceImpl implements MenuItemService{
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
+    }
+
+    @Override
+    public List<MenuItem> showAll() throws ServiceException {
+        MenuItemDAO menuItemDAO = MenuItemDAOImpl.getInstance();
+        try {
+            return menuItemDAO.showAll();
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public void updateItem(Integer id, String title, String weight, BigDecimal price, String category, String description)
+            throws ServiceException {
+        MenuItem menuItem = new MenuItem();
+        menuItem.setId(id);
+        menuItem.setTitle(title);
+        menuItem.setWeight(weight);
+        menuItem.setPrice(price);
+        menuItem.setCategory(category);
+        menuItem.setDescription(description);
+
+        MenuItemDAO menuItemDAO = MenuItemDAOImpl.getInstance();
+
+        try {
+            menuItemDAO.updateItem(menuItem);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+
     }
 }

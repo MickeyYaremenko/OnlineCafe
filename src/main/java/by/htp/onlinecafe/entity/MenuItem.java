@@ -4,17 +4,18 @@ import java.math.BigDecimal;
 
 public class MenuItem {
 
-    private int id;
+    private Integer id;
     private String title;
+    private String weight;
     private BigDecimal price;
     private String category;
     private String description;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -24,6 +25,14 @@ public class MenuItem {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getWeight() {
+        return weight;
+    }
+
+    public void setWeight(String weight) {
+        this.weight = weight;
     }
 
     public BigDecimal getPrice() {
@@ -57,20 +66,24 @@ public class MenuItem {
 
         MenuItem menuItem = (MenuItem) o;
 
-        if (id != menuItem.id) return false;
-        if (title != null ? !title.equals(menuItem.title) : menuItem.title != null) return false;
-        if (price != null ? !price.equals(menuItem.price) : menuItem.price != null) return false;
-        if (category != null ? !category.equals(menuItem.category) : menuItem.category != null) return false;
-        return description != null ? description.equals(menuItem.description) : menuItem.description == null;
+        if (getId() != null ? !getId().equals(menuItem.getId()) : menuItem.getId() != null) return false;
+        if (getTitle() != null ? !getTitle().equals(menuItem.getTitle()) : menuItem.getTitle() != null) return false;
+        if (getWeight() != null ? !getWeight().equals(menuItem.getWeight()) : menuItem.getWeight() != null)
+            return false;
+        if (getPrice() != null ? !getPrice().equals(menuItem.getPrice()) : menuItem.getPrice() != null) return false;
+        if (getCategory() != null ? !getCategory().equals(menuItem.getCategory()) : menuItem.getCategory() != null)
+            return false;
+        return getDescription() != null ? getDescription().equals(menuItem.getDescription()) : menuItem.getDescription() == null;
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (title != null ? title.hashCode() : 0);
-        result = 31 * result + (price != null ? price.hashCode() : 0);
-        result = 31 * result + (category != null ? category.hashCode() : 0);
-        result = 31 * result + (description != null ? description.hashCode() : 0);
+        int result = getId() != null ? getId().hashCode() : 0;
+        result = 31 * result + (getTitle() != null ? getTitle().hashCode() : 0);
+        result = 31 * result + (getWeight() != null ? getWeight().hashCode() : 0);
+        result = 31 * result + (getPrice() != null ? getPrice().hashCode() : 0);
+        result = 31 * result + (getCategory() != null ? getCategory().hashCode() : 0);
+        result = 31 * result + (getDescription() != null ? getDescription().hashCode() : 0);
         return result;
     }
 
@@ -79,6 +92,7 @@ public class MenuItem {
         return "MenuItem{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
+                ", weight=" + weight +
                 ", price=" + price +
                 ", category='" + category + '\'' +
                 ", description='" + description + '\'' +

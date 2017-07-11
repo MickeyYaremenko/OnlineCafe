@@ -125,6 +125,6 @@ public class Client {
 
     public enum Role{
         CLIENT,
-        ADMIM
+        ADMIN
     }
 }

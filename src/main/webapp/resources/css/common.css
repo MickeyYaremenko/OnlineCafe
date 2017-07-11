@@ -146,10 +146,9 @@ input {
 .item-info-list {
     border-right: 1px solid #b6b6b6;
     padding: 10px;
-    height: 200px;
+    height: 120px;
 }
 .item-check-list {
-
     height: 160px;
     padding-left:20px;
     padding-right: 20px;
@@ -174,10 +173,11 @@ input {
 }
 .item-price-list {
     display: flex;
+    flex-flow: column;
     align-items: center;
     justify-content: center;
     height: 100%;
-    padding: 0;
+    padding: 20px;
 }
 .item-price-list h3 {
     margin:0;
@@ -185,10 +185,12 @@ input {
 }
 
 .item-name-list h2 {
+    text-align: left;
     margin-top:10px;
     margin-bottom: 0;
 }
 .item-text-list p {
+    text-align: left;
     font-size: 18px;
     padding-top: 10px;
 }
@@ -247,5 +249,30 @@ input {
 }
 .item-text-cart p {
     font-size: 24px;
+}
+.my-btn {
+    margin: auto;
+    background-color: #1CB94E;
+    outline: none;
+    color: #fff;
+    font-size: 14px;
+    height: auto;
+    font-weight: normal;
+    padding: 14px 0;
+    text-transform: uppercase;
+    border-color: #1CB94A;
+}
+
+.my-btn-red {
+    margin: auto;
+    background-color: #e10005;
+    outline: none;
+    color: #fff;
+    font-size: 14px;
+    height: auto;
+    font-weight: normal;
+    padding: 14px 0;
+    text-transform: uppercase;
+    border-color: #9b0200;
 }
 

@@ -1,6 +1,7 @@
 package by.htp.onlinecafe.command;
 
 import by.htp.onlinecafe.command.impl.*;
+import by.htp.onlinecafe.command.impl.admin.*;
 import by.htp.onlinecafe.command.impl.client.*;
 
 import java.util.HashMap;
@@ -12,6 +13,7 @@ public class CommandManager {
     private Map<String, Command> commandMap = new HashMap<>();
 
     private CommandManager() {
+        commandMap.put("open_main_page", new OpenMainPageCommand());
         commandMap.put("sign_in", new SignInCommand());
         commandMap.put("sign_in_page", new SignInPageCommand());
         commandMap.put("register", new RegisterCommand());
@@ -23,6 +25,13 @@ public class CommandManager {
         commandMap.put("update_order", new UpdateOrderCommand());
         commandMap.put("make_order", new MakeOrderCommand());
         commandMap.put("add_funds", new AddFundsCommand());
+        commandMap.put("open_order_page", new OpenOrderPageCommand());
+        commandMap.put("manage_orders", new OrderManagementCommand());
+        commandMap.put("manage_menu", new MenuManagementCommand());
+        commandMap.put("view_menu_history", new ViewMenuHistoryCommand());
+        commandMap.put("manage_menu_items", new MenuItemManagementCommand());
+        commandMap.put("edit_item", new EditItemPageCommand());
+        commandMap.put("save_item_changes", new EditItemCommand());
     }
 
     public static CommandManager getInstance() {
