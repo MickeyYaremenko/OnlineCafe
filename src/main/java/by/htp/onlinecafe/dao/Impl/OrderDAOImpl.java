@@ -8,7 +8,6 @@ import by.htp.onlinecafe.entity.DTO.OrderTO;
 import by.htp.onlinecafe.entity.MenuItem;
 
 import javax.naming.NamingException;
-import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,13 +22,17 @@ public class OrderDAOImpl implements OrderDAO {
     private static final String SQL_ADD_ORDER_ITEMS = "INSERT INTO order_menu_item (id_menu_item, id_order, quantity)" +
             "VALUES (?, ?, ?)";
     private static final String SQL_CREATE_BILL = "INSERT INTO cafe.bill (id_order, order_sum) VALUES (?, ?)";
-    private static final String SQL_CLIENT_HISTORY = "SELECT order.id_order, order.order_date, bill.order_sum " +
-            "FROM cafe.order JOIN bill ON bill.id_order = order.id_order " +
+    private static final String SQL_CLIENT_HISTORY = "SELECT order.id_order, order.order_date, order.id_client, " +
+            "bill.order_sum, order.order_status FROM cafe.order JOIN bill ON bill.id_order = order.id_order " +
             "WHERE order.id_client = ? AND order.order_status = 'Served'";
-    private static final String SQL_CLIENT_CURRENT_ORDERS = "SELECT order.id_order, order.order_date, bill.order_sum, " +
-            "order.order_status FROM cafe.order JOIN bill ON bill.id_order = order.id_order " +
+    private static final String SQL_CLIENT_CURRENT_ORDERS = "SELECT order.id_order, order.order_date, order.id_client," +
+            " bill.order_sum, order.order_status FROM cafe.order JOIN bill ON bill.id_order = order.id_order " +
             "WHERE order.id_client = ? AND NOT order.order_status = 'Served'";
+    private static final String SQL_ACTIVE_ORDERS = "SELECT order.id_order, order.order_date, order.id_client," +
+            " bill.order_sum, order.order_status FROM cafe.order JOIN bill ON bill.id_order = order.id_order " +
+            "WHERE NOT order.order_status = 'Served'";
     private static final String SQL_UPDATE_CLIENT_BALANCE = "UPDATE client SET balance = ? WHERE login = ?";
+    private static final String SQL_UPDATE_ORDER_STATUS = "UPDATE cafe.order SET order_status = ?  WHERE id_order = ?";
 
     private OrderDAOImpl(){
     }
@@ -81,16 +84,9 @@ public class OrderDAOImpl implements OrderDAO {
     public List<OrderTO> clientHistory(Client client) throws DAOException {
         try (Connection connection = SQLConnectionPool.getConnection();
              PreparedStatement ps = connection.prepareStatement(SQL_CLIENT_HISTORY)) {
-            List<OrderTO> clientHistory = new ArrayList<>();
             ps.setInt(1, client.getId());
             ResultSet resultSet = ps.executeQuery();
-            while (resultSet.next()) {
-                OrderTO orderTO = new OrderTO();
-                orderTO.setId(resultSet.getInt(1));
-                orderTO.setDateTime(resultSet.getTimestamp(2).toLocalDateTime());
-                orderTO.setSum(resultSet.getBigDecimal(3));
-                clientHistory.add(orderTO);
-            }
+            List<OrderTO> clientHistory = orderTOSFromRS(resultSet);
             return clientHistory;
         } catch (SQLException | NamingException e) {
             throw new DAOException(e);
@@ -101,21 +97,51 @@ public class OrderDAOImpl implements OrderDAO {
     public List<OrderTO> currentClientOrders(Client client) throws DAOException {
         try (Connection connection = SQLConnectionPool.getConnection();
              PreparedStatement ps = connection.prepareStatement(SQL_CLIENT_CURRENT_ORDERS)) {
-            List<OrderTO> currentOrders = new ArrayList<>();
             ps.setInt(1, client.getId());
             ResultSet resultSet = ps.executeQuery();
-            while (resultSet.next()) {
-                OrderTO orderTO = new OrderTO();
-                orderTO.setId(resultSet.getInt(1));
-                orderTO.setDateTime(resultSet.getTimestamp(2).toLocalDateTime());
-                orderTO.setSum(resultSet.getBigDecimal(3));
-                orderTO.setStatus(OrderTO.Status.valueOf(resultSet.getString(4).toUpperCase()));
-                currentOrders.add(orderTO);
-            }
+            List<OrderTO> currentOrders = orderTOSFromRS(resultSet);
             return currentOrders;
         } catch (SQLException | NamingException e) {
             throw new DAOException(e);
         }
     }
 
+    @Override
+    public List<OrderTO> showActive() throws DAOException {
+        try (Connection connection = SQLConnectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(SQL_ACTIVE_ORDERS)) {
+            ResultSet resultSet = ps.executeQuery();
+            List<OrderTO> currentOrders = orderTOSFromRS(resultSet);
+            return currentOrders;
+        } catch (SQLException | NamingException e) {
+            throw new DAOException(e);
+        }
+    }
+
+    @Override
+    public void setStatus(Integer orderID, String status) throws DAOException {
+        try (Connection connection = SQLConnectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(SQL_UPDATE_ORDER_STATUS)) {
+            ps.setString(1, status);
+            ps.setInt(2, orderID);
+            ps.executeUpdate();
+        } catch (SQLException | NamingException e) {
+            throw new DAOException(e);
+        }
+    }
+
+    private List<OrderTO> orderTOSFromRS(ResultSet resultSet) throws SQLException {
+        List<OrderTO> orderList = new ArrayList<>();
+        while (resultSet.next()) {
+            OrderTO orderTO = new OrderTO();
+            orderTO.setId(resultSet.getInt(1));
+            orderTO.setDateTime(resultSet.getTimestamp(2).toLocalDateTime());
+            orderTO.setClient(new Client());
+            orderTO.getClient().setId(resultSet.getInt(3));
+            orderTO.setSum(resultSet.getBigDecimal(4));
+            orderTO.setStatus(OrderTO.Status.valueOf(resultSet.getString(5).toUpperCase()));
+            orderList.add(orderTO);
+        }
+        return orderList;
+    }
 }

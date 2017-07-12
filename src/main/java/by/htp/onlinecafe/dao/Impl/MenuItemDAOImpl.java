@@ -22,6 +22,8 @@ public class MenuItemDAOImpl implements MenuItemDAO{
     private static final String SQL_ALL_MENU_ITEM = "SELECT * FROM menu_item";
     private static final String SQL_UPDATE_MENU_ITEM = "UPDATE menu_item SET title = ?, weight = ?," +
             "price = ?, category = ?, description = ? WHERE id_menu_item = ?";
+    private static final String SQL_ADD_NEW_MENU_ITEM = "INSERT INTO menu_item (title, weight, price, category, description)" +
+            "VALUES(?,?,?,?,?)";
 
     private MenuItemDAOImpl(){
     }
@@ -115,8 +117,21 @@ public class MenuItemDAOImpl implements MenuItemDAO{
         } catch (SQLException | NamingException e) {
             throw new DAOException(e);
         }
-
     }
 
+    @Override
+    public void addNew(MenuItem menuItem) throws DAOException {
+        try (Connection connection = SQLConnectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(SQL_ADD_NEW_MENU_ITEM)) {
+            ps.setString(1, menuItem.getTitle());
+            ps.setString(2, menuItem.getWeight());
+            ps.setBigDecimal(3, menuItem.getPrice());
+            ps.setString(4, menuItem.getCategory());
+            ps.setString(5, menuItem.getDescription());
+            ps.executeUpdate();
+        } catch (SQLException | NamingException e) {
+            throw new DAOException(e);
+        }
+    }
 
 }

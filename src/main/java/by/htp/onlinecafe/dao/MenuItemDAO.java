@@ -10,4 +10,5 @@ public interface MenuItemDAO {
     MenuItem getByTitle(String title) throws DAOException;
     List<MenuItem> showAll() throws DAOException;
     void updateItem (MenuItem menuItem) throws DAOException;
+    void addNew(MenuItem menuItem) throws DAOException;
 }

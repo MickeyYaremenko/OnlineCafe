@@ -10,12 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class EditItemCommand implements Command{
+public class AddNewItemCommand implements Command{
     @Override
     public String execute(HttpServletRequest request) {
         String page = "/WEB-INF/jsp/admin/menu_item_management.jsp";
 
-        Integer id = Integer.parseInt(request.getParameter("item_id"));
         String title = request.getParameter("title");
         String weight = request.getParameter("weight");
         BigDecimal price =  new BigDecimal(request.getParameter("price"));
@@ -25,7 +24,7 @@ public class EditItemCommand implements Command{
         MenuItemService menuItemService = MenuItemServiceImpl.getInstance();
 
         try {
-            menuItemService.updateItem(id, title, weight, price, category, description);
+            menuItemService.addNew(title, weight, price, category, description);
             List<MenuItem> menuItemList = menuItemService.showAll();
             request.setAttribute("menuItemList", menuItemList);
         } catch (ServiceException e) {

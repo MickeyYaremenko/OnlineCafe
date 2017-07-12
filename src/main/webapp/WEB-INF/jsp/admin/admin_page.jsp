@@ -19,7 +19,7 @@
             <div class="box-item">
                 <form action="Controller" method="get">
                     <input type="hidden" name="command" value="manage_orders"/>
-                    <input type="image" src="../../../resources/images/Order.png" class="person" alt="Random Name">
+                    <input type="image" src="../../../resources/images/order.png" class="person" alt="Random Name">
                 </form>
                 <p class="item-name"><strong>Orders</strong></p>
                 <p class="item-hover"><strong>View orders</strong></p>
@@ -29,7 +29,7 @@
             <div class="box-item">
                 <form action="Controller" method="get">
                     <input type="hidden" name="command" value="manage_menu"/>
-                    <input type="image" src="../../../resources/images/Menu.png" class="person" alt="Random Name">
+                    <input type="image" src="../../../resources/images/menu.png" class="person" alt="Random Name">
                 </form>
                 <p class="item-name"><strong>Menu</strong></p>
                 <p class="item-hover"><strong>Manage menu</strong></p>
@@ -39,7 +39,7 @@
             <div class="box-item">
                 <form action="Controller" method="get">
                     <input type="hidden" name="command" value="menu_history"/>
-                    <input type="image" src="../../../resources/images/History.png" class="person" alt="Random Name">
+                    <input type="image" src="../../../resources/images/history.png" class="person" alt="Random Name">
                 </form>
                 <p class="item-name"><strong>Menu history</strong></p>
                 <p class="item-hover"><strong>View menu history</strong></p>

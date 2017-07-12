@@ -12,5 +12,7 @@ public interface OrderService {
 
     void makeOrder(Map<MenuItem, Integer> order, Client client) throws ServiceException;
     List<OrderTO> clientHistory(Client client) throws ServiceException;
-     List<OrderTO> currentClientOrders(Client client) throws ServiceException;
+    List<OrderTO> currentClientOrders(Client client) throws ServiceException;
+    List<OrderTO> showActive() throws ServiceException;
+    void setStatus(Integer orderID, String status) throws ServiceException;
 }

@@ -4,9 +4,10 @@ import by.htp.onlinecafe.command.Command;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class OrderManagementCommand implements Command{
+public class OpenAdminPageCommand implements Command{
     @Override
     public String execute(HttpServletRequest request) {
-        return null;
+        String page = "/WEB-INF/jsp/admin/admin_page.jsp";
+        return page;
     }
 }

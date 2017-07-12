@@ -26,12 +26,16 @@ public class CommandManager {
         commandMap.put("make_order", new MakeOrderCommand());
         commandMap.put("add_funds", new AddFundsCommand());
         commandMap.put("open_order_page", new OpenOrderPageCommand());
-        commandMap.put("manage_orders", new OrderManagementCommand());
+        commandMap.put("manage_orders", new ManageOrderPageCommand());
         commandMap.put("manage_menu", new MenuManagementCommand());
         commandMap.put("view_menu_history", new ViewMenuHistoryCommand());
         commandMap.put("manage_menu_items", new MenuItemManagementCommand());
         commandMap.put("edit_item", new EditItemPageCommand());
         commandMap.put("save_item_changes", new EditItemCommand());
+        commandMap.put("add_new_item_page", new AddNewItemPageCommand());
+        commandMap.put("add_new_item", new AddNewItemCommand());
+        commandMap.put("open_admin_page", new OpenAdminPageCommand());
+        commandMap.put("set_order_status", new SetOrderStatusCommand());
     }
 
     public static CommandManager getInstance() {

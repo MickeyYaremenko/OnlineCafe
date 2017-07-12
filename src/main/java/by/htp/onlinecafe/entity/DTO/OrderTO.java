@@ -9,18 +9,18 @@ import java.util.Map;
 
 public class OrderTO {
 
-    private int id;
+    private Integer id;
     private Client client;
     private Map<MenuItem, Integer> items;
     private LocalDateTime dateTime;
     private Status status;
     private BigDecimal sum;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

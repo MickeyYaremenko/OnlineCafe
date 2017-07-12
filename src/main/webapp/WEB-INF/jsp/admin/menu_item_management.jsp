@@ -31,14 +31,29 @@
                     <div class="col-lg-2 col-md-12 item-check-list">
                         <div class="item-price-list">
                             <h3><c:out value="${item.price}"/> $<br>Price</h3>
-                            <button type="submit" class="btn btn-md my-btn btn-register"
+                            <button type="submit" class="btn btn-md my-btn"
                                     name="command" value="edit_item">Edit</button>
                         </div>
                     </div>
                 </div>
                 </form>
             </c:forEach>
+        <div class="row" style="margin-bottom: auto">
+            <form action="Controller" method="GET">
+                <div class="col-sm-3 col-sm-offset-2">
+                    <button type="submit" class="btn btn-lg btn-block my-btn"
+                            name="command" value="open_admin_page">
+                        <span class="glyphicon glyphicon-arrow-left"></span> Go back</button>
+                </div>
+                <div class="col-sm-3 col-sm-offset-2">
+                    <button type="submit" class="btn btn-lg btn-block my-btn"
+                            name="command" value="add_new_item_page">
+                        <span class="glyphicon glyphicon-plus"></span> Add new item</button>
+                </div>
+            </form>
+        </div>
     </div>
+
 </div>
 
 </body>

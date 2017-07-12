@@ -25,7 +25,7 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-12">
-                            <form id="register-form" action="Controller" method="post" role="form" style="display: block;">
+                            <form action="Controller" method="post" role="form" style="display: block;">
                                 <input type="hidden" name="item_id" value="${item.id}">
                                 <div class="form-group">
                                     <label for="title" class="control-label">Title:</label>
@@ -39,28 +39,38 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="price" class="control-label">Price:</label>
-                                    <input type="text" name="price" id="price" tabindex="2" class="form-control"
+                                    <input type="text" name="price" id="price" tabindex="3" class="form-control"
                                            value="${item.price}">
                                 </div>
                                 <div class="form-group">
                                     <label for="category" class="control-label">Category:</label>
-                                    <input type="text" name="category" id="category" tabindex="1" class="form-control"
+                                    <input type="text" name="category" id="category" tabindex="4" class="form-control"
                                            value="${item.category}">
                                 </div>
                                 <div class="form-group">
                                     <label for="description" class="control-label">Description:</label>
-                                    <textarea rows="2" name="description" id="description" tabindex="1"
+                                    <textarea rows="2" name="description" id="description" tabindex="5"
                                               class="form-control"><c:out value="${item.description}" /></textarea>
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
-                                        <div class="col-sm-4 col-sm-offset-1">
-                                            <button type="submit" class="btn btn-md my-btn"
-                                                    name="command" value="save_item_changes">Save changes</button>
+                                        <div class="col-sm-4">
+                                            <button type="submit" class="btn btn-block btn-md my-btn"
+                                                    name="command" value="manage_menu_items">
+                                                <span class="glyphicon glyphicon-arrow-left"></span>
+                                                Go back</button>
                                         </div>
-                                        <div class="col-sm4 col-sm-offset-2">
-                                            <button type="submit" class="btn btn-md my-btn-red"
-                                                    name="command" value="delete_item">Delete item</button>
+                                        <div class="col-sm-4">
+                                            <button type="submit" class="btn btn-block btn-md my-btn"
+                                                    name="command" value="save_item_changes">
+                                                <span class="glyphicon glyphicon-floppy-disk"></span>
+                                                Save changes</button>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <button type="submit" class="btn btn-block btn-md my-btn-red"
+                                                    name="command" value="delete_item">
+                                                <span class="glyphicon glyphicon-remove"></span>
+                                                Delete item</button>
                                         </div>
                                     </div>
                                 </div>

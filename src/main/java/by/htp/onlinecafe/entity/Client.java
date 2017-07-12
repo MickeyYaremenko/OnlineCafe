@@ -3,7 +3,7 @@ package by.htp.onlinecafe.entity;
 import java.math.BigDecimal;
 
 public class Client {
-    private int id;
+    private Integer id;
     private String login;
     private String password;
     private String firstName;
@@ -15,11 +15,11 @@ public class Client {
     public Client(){}
 
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

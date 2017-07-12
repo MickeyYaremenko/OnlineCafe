@@ -60,4 +60,25 @@ public class OrderServiceImpl implements OrderService{
             throw new ServiceException(e);
         }
     }
+
+    @Override
+    public List<OrderTO> showActive() throws ServiceException {
+        try {
+            OrderDAO orderDAO = OrderDAOImpl.getInstance();
+            List<OrderTO> activeOrders = orderDAO.showActive();
+            return activeOrders;
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public void setStatus(Integer orderID, String status) throws ServiceException {
+        try {
+            OrderDAO orderDAO = OrderDAOImpl.getInstance();
+            orderDAO.setStatus(orderID, status);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+    }
 }

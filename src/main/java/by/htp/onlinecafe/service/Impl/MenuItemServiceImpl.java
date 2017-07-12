@@ -74,4 +74,22 @@ public class MenuItemServiceImpl implements MenuItemService{
         }
 
     }
+
+    @Override
+    public void addNew(String title, String weight, BigDecimal price, String category, String description) throws ServiceException {
+        MenuItem menuItem = new MenuItem();
+        menuItem.setTitle(title);
+        menuItem.setWeight(weight);
+        menuItem.setPrice(price);
+        menuItem.setCategory(category);
+        menuItem.setDescription(description);
+
+        MenuItemDAO menuItemDAO = MenuItemDAOImpl.getInstance();
+
+        try {
+            menuItemDAO.addNew(menuItem);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+    }
 }
