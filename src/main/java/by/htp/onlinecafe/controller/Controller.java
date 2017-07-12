@@ -26,7 +26,7 @@ public class Controller extends HttpServlet {
         Command command = CommandManager.getInstance().getCommand(req.getParameter("command"));
         String page;
         if (command != null) {
-            page = command.execute(req);
+            page = command.execute(req, resp);
         } else {
             page = "/index.jsp";
         }

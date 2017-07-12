@@ -257,7 +257,6 @@ input {
     font-size: 14px;
     height: auto;
     font-weight: normal;
-    padding: 14px 0;
     text-transform: uppercase;
     border-color: #1CB94A;
 }
@@ -270,7 +269,6 @@ input {
     font-size: 14px;
     height: auto;
     font-weight: normal;
-    padding: 14px 0;
     text-transform: uppercase;
     border-color: #9b0200;
 }

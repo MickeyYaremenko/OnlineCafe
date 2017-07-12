@@ -7,10 +7,11 @@ import by.htp.onlinecafe.service.Impl.MenuItemServiceImpl;
 import by.htp.onlinecafe.service.MenuItemService;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class EditItemPageCommand implements Command{
     @Override
-    public String execute(HttpServletRequest request) {
+    public String execute(HttpServletRequest request, HttpServletResponse response) {
         String page = "/WEB-INF/jsp/admin/edit_item.jsp";
         String itemTitle = request.getParameter("item");
         MenuItemService menuItemService = MenuItemServiceImpl.getInstance();

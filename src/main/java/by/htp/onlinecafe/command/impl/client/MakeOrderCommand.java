@@ -9,13 +9,14 @@ import by.htp.onlinecafe.service.Impl.OrderServiceImpl;
 import by.htp.onlinecafe.service.OrderService;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 public class MakeOrderCommand implements Command {
 
     @Override
-    public String execute(HttpServletRequest request) {
+    public String execute(HttpServletRequest request, HttpServletResponse response) {
         String page = "/WEB-INF/jsp/order_success.jsp";
         OrderService orderService = OrderServiceImpl.getInstance();
         HttpSession session = request.getSession();

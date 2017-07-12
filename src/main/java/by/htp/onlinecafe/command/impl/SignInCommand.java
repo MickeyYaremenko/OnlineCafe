@@ -7,11 +7,12 @@ import by.htp.onlinecafe.service.Exception.ServiceException;
 import by.htp.onlinecafe.service.Impl.ClientServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class SignInCommand implements Command {
     @Override
-    public String execute(HttpServletRequest request) {
+    public String execute(HttpServletRequest request, HttpServletResponse response) {
         String page = "/index.jsp";
         ClientService clientService = ClientServiceImpl.getInstance();
 

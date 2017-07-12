@@ -56,7 +56,7 @@
 
             <input type="hidden" name="command" value="add_to_order" />
             <div class="col-sm-4 col-sm-push-7">
-                <button type="submit" class="btn btn-default btn-lg btn-block my-btn"
+                <button type="submit" class="btn btn-lg btn-block my-btn"
                         name="command" value="add_to_order">
                     <span class="glyphicon glyphicon-shopping-cart"></span>
                     Add to an order!
@@ -66,7 +66,7 @@
         <form action="Controller" method="GET">
             <input type="hidden" name="command" value="open_menu" />
             <div class="col-sm-4 col-sm-pull-4 col-sm-offset-1">
-            <button type="submit" class="btn btn-default btn-lg btn-block my-btn"
+            <button type="submit" class="btn btn-lg btn-block my-btn"
                     name="command" value="open_menu">
                 <span class="glyphicon glyphicon-arrow-left"></span>
                 Back to menu

@@ -8,12 +8,13 @@ import by.htp.onlinecafe.service.Impl.OrderServiceImpl;
 import by.htp.onlinecafe.service.OrderService;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
 public class OpenClientAccountCommand implements Command{
     @Override
-    public String execute(HttpServletRequest request) {
+    public String execute(HttpServletRequest request, HttpServletResponse response) {
         String page = "index.jsp";
         HttpSession session = request.getSession();
         Client client = (Client) session.getAttribute("client");

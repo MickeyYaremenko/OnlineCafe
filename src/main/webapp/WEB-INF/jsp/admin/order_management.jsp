@@ -32,19 +32,17 @@
                     <div class="col-lg-4 col-md-12 item-info-cart">
                         <div class="row row-man-ord">
                         <p>Set status:
-                            <input type="hidden" name="status" value="COOKING"/>
+                            <input type="hidden" name="command" value="set_order_status"/>
                             <button type="submit" class="btn btn-md my-btn"
-                                    name="command" value="set_order_status">
+                                    name="status" value="COOKING">
                                 Cooking
                             </button>
-                            <input type="hidden" name="status" value="READY"/>
                             <button type="submit" class="btn btn-md my-btn"
-                                    name="command" value="set_order_status">
+                                    name="status" value="READY">
                                 Ready
                             </button>
-                            <input type="hidden" name="status" value="SERVED"/>
                             <button type="submit" class="btn btn-md my-btn"
-                                    name="command" value="set_order_status">
+                                    name="status" value="SERVED">
                                 Served
                             </button>
                         </p>

@@ -7,12 +7,13 @@ import by.htp.onlinecafe.service.Impl.MenuItemServiceImpl;
 import by.htp.onlinecafe.service.MenuItemService;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.math.BigDecimal;
 import java.util.List;
 
 public class AddNewItemCommand implements Command{
     @Override
-    public String execute(HttpServletRequest request) {
+    public String execute(HttpServletRequest request, HttpServletResponse response) {
         String page = "/WEB-INF/jsp/admin/menu_item_management.jsp";
 
         String title = request.getParameter("title");

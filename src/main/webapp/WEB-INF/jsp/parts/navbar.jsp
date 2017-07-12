@@ -2,21 +2,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page session="true" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
-<html>
-<head>
-    <link href="https://fonts.googleapis.com/css?family=Bree+Serif"
-          rel="stylesheet">
-    <link rel='stylesheet' href='resources/css/bootstrap.css'
-          type='text/css' media='all'>
-    <title>Title</title>
-    <style>
-        .navbar {
-            margin-bottom: 0;
-        }
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-    </style>
-</head>
-<body>
+<fmt:setLocale value="${sessionScope.language}"/>
+<c:choose>
+    <c:when test="${empty properties}">
+        <fmt:setBundle basename="language_EN_EN"/>
+    </c:when>
+    <c:otherwise>
+        <fmt:setBundle basename="${sessionScope.properties}"/>
+    </c:otherwise>
+</c:choose>
+
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -29,13 +26,25 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><fmt:message key="language"/>
+                    <span class="caret"></span>
+                </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="Controller?command=choose_language&language=RU_RU">
+                            <fmt:message key="language.ru"/>
+                        </a></li>
+                        <li><a href="Controller?command=choose_language&language=EN_EN">
+                            <fmt:message key="language.en"/>
+                        </a></li>
+                    </ul></li>
                 <c:choose>
                     <c:when test="${empty sessionScope.client.login}">
                         <li>
                         <form class="navbar-form form-inline pull-right" role="search"
                               action="Controller" method="POST">
                             <input type="hidden" value="sign_in_page" name="command" />
-                            <button type="submit" class="btn btn-default">Sign In</button>
+                            <button type="submit" class="btn btn-default"><fmt:message key="login"/></button>
                         </form>
                         </li>
                     </c:when>
@@ -65,5 +74,4 @@
         </div>
     </div>
 </nav>
-</body>
-</html>
+

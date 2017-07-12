@@ -1,24 +1,22 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="https://fonts.googleapis.com/css?family=Bree+Serif"
-          rel="stylesheet">
-    <link rel='stylesheet' href='resources/css/bootstrap.css'
-          type='text/css' media='all'>
-    <link rel='stylesheet' href='resources/css/common.css'
-          type='text/css' media='all'>
-    <script
-            src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
+    <link rel='stylesheet' href='resources/css/bootstrap.css' type='text/css' media='all'>
+    <link rel='stylesheet' href='resources/css/common.css' type='text/css' media='all'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
     <script src='resources/js/bootstrap.js'></script>
     <meta charset="UTF-8">
     <title>Online Cafe</title>
 </head>
 
 <body>
-
-<c:import url="WEB-INF/jsp/parts/navbar.jsp"/>
+<c:set var="page" value="index" scope="session"/>
+<%@ include file="WEB-INF/jsp/parts/navbar.jsp" %>
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->

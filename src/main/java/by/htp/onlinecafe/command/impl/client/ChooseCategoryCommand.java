@@ -7,11 +7,12 @@ import by.htp.onlinecafe.service.Impl.MenuItemServiceImpl;
 import by.htp.onlinecafe.service.MenuItemService;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 public class ChooseCategoryCommand implements Command{
     @Override
-    public String execute(HttpServletRequest request) {
+    public String execute(HttpServletRequest request, HttpServletResponse response) {
         String page = "default.jsp";
         String category = request.getParameter("category");
         MenuItemService menuItemService = MenuItemServiceImpl.getInstance();

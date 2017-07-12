@@ -7,11 +7,12 @@ import by.htp.onlinecafe.service.Impl.OrderServiceImpl;
 import by.htp.onlinecafe.service.OrderService;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 public class ManageOrderPageCommand implements Command{
     @Override
-    public String execute(HttpServletRequest request) {
+    public String execute(HttpServletRequest request, HttpServletResponse response) {
         String page = "/WEB-INF/jsp/admin/order_management.jsp";
         OrderService orderService = OrderServiceImpl.getInstance();
         try {

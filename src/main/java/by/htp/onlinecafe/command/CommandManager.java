@@ -36,6 +36,7 @@ public class CommandManager {
         commandMap.put("add_new_item", new AddNewItemCommand());
         commandMap.put("open_admin_page", new OpenAdminPageCommand());
         commandMap.put("set_order_status", new SetOrderStatusCommand());
+        commandMap.put("choose_language", new ChooseLanguageCommand());
     }
 
     public static CommandManager getInstance() {
