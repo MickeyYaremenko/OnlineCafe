@@ -22,12 +22,10 @@ public class ChooseLanguageCommand implements Command{
 
         String page = pageMap.get(pageName);
 
-        if (language.equals("RU_RU")){
-            session.setAttribute("language", "RU_RU");
-            session.setAttribute("properties", "language_RU_RU");
-        } else if (language.equals("EN_EN")){
-            session.setAttribute("language", "EN_EN");
-            session.setAttribute("properties", "language_EN_EN");
+        if (language.equals("ru_RU")){
+            session.setAttribute("language", "ru_RU");
+        } else if (language.equals("en_EN")){
+            session.setAttribute("language", "en_EN");
         }
 
         return page;

@@ -5,14 +5,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <fmt:setLocale value="${sessionScope.language}"/>
-<c:choose>
-    <c:when test="${empty properties}">
-        <fmt:setBundle basename="language_EN_EN"/>
-    </c:when>
-    <c:otherwise>
-        <fmt:setBundle basename="${sessionScope.properties}"/>
-    </c:otherwise>
-</c:choose>
+<fmt:setBundle basename="language"/>
+
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
@@ -31,10 +25,10 @@
                     <span class="caret"></span>
                 </a>
                     <ul class="dropdown-menu">
-                        <li><a href="Controller?command=choose_language&language=RU_RU">
+                        <li><a href="Controller?command=choose_language&language=ru_RU">
                             <fmt:message key="language.ru"/>
                         </a></li>
-                        <li><a href="Controller?command=choose_language&language=EN_EN">
+                        <li><a href="Controller?command=choose_language&language=en_EN">
                             <fmt:message key="language.en"/>
                         </a></li>
                     </ul></li>
