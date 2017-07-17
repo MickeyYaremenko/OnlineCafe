@@ -30,9 +30,9 @@
                     </div>
                     <div class="col-lg-2 col-md-12 item-check-list">
                         <div class="item-price-list">
-                            <h3><c:out value="${item.price}"/> $<br>Price</h3>
+                            <h3><c:out value="${item.price}"/> $<br><fmt:message key="price"/></h3>
                             <button type="submit" class="btn btn-md my-btn"
-                                    name="command" value="edit_item">Edit</button>
+                                    name="command" value="edit_item"><fmt:message key="edit"/></button>
                         </div>
                     </div>
                 </div>
@@ -43,12 +43,12 @@
                 <div class="col-sm-3 col-sm-offset-2">
                     <button type="submit" class="btn btn-lg btn-block my-btn"
                             name="command" value="open_admin_page">
-                        <span class="glyphicon glyphicon-arrow-left"></span> Go back</button>
+                        <span class="glyphicon glyphicon-arrow-left"></span> <fmt:message key="back"/></button>
                 </div>
                 <div class="col-sm-3 col-sm-offset-2">
                     <button type="submit" class="btn btn-lg btn-block my-btn"
                             name="command" value="add_new_item_page">
-                        <span class="glyphicon glyphicon-plus"></span> Add new item</button>
+                        <span class="glyphicon glyphicon-plus"></span> <fmt:message key="add.new.item"/></button>
                 </div>
             </form>
         </div>

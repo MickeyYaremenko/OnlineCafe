@@ -19,7 +19,7 @@
     <div class="col-md-6 col-md-offset-3">
     <div id="my-panel" class="panel panel-login">
         <div class="panel-heading">
-            <h2>Add new item:</h2>
+            <h2><fmt:message key="add.new.item"/>:</h2>
             <hr>
         </div>
         <div class="panel-body">
@@ -27,43 +27,43 @@
             <div class="col-lg-12">
                 <form action="Controller" method="post" role="form" style="display: block;">
                     <div class="form-group">
-                        <label for="title" class="control-label">Title:</label>
+                        <label for="title" class="control-label"><fmt:message key="title"/>:</label>
                         <input type="text" name="title" id="title" tabindex="1" class="form-control"
-                               placeholder="Enter title">
+                               placeholder="<fmt:message key="enter.title"/>">
                     </div>
                     <div class="form-group">
-                        <label for="weight" class="control-label">Weight:</label>
+                        <label for="weight" class="control-label"><fmt:message key="weight"/>:</label>
                         <input type="text" name="weight" id="weight" tabindex="2" class="form-control"
-                               placeholder="Enter weight">
+                               placeholder="<fmt:message key="enter.weight"/>">
                     </div>
                     <div class="form-group">
-                        <label for="price" class="control-label">Price:</label>
+                        <label for="price" class="control-label"><fmt:message key="price"/>:</label>
                         <input type="text" name="price" id="price" tabindex="3" class="form-control"
-                               placeholder="Enter price">
+                               placeholder="<fmt:message key="enter.price"/>">
                     </div>
                     <div class="form-group">
-                        <label for="category" class="control-label">Category:</label>
+                        <label for="category" class="control-label"><fmt:message key="category"/>:</label>
                         <input type="text" name="category" id="category" tabindex="4" class="form-control"
-                               placeholder="Enter category">
+                               placeholder="<fmt:message key="enter.category"/>">
                     </div>
                     <div class="form-group">
-                        <label for="description" class="control-label">Description:</label>
+                        <label for="description" class="control-label"><fmt:message key="description"/>:</label>
                         <textarea rows="2" name="description" id="description" tabindex="5"
-                                  class="form-control" placeholder="Enter description"></textarea>
+                                  class="form-control" placeholder="<fmt:message key="enter.description"/>"></textarea>
                     </div>
                     <div class="form-group">
                         <div class="row">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <button type="submit" class="btn btn-md my-btn-red"
+                                        name="command" value="manage_menu_items">
+                                    <span class="glyphicon glyphicon-arrow-left"></span>
+                                    <fmt:message key="back"/></button>
+                            </div>
                             <div class="col-sm-4 col-sm-offset-1">
                                 <button type="submit" class="btn btn-md my-btn"
                                         name="command" value="add_new_item">
                                     <span class="glyphicon glyphicon-plus"></span>
-                                    Add item</button>
-                            </div>
-                            <div class="col-sm4 col-sm-offset-2">
-                                <button type="submit" class="btn btn-md my-btn-red"
-                                        name="command" value="manage_menu_items">
-                                    <span class="glyphicon glyphicon-arrow-left"></span>
-                                    Go back</button>
+                                    <fmt:message key="add.new.item"/></button>
                             </div>
                         </div>
                     </div>

@@ -1,8 +1,8 @@
 package by.htp.onlinecafe.dao;
 
-import by.htp.onlinecafe.dao.Exception.DAOException;
+import by.htp.onlinecafe.dao.exception.DAOException;
 import by.htp.onlinecafe.entity.Client;
-import by.htp.onlinecafe.entity.DTO.OrderTO;
+import by.htp.onlinecafe.entity.dto.OrderTO;
 
 import java.util.List;
 

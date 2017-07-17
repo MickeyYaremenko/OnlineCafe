@@ -1,6 +1,6 @@
 package by.htp.onlinecafe.dao;
 
-import by.htp.onlinecafe.dao.Exception.DAOException;
+import by.htp.onlinecafe.dao.exception.DAOException;
 import by.htp.onlinecafe.entity.Client;
 
 import java.math.BigDecimal;

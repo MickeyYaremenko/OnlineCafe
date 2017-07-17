@@ -22,10 +22,10 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-6">
-                            <a href="#" class="active" id="login-form-link">Login</a>
+                            <a href="#" class="active" id="login-form-link"><fmt:message key="sign.in"/></a>
                         </div>
                         <div class="col-xs-6">
-                            <a href="#" id="register-form-link">Register</a>
+                            <a href="#" id="register-form-link"><fmt:message key="register"/></a>
                         </div>
                     </div>
                     <hr>
@@ -36,15 +36,18 @@
                             <form id="login-form" action="Controller" method="post" role="form" style="display: block;">
                                 <input type="hidden" value="sign_in" name="command">
                                 <div class="form-group">
-                                    <input type="text" name="login" id="login" tabindex="1" class="form-control" placeholder="Login" value="">
+                                    <input type="text" name="login" id="login" tabindex="1" class="form-control"
+                                           placeholder="<fmt:message key="login"/>" value="">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+                                    <input type="password" name="password" id="password" tabindex="2"
+                                           class="form-control" placeholder="<fmt:message key="password"/>">
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-sm-6 col-sm-offset-3">
-                                            <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
+                                            <input type="submit" name="login-submit" id="login-submit" tabindex="4"
+                                                   class="form-control btn btn-login" value="<fmt:message key="sign.in"/>">
                                         </div>
                                     </div>
                                 </div>
@@ -52,27 +55,34 @@
                             <form id="register-form" action="Controller" method="post" role="form" style="display: none;">
                                 <input type="hidden" value="register" name="command">
                                 <div class="form-group">
-                                    <input type="text" name="login" id="login" tabindex="1" class="form-control" placeholder="Login" value="">
+                                    <input type="text" name="login" id="login" tabindex="1"
+                                           class="form-control" placeholder="<fmt:message key="login"/>" value="">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+                                    <input type="password" name="password" id="password" tabindex="2"
+                                           class="form-control" placeholder="<fmt:message key="password"/>">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" name="confirm_password" id="confirm_password" tabindex="2" class="form-control" placeholder="Confirm password">
+                                    <input type="password" name="confirm_password" id="confirm_password"
+                                           tabindex="2" class="form-control" placeholder="<fmt:message key="confirm.password"/>">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" name="first_name" id="first_name" tabindex="1" class="form-control" placeholder="First name" value="">
+                                    <input type="text" name="first_name" id="first_name" tabindex="1"
+                                           class="form-control" placeholder="<fmt:message key="first.name"/>">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" name="last_name" id="last_name" tabindex="1" class="form-control" placeholder="Last name" value="">
+                                    <input type="text" name="last_name" id="last_name" tabindex="1"
+                                           class="form-control" placeholder="<fmt:message key="last.name"/>">
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
+                                    <input type="email" name="email" id="email" tabindex="1"
+                                           class="form-control" placeholder="<fmt:message key="email"/>">
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-sm-6 col-sm-offset-3">
-                                            <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+                                            <input type="submit" name="register-submit" id="register-submit" tabindex="4"
+                                                   class="form-control btn btn-register" value="<fmt:message key="register"/>">
                                         </div>
                                     </div>
                                 </div>

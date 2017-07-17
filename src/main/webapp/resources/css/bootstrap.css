@@ -271,9 +271,14 @@ th {
 }
 @font-face {
   font-family: 'Glyphicons Halflings';
-  src: url('../fonts/glyphicons-halflings-regular.eot');
-  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+  src: url('/resources/fonts/glyphicons-halflings-regular.eot');
+  src: url('/resources/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+  url('/resources/fonts/glyphicons-halflings-regular.woff2') format('woff2'),
+  url('/resources/fonts/glyphicons-halflings-regular.woff') format('woff'),
+  url('/resources/fonts/glyphicons-halflings-regular.ttf') format('truetype'),
+  url('/resources/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
+
 .glyphicon {
   position: relative;
   top: 1px;
@@ -1088,7 +1093,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: 'Bree Serif', serif;
+  font-family: 'El Messiri', sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
   color: #333333;

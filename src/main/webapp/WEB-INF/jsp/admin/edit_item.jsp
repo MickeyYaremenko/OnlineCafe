@@ -28,27 +28,27 @@
                             <form action="Controller" method="post" role="form" style="display: block;">
                                 <input type="hidden" name="item_id" value="${item.id}">
                                 <div class="form-group">
-                                    <label for="title" class="control-label">Title:</label>
+                                    <label for="title" class="control-label"><fmt:message key="title"/>:</label>
                                     <input type="text" name="title" id="title" tabindex="1" class="form-control"
                                            value="${item.title}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="weight" class="control-label">Weight:</label>
+                                    <label for="weight" class="control-label"><fmt:message key="weight"/>:</label>
                                     <input type="text" name="weight" id="weight" tabindex="2" class="form-control"
                                            value="${item.weight}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="price" class="control-label">Price:</label>
+                                    <label for="price" class="control-label"><fmt:message key="price"/>:</label>
                                     <input type="text" name="price" id="price" tabindex="3" class="form-control"
                                            value="${item.price}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="category" class="control-label">Category:</label>
+                                    <label for="category" class="control-label"><fmt:message key="category"/>:</label>
                                     <input type="text" name="category" id="category" tabindex="4" class="form-control"
                                            value="${item.category}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="description" class="control-label">Description:</label>
+                                    <label for="description" class="control-label"><fmt:message key="description"/>:</label>
                                     <textarea rows="2" name="description" id="description" tabindex="5"
                                               class="form-control"><c:out value="${item.description}" /></textarea>
                                 </div>
@@ -58,19 +58,19 @@
                                             <button type="submit" class="btn btn-block btn-md my-btn"
                                                     name="command" value="manage_menu_items">
                                                 <span class="glyphicon glyphicon-arrow-left"></span>
-                                                Go back</button>
+                                                <fmt:message key="back"/></button>
                                         </div>
                                         <div class="col-sm-4">
                                             <button type="submit" class="btn btn-block btn-md my-btn"
                                                     name="command" value="save_item_changes">
                                                 <span class="glyphicon glyphicon-floppy-disk"></span>
-                                                Save changes</button>
+                                                <fmt:message key="save.changes"/></button>
                                         </div>
                                         <div class="col-sm-4">
                                             <button type="submit" class="btn btn-block btn-md my-btn-red"
                                                     name="command" value="delete_item">
                                                 <span class="glyphicon glyphicon-remove"></span>
-                                                Delete item</button>
+                                                <fmt:message key="delete.item"/></button>
                                         </div>
                                     </div>
                                 </div>

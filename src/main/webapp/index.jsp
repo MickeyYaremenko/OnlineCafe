@@ -5,7 +5,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
     <link rel='stylesheet' href='resources/css/bootstrap.css' type='text/css' media='all'>
     <link rel='stylesheet' href='resources/css/common.css' type='text/css' media='all'>
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
@@ -31,7 +30,7 @@
         <div class="item active">
             <img src="resources/images/salad2.jpg" alt="Bike">
             <div class="carousel-caption">
-                <h3>Bikes</h3>
+                <h3>Салатик</h3>
                 <p>We exactly know, you like mountain rides or calm cityrides</p>
             </div>
         </div>

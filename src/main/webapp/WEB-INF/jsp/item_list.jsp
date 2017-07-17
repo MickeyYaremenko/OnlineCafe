@@ -20,7 +20,7 @@
         <form action="Controller" method="POST">
             <c:forEach items="${menuItemList}" var="item">
                 <div class="row item-box-list">
-                    <div class="col-lg-10 col-md-12 item-info-list">
+                    <div class="col-lg-9 col-md-12 item-info-list">
                         <div class="col-lg-12 item-name-list">
                             <input type="hidden" name="item" value="${item.title}">
                             <h2><c:out value="${item.title}" /></h2>
@@ -30,9 +30,9 @@
                             <p><i><c:out value="${item.weight}" /></i></p>
                         </div>
                     </div>
-                    <div class="col-lg-2 col-md-12 item-check-list">
+                    <div class="col-lg-3 col-md-12 item-check-list">
                         <div class="item-price-list">
-                            <h3><c:out value="${item.price}"/> $<br>Price</h3>
+                            <h3><strong><c:out value="${item.price}"/> $</strong></h3>
                             <div class="my-spinner">
                                 <div class="input-group number-spinner">
                                 <span class="input-group-btn data-dwn">
@@ -59,7 +59,7 @@
                 <button type="submit" class="btn btn-lg btn-block my-btn"
                         name="command" value="add_to_order">
                     <span class="glyphicon glyphicon-shopping-cart"></span>
-                    Add to an order!
+                    <fmt:message key="add.to.order"/>
                 </button>
             </div>
         </form>
@@ -69,7 +69,7 @@
             <button type="submit" class="btn btn-lg btn-block my-btn"
                     name="command" value="open_menu">
                 <span class="glyphicon glyphicon-arrow-left"></span>
-                Back to menu
+                <fmt:message key="back.to.menu"/>
             </button>
             </div>
         </form>

@@ -22,8 +22,8 @@
                     <input type="hidden" name="category" value="salad"/>
                     <input type="image" src="resources/images/Salad-menu.png" class="person" alt="Random Name">
                 </form>
-                <p class="item-name"><strong>Salads</strong></p>
-                <p class="item-hover"><strong>Pick a salad</strong></p>
+                <p class="item-name"><strong><fmt:message key="salads"/></strong></p>
+                <p class="item-hover"><strong><fmt:message key="pick.salads"/></strong></p>
             </div>
         </div>
         <div class="col-sm-4">
@@ -33,8 +33,8 @@
                     <input type="hidden" name="category" value="soup"/>
                     <input type="image" src="resources/images/Soup-menu.png" class="person" alt="Random Name">
                 </form>
-                <p class="item-name"><strong>Soups</strong></p>
-                <p class="item-hover"><strong>Pick a soup</strong></p>
+                <p class="item-name"><strong><fmt:message key="soups"/></strong></p>
+                <p class="item-hover"><strong><fmt:message key="pick.soups"/></strong></p>
             </div>
         </div>
         <div class="col-sm-4">
@@ -44,8 +44,8 @@
                     <input type="hidden" name="category" value="appetizer"/>
                     <input type="image" src="resources/images/Sandwich-menu.png" class="person" alt="Random Name">
                 </form>
-                <p class="item-name"><strong>Appetizer</strong></p>
-                <p class="item-hover"><strong>Pick an appetizer</strong></p>
+                <p class="item-name"><strong><fmt:message key="appetiziers"/></strong></p>
+                <p class="item-hover"><strong><fmt:message key="pick.appetiziers"/></strong></p>
             </div>
         </div>
     </div>
@@ -57,19 +57,19 @@
                     <input type="hidden" name="category" value="hot"/>
                     <input type="image" src="resources/images/Hot-menu.png" class="person" alt="Random Name">
                 </form>
-                <p class="item-name"><strong>Hot dishes</strong></p>
-                <p class="item-hover"><strong>Pick a hot one</strong></p>
+                <p class="item-name"><strong><fmt:message key="hot"/></strong></p>
+                <p class="item-hover"><strong><fmt:message key="pick.hot"/></strong></p>
             </div>
         </div>
         <div class="col-sm-4">
             <div class="box-item">
                 <form action="Controller" method="get">
                     <input type="hidden" name="command" value="choose_category"/>
-                    <input type="hidden" name="category" value="desert"/>
+                    <input type="hidden" name="category" value="dessert"/>
                     <input type="image" src="resources/images/Cake-menu.png" class="person" alt="Random Name">
                 </form>
-                <p class="item-name"><strong>Deserts</strong></p>
-                <p class="item-hover"><strong>Pick a desert</strong></p>
+                <p class="item-name"><strong><fmt:message key="desserts"/></strong></p>
+                <p class="item-hover"><strong><fmt:message key="pick.desserts"/></strong></p>
             </div>
         </div>
         <div class="col-sm-4">
@@ -79,8 +79,8 @@
                     <input type="hidden" name="category" value="drink"/>
                     <input type="image" src="resources/images/Drinks-menu.png" class="person" alt="Random Name">
                 </form>
-                <p class="item-name"><strong>Drinks</strong></p>
-                <p class="item-hover"><strong>Pick a drink</strong></p>
+                <p class="item-name"><strong><fmt:message key="drinks"/></strong></p>
+                <p class="item-hover"><strong><fmt:message key="pick.drinks"/></strong></p>
             </div>
         </div>
     </div>

@@ -4,8 +4,8 @@ package by.htp.onlinecafe.command.impl.client;
 import by.htp.onlinecafe.command.Command;
 import by.htp.onlinecafe.entity.Client;
 import by.htp.onlinecafe.entity.MenuItem;
-import by.htp.onlinecafe.service.Exception.ServiceException;
-import by.htp.onlinecafe.service.Impl.OrderServiceImpl;
+import by.htp.onlinecafe.service.exception.ServiceException;
+import by.htp.onlinecafe.service.factory.ServiceFactory;
 import by.htp.onlinecafe.service.OrderService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,8 +17,8 @@ public class MakeOrderCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        String page = "/WEB-INF/jsp/order_success.jsp";
-        OrderService orderService = OrderServiceImpl.getInstance();
+        String page = "/WEB-INF/jsp/client/order_success.jsp";
+        OrderService orderService = ServiceFactory.getInstance().getOrderService();
         HttpSession session = request.getSession();
 
         Client client = (Client) session.getAttribute("client");

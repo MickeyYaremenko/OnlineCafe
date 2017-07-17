@@ -20,17 +20,17 @@
         <form action="Controller" method="POST">
             <c:forEach items="${order}" var="entry">
                 <div class="row item-box-cart">
-                    <div class="col-lg-4 col-sm-6 item-info-cart">
+                    <div class="col-lg-6 col-sm-6 item-info-cart">
                         <div class="col-lg-12 item-text-cart">
                             <input type="hidden" name="item" value="${entry.key.title}">
                             <p><c:out value="${entry.key.title}" /> </p>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-sm-6 item-info-cart">
+                    <div class="col-lg-3 col-sm-6 item-info-cart">
                     <div class="col-lg-12 item-text-cart">
-                        <p>Price: <c:out value="${entry.key.price*entry.value}"/> $</p></div>
+                        <p><fmt:message key="price"/>: <c:out value="${entry.key.price*entry.value}"/> $</p></div>
                     </div>
-                    <div class="col-lg-4 col-sm-12 item-check-cart">
+                    <div class="col-lg-3 col-sm-12 item-check-cart">
 
                         <div class="my-spinner">
                             <div class="input-group number-spinner">
@@ -53,19 +53,19 @@
 
             <div class="col-sm-4 col-sm-push-4">
                 <div class="col-sm-8 col-sm-offset-2">
-                <button type="submit" class="btn btn-default btn-lg btn-block"
+                <button type="submit" class="btn my-btn btn-lg btn-block"
                         name="command" value="update_order">
                     <span class="glyphicon glyphicon-refresh"></span>
-                    Update an order!
+                    <fmt:message key="update.order"/>!
                 </button>
             </div>
             </div>
             <div class="col-sm-4 col-sm-push-4">
                 <div class="col-sm-8 col-sm-offset-2">
-                <button type="submit" class="btn btn-default btn-lg btn-block"
+                <button type="submit" class="btn my-btn btn-lg btn-block"
                         name="command" value="make_order">
                     <span class="glyphicon glyphicon-ok"></span>
-                    Make an order!
+                    <fmt:message key="make.order"/>
                 </button>
             </div>
             </div>
@@ -74,10 +74,10 @@
             <input type="hidden" name="command" value="open_menu" />
             <div class="col-sm-4 col-sm-pull-8">
                 <div class="col-sm-8 col-sm-offset-2">
-                <button type="submit" class="btn btn-default btn-lg btn-block"
+                <button type="submit" class="btn my-btn btn-lg btn-block"
                         name="command" value="open_menu">
                     <span class="glyphicon glyphicon-arrow-left"></span>
-                    Back to menu
+                    <fmt:message key="back.to.menu"/>
                 </button>
             </div>
             </div>

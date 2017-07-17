@@ -2,7 +2,7 @@ package by.htp.onlinecafe.service;
 
 import by.htp.onlinecafe.entity.Bill;
 import by.htp.onlinecafe.entity.Client;
-import by.htp.onlinecafe.service.Exception.ServiceException;
+import by.htp.onlinecafe.service.exception.ServiceException;
 
 import java.util.List;
 

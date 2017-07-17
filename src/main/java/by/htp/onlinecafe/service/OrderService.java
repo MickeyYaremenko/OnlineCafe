@@ -1,9 +1,9 @@
 package by.htp.onlinecafe.service;
 
 import by.htp.onlinecafe.entity.Client;
-import by.htp.onlinecafe.entity.DTO.OrderTO;
+import by.htp.onlinecafe.entity.dto.OrderTO;
 import by.htp.onlinecafe.entity.MenuItem;
-import by.htp.onlinecafe.service.Exception.ServiceException;
+import by.htp.onlinecafe.service.exception.ServiceException;
 
 import java.util.List;
 import java.util.Map;
