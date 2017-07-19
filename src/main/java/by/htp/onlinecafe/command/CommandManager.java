@@ -4,11 +4,15 @@ import by.htp.onlinecafe.command.impl.*;
 import by.htp.onlinecafe.command.impl.admin.*;
 import by.htp.onlinecafe.command.impl.client.*;
 import by.htp.onlinecafe.command.impl.general.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class CommandManager {
+
+    private static final Logger LOGGER = LogManager.getLogger(CommandManager.class);
 
     private final static CommandManager instance = new CommandManager();
     private Map<String, Command> commandMap = new HashMap<>();
@@ -47,7 +51,7 @@ public class CommandManager {
     }
 
     public Command getCommand(String title) {
-        System.out.println(title);
+        LOGGER.info(title);
         return commandMap.get(title);
     }
 }

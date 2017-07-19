@@ -14,7 +14,9 @@
     <title>Your Account</title>
 </head>
 <body class="client-acc-body">
+<c:set var="page" value="client_account" scope="session"/>
 <%@include file="/WEB-INF/jsp/parts/navbar.jsp"%>
+
 <div class="main-field">
     <div class="tab">
         <button class="tablinks active" onclick="openTab(event, 'Account-Settings')"><fmt:message key="account.settings"/></button>

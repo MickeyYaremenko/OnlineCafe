@@ -5,6 +5,8 @@ import by.htp.onlinecafe.entity.MenuItem;
 import by.htp.onlinecafe.service.exception.ServiceException;
 import by.htp.onlinecafe.service.factory.ServiceFactory;
 import by.htp.onlinecafe.service.MenuItemService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,11 +14,14 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public class AddNewItemCommand implements Command{
+
+    private static final Logger LOGGER = LogManager.getLogger(AddNewItemCommand.class);
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         String page = "/WEB-INF/jsp/admin/menu_item_management.jsp";
 
-        String title = request.getParameter("cafe.title");
+        String title = request.getParameter("title");
         String weight = request.getParameter("weight");
         BigDecimal price =  new BigDecimal(request.getParameter("price"));
         String category = request.getParameter("category").toLowerCase();
@@ -29,7 +34,7 @@ public class AddNewItemCommand implements Command{
             List<MenuItem> menuItemList = menuItemService.showAll();
             request.setAttribute("menuItemList", menuItemList);
         } catch (ServiceException e) {
-            e.printStackTrace();
+            LOGGER.error(e);
         }
 
         return page;

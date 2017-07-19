@@ -7,60 +7,38 @@
 <head>
     <link rel='stylesheet' href='resources/css/bootstrap.css' type='text/css' media='all'>
     <link rel='stylesheet' href='resources/css/common.css' type='text/css' media='all'>
+    <link rel='stylesheet' href='resources/css/homepage.css' type='text/css' media='all'>
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
     <script src='resources/js/bootstrap.js'></script>
+    <script src='resources/js/homepage.js'></script>
     <meta charset="UTF-8">
     <title>Online Cafe</title>
 </head>
 
-<body>
+<body class="body-home">
 <c:set var="page" value="index" scope="session"/>
 <%@ include file="WEB-INF/jsp/parts/navbar.jsp" %>
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
-
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <img src="resources/images/salad2.jpg" alt="Bike">
-            <div class="carousel-caption">
-                <h3>Салатик</h3>
-                <p>We exactly know, you like mountain rides or calm cityrides</p>
+<div class="homepage-hero-module">
+    <div class="video-container">
+        <div class="title-container">
+            <div class="headline">
+                <img src="resources/images/Cafe%20title.png">
+                <h1>We greet you here! You can
+                    <a href="Controller?command=sign_in_page" class="my-a"> sign in</a> or
+                    <a href="Controller?command=open_menu" class="my-a"> view menu</a>.
+                </h1>
             </div>
         </div>
-
-        <div class="item">
-            <img src="resources/images/kebab.jpg" alt="Board">
-            <div class="carousel-caption">
-                <h3>Boards</h3>
-                <p>Or may be you prefer balancing? Then boards are your choice!</p>
-            </div>
-        </div>
-
-        <div class="item">
-            <img src="resources/images/meat.jpg" alt="Rollers">
-            <div class="carousel-caption">
-                <h3>Rollers</h3>
-                <p>IDK</p>
-            </div>
+        <div class="filter"></div>
+        <video autoplay loop class="fillWidth">
+            <source src="resources/video/Night-BBQ.mp4" type="video/mp4" />Your browser does not support the video tag. I suggest you upgrade your browser.
+            <source src="resources/video/Night-BBQ.webm" type="video/webm" />Your browser does not support the video tag. I suggest you upgrade your browser.
+        </video>
+        <div class="poster hidden">
+            <img src="resources/images/Night-BBQ.jpg" alt="">
         </div>
     </div>
-
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" role="button"
-       data-slide="prev"> <span class="glyphicon glyphicon-chevron-left"
-                                aria-hidden="true"></span> <span class="sr-only">Previous</span>
-    </a> <a class="right carousel-control" href="#myCarousel" role="button"
-            data-slide="next"> <span
-        class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-</a>
 </div>
 
 </body>

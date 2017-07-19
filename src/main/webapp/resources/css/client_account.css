@@ -12,7 +12,7 @@ html {
 
 .client-acc-body {
     height: 100%;
-    background: url('/resources/images/meat.jpg') no-repeat fixed;
+    background: url('/resources/images/food.jpg') no-repeat fixed;
     background-size: cover;
     font-family: 'El Messiri', sans-serif;
 }

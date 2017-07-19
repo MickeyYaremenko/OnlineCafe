@@ -5,6 +5,8 @@ import by.htp.onlinecafe.entity.MenuItem;
 import by.htp.onlinecafe.service.exception.ServiceException;
 import by.htp.onlinecafe.service.factory.ServiceFactory;
 import by.htp.onlinecafe.service.MenuItemService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +15,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AddToOrderCommand implements Command {
+
+    private static final Logger LOGGER = LogManager.getLogger(AddToOrderCommand.class);
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         String page = "/WEB-INF/jsp/order.jsp";
@@ -40,7 +45,7 @@ public class AddToOrderCommand implements Command {
                     MenuItem menuItem  = menuItemService.getByTitle(tempItemTitle);
                     order.put(menuItem, tempQuantity);
                 } catch (ServiceException e) {
-                    e.printStackTrace();
+                    LOGGER.error(e);
                 }
             }
         }
@@ -63,7 +68,7 @@ public class AddToOrderCommand implements Command {
                         order.put(menuItem, tempQuantity);
                     }
                 } catch (ServiceException e) {
-                    e.printStackTrace();
+                    LOGGER.error(e);
                 }
             }
         }

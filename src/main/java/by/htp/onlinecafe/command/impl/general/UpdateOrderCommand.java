@@ -5,6 +5,8 @@ import by.htp.onlinecafe.entity.MenuItem;
 import by.htp.onlinecafe.service.exception.ServiceException;
 import by.htp.onlinecafe.service.factory.ServiceFactory;
 import by.htp.onlinecafe.service.MenuItemService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +14,9 @@ import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 public class UpdateOrderCommand implements Command{
+
+    private static final Logger LOGGER = LogManager.getLogger(UpdateOrderCommand.class);
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         String page = "/WEB-INF/jsp/order.jsp";
@@ -38,7 +43,7 @@ public class UpdateOrderCommand implements Command{
                     order.remove(menuItem);
                 }
             } catch (ServiceException e) {
-                e.printStackTrace();
+                LOGGER.error(e);
             }
         }
         return order;

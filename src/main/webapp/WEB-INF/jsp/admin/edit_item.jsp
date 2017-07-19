@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
     <link rel='stylesheet' href='resources/css/bootstrap.css' type='text/css' media='all'>
     <link rel='stylesheet' href='resources/css/common.css' type='text/css' media='all'>
     <link rel='stylesheet' href='resources/css/form.css' type='text/css' media='all'>
@@ -11,7 +10,8 @@
     <script src='resources/js/bootstrap.js'></script>
     <title>Edit menu item</title>
 </head>
-<body>
+<body class="body-one">
+<c:set var="page" value="edit_item" scope="session"/>
 <%@include file="/WEB-INF/jsp/parts/navbar.jsp"%>
 
 <div class="container">
