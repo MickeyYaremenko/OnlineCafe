@@ -6,7 +6,7 @@
     <link rel='stylesheet' href='resources/css/bootstrap.css' type='text/css' media='all'>
     <link rel='stylesheet' href='resources/css/common.css' type='text/css' media='all'>
     <link rel='stylesheet' href='resources/css/client_account.css' type='text/css' media='all'>
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script src='resources/js/jquery.js'></script>
     <script src='resources/js/bootstrap.js'></script>
     <script src='resources/js/client_account.js'></script>
     <script src='resources/js/passvalidation.js'></script>
@@ -69,7 +69,7 @@
             </c:when>
             <c:otherwise>
                 <h3><c:out value="${changepass}"/></h3>
-                <form action="Controller" method="POST">
+                <form action="Controller" method="GET">
                     <input type="hidden" name="command" value="open_client_acc" />
                     <div class="col-sm-4">
                         <button type="submit" id="Button" class="btn my-btn btn-sm btn-block"

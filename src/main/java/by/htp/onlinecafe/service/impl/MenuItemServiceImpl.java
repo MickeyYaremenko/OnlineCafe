@@ -2,7 +2,6 @@ package by.htp.onlinecafe.service.impl;
 
 import by.htp.onlinecafe.dao.exception.DAOException;
 import by.htp.onlinecafe.dao.factory.DAOFactory;
-import by.htp.onlinecafe.dao.impl.MenuItemDAOImpl;
 import by.htp.onlinecafe.dao.MenuItemDAO;
 import by.htp.onlinecafe.entity.MenuItem;
 import by.htp.onlinecafe.service.exception.ServiceException;
@@ -29,7 +28,7 @@ public class MenuItemServiceImpl implements MenuItemService{
     public List<MenuItem> showByCategory(String category) throws ServiceException {
         MenuItemDAO menuItemDAO = DAOFactory.getInstance().getMenuItemDAO();
         try {
-           return menuItemDAO.showByCategory(category);
+           return menuItemDAO.getActiveByCategory(category, 1); //TO DO delete this
         } catch (DAOException e) {
             throw new ServiceException(e);
         }

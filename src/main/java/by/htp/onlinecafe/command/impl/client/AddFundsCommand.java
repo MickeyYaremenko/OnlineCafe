@@ -19,7 +19,8 @@ public class AddFundsCommand implements Command{
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        String page = "/WEB-INF/jsp/client/client_account.jsp";
+//        String page = "/WEB-INF/jsp/client/client_account.jsp";
+        String page = "/Controller?command=open_client_acc";
         ClientService clientService = ServiceFactory.getInstance().getClientService();
         HttpSession session = request.getSession();
         Client client = (Client) session.getAttribute("client");

@@ -1,8 +1,11 @@
 package by.htp.onlinecafe.entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class Bill {
+public class Bill implements Serializable{
+
+    private static final long serialVersionUID = -4159231579195075770L;
     private int orderID;
     private BigDecimal sum;
 

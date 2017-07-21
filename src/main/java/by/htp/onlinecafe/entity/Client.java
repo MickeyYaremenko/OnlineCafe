@@ -1,8 +1,11 @@
 package by.htp.onlinecafe.entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class Client {
+public class Client implements Serializable{
+
+    private static final long serialVersionUID = -1807171434928909508L;
     private Integer id;
     private String login;
     private String password;

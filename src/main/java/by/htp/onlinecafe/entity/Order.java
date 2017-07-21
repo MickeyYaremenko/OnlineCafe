@@ -1,9 +1,12 @@
 package by.htp.onlinecafe.entity;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Map;
 
-public class Order {
+public class Order implements Serializable{
+
+    private static final long serialVersionUID = 1969306549259835195L;
     private int id;
     private int clientID;
     private Map<MenuItem, Integer> items;

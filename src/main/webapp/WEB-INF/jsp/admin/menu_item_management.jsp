@@ -5,7 +5,7 @@
 <head>
     <link rel='stylesheet' href='resources/css/bootstrap.css' type='text/css' media='all'>
     <link rel='stylesheet' href='resources/css/common.css' type='text/css' media='all'>
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script src='resources/js/jquery.js'></script>
     <script src='resources/js/bootstrap.js'></script>
     <title>Menu items</title>
 </head>
@@ -16,7 +16,7 @@
 <div class="wrapper">
     <div class="container-fluid">
             <c:forEach items="${menuItemList}" var="item">
-                <form action="Controller" method="POST">
+                <form action="Controller" method="GET">
                 <div class="row item-box-list">
                     <div class="col-lg-10 col-md-12 item-info-list">
                         <div class="col-lg-12 item-name-list">

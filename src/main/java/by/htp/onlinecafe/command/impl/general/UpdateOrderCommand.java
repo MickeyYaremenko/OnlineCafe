@@ -19,7 +19,8 @@ public class UpdateOrderCommand implements Command{
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        String page = "/WEB-INF/jsp/order.jsp";
+//        String page = "/WEB-INF/jsp/order.jsp";
+        String page = "/Controller?command=open_order_page";
         HttpSession session = request.getSession();
         Map<MenuItem, Integer> order = (Map<MenuItem, Integer>) session.getAttribute("order");
         order = updateOrder(request, order);

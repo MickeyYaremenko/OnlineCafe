@@ -24,14 +24,21 @@ public class CommandManager {
         commandMap.put("sign_in_page", new SignInPageCommand());
         commandMap.put("register", new RegisterCommand());
         commandMap.put("choose_category", new ChooseCategoryCommand());
-        commandMap.put("open_client_acc", new OpenClientAccountCommand());
-        commandMap.put("change_client_pass", new ChangePasswordCommand());
         commandMap.put("open_menu", new OpenMenuCommand());
         commandMap.put("add_to_order", new AddToOrderCommand());
         commandMap.put("update_order", new UpdateOrderCommand());
+        commandMap.put("open_order_page", new OpenOrderPageCommand());
+        commandMap.put("choose_language", new ChooseLanguageCommand());
+
+        commandMap.put("open_client_acc", new OpenClientAccountCommand());
+        commandMap.put("change_client_pass", new ChangePasswordCommand());
         commandMap.put("make_order", new MakeOrderCommand());
         commandMap.put("add_funds", new AddFundsCommand());
-        commandMap.put("open_order_page", new OpenOrderPageCommand());
+        commandMap.put("sign_out", new SignOutCommand());
+        commandMap.put("open_order_success_page", new OrderSuccessPageCommand());
+        commandMap.put("open_change_pass_success_page", new ChangePassSuccessPageCommand());
+        commandMap.put("open_change_pass_failed_page", new ChangePassFailedPageCommand());
+
         commandMap.put("manage_orders", new ManageOrderPageCommand());
         commandMap.put("manage_menu", new MenuManagementCommand());
         commandMap.put("view_menu_history", new ViewMenuHistoryCommand());
@@ -42,8 +49,7 @@ public class CommandManager {
         commandMap.put("add_new_item", new AddNewItemCommand());
         commandMap.put("open_admin_page", new OpenAdminPageCommand());
         commandMap.put("set_order_status", new SetOrderStatusCommand());
-        commandMap.put("choose_language", new ChooseLanguageCommand());
-        commandMap.put("sign_out", new SignOutCommand());
+
     }
 
     public static CommandManager getInstance() {

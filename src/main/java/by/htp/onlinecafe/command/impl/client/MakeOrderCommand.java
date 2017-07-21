@@ -21,7 +21,8 @@ public class MakeOrderCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        String page = "/WEB-INF/jsp/client/order_success.jsp";
+//        String page = "/WEB-INF/jsp/client/order_success.jsp";
+        String page = "/Controller?command=open_order_success_page";
         OrderService orderService = ServiceFactory.getInstance().getOrderService();
         HttpSession session = request.getSession();
 

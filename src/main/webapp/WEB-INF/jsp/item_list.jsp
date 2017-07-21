@@ -6,7 +6,7 @@
     <link rel='stylesheet' href='resources/css/bootstrap.css' type='text/css' media='all'>
     <link rel='stylesheet' href='resources/css/common.css' type='text/css' media='all'>
     <link rel='stylesheet' href='resources/css/spinner.css' type='text/css' media='all'>
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script src='resources/js/jquery.js'></script>
     <script src='resources/js/bootstrap.js'></script>
     <script src='resources/js/spinner.js'></script>
     <title>Choose an item</title>
@@ -18,7 +18,7 @@
 <div class="wrapper">
     <div class="container-fluid">
         <form action="Controller" method="POST">
-            <c:forEach items="${menuItemList}" var="item">
+            <c:forEach items="${menu.menuItemList}" var="item">
                 <div class="row item-box-list">
                     <div class="col-lg-9 col-md-12 item-info-list">
                         <div class="col-lg-12 item-name-list">

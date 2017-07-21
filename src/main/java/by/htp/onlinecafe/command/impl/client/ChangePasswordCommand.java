@@ -18,7 +18,8 @@ public class ChangePasswordCommand implements Command{
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        String page = "/WEB-INF/jsp/client/client_account.jsp";
+//        String page = "/WEB-INF/jsp/client/client_account.jsp";
+        String page = "/Controller?command=open_change_pass_success_page";
         HttpSession session = request.getSession();
         Client client = (Client) session.getAttribute("client");
         String oldPass = request.getParameter("oldpass");
@@ -31,11 +32,9 @@ public class ChangePasswordCommand implements Command{
         try {
             success = clientService.changePassword(client, oldPass, newPass1, newPass2);
             if (success){
-                String msg = "You've successfully changed your password";
-                request.setAttribute("changepass", msg);
+                page = "/Controller?command=open_change_pass_success_page";
             } else {
-                String msg = "You've entered wrong credentials";
-                request.setAttribute("changepass", msg);
+                page = "/Controller?command=open_change_pass_failed_page";
             }
         } catch (ServiceException e) {
             LOGGER.error(e);

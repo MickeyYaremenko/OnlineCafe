@@ -6,7 +6,7 @@
     <link rel='stylesheet' href='resources/css/bootstrap.css' type='text/css' media='all'>
     <link rel='stylesheet' href='resources/css/common.css' type='text/css' media='all'>
     <link rel='stylesheet' href='resources/css/form.css' type='text/css' media='all'>
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script src='resources/js/jquery.js'></script>
     <script src='resources/js/bootstrap.js'></script>
     <title>Title</title>
 </head>
@@ -51,22 +51,20 @@
                         <textarea rows="2" name="description" id="description" tabindex="5"
                                   class="form-control" placeholder="<fmt:message key="enter.description"/>"></textarea>
                     </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-sm-4 col-sm-offset-2">
-                                <button type="submit" class="btn btn-md my-btn-red"
-                                        name="command" value="manage_menu_items">
-                                    <span class="glyphicon glyphicon-arrow-left"></span>
-                                    <fmt:message key="back"/></button>
-                            </div>
-                            <div class="col-sm-4 col-sm-offset-1">
+                            <div class="col-sm-4 col-sm-push-7">
                                 <button type="submit" class="btn btn-md my-btn"
                                         name="command" value="add_new_item">
                                     <span class="glyphicon glyphicon-plus"></span>
                                     <fmt:message key="add.new.item"/></button>
                             </div>
-                        </div>
-                    </div>
+                </form>
+                <form action="Controller" method="GET">
+                <div class="col-sm-4 col-sm-pull-4 col-sm-offset-1">
+                    <button type="submit" class="btn btn-md my-btn-red"
+                            name="command" value="manage_menu_items">
+                        <span class="glyphicon glyphicon-arrow-left"></span>
+                        <fmt:message key="back"/></button>
+                </div>
                 </form>
             </div>
             </div>

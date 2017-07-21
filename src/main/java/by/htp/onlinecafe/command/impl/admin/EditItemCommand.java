@@ -19,7 +19,8 @@ public class EditItemCommand implements Command{
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        String page = "/WEB-INF/jsp/admin/menu_item_management.jsp";
+//        String page = "/WEB-INF/jsp/admin/menu_item_management.jsp";
+        String page = "/Controller?command=manage_menu_items";
 
         Integer id = Integer.parseInt(request.getParameter("item_id"));
         String title = request.getParameter("title");

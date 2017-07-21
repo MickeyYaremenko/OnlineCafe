@@ -1,9 +1,11 @@
 package by.htp.onlinecafe.entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class MenuItem {
+public class MenuItem implements Serializable{
 
+    private static final long serialVersionUID = -6914326853801254086L;
     private Integer id;
     private String title;
     private String weight;

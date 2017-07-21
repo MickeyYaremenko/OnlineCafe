@@ -26,12 +26,17 @@ public class SignInCommand implements Command {
 
         try {
             Client client = clientService.signIn(login, password);
+            if (client == null){
+                return page;
+            }
             HttpSession session = request.getSession();
             session.setAttribute("client", client);
             if (client.getRole().equals(Client.Role.CLIENT)){
-                page = "/WEB-INF/jsp/menu.jsp";
+//                page = "/WEB-INF/jsp/menu.jsp";
+                page = "/Controller?command=open_menu";
             } else if (client.getRole().equals(Client.Role.ADMIN)){
-                page = "/WEB-INF/jsp/admin/admin_page.jsp";
+//                page = "/WEB-INF/jsp/admin/admin_page.jsp";
+                page = "/Controller?command=open_admin_page";
             }
 
         } catch (ServiceException e) {

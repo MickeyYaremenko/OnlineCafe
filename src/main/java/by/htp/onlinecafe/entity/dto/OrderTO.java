@@ -3,12 +3,14 @@ package by.htp.onlinecafe.entity.dto;
 import by.htp.onlinecafe.entity.Client;
 import by.htp.onlinecafe.entity.MenuItem;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Map;
 
-public class OrderTO {
+public class OrderTO implements Serializable{
 
+    private static final long serialVersionUID = 4821782524195040935L;
     private Integer id;
     private Client client;
     private Map<MenuItem, Integer> items;

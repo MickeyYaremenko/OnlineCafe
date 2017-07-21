@@ -19,8 +19,8 @@ public class AddNewItemCommand implements Command{
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        String page = "/WEB-INF/jsp/admin/menu_item_management.jsp";
-
+//        String page = "/WEB-INF/jsp/admin/menu_item_management.jsp";
+        String page = "/Controller?command=manage_menu_items";
         String title = request.getParameter("title");
         String weight = request.getParameter("weight");
         BigDecimal price =  new BigDecimal(request.getParameter("price"));

@@ -18,7 +18,9 @@ public class SetOrderStatusCommand implements Command{
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        String page = "/WEB-INF/jsp/admin/order_management.jsp";
+//        String page = "/WEB-INF/jsp/admin/order_management.jsp";
+        String page = "/Controller?command=manage_orders";
+
         Integer orderID = Integer.parseInt(request.getParameter("orderID"));
         String status = request.getParameter("status");
         OrderService orderService = ServiceFactory.getInstance().getOrderService();

@@ -50,8 +50,6 @@ public class AuthentificationFilter implements Filter{
 
     private void validate(Client client, String command, ServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
 
-        System.out.println("validating");
-
         List<String> publicCommandList = new ArrayList<>();
         List<String> clientCommandList = new ArrayList<>();
         List<String> adminCommandList = new ArrayList<>();

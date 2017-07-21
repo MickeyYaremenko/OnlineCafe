@@ -20,7 +20,7 @@
                     <c:when test="${empty sessionScope.client.login}">
                         <li>
                         <form class="navbar-form form-inline pull-right" role="search"
-                              action="Controller" method="POST">
+                              action="Controller" method="GET">
                             <input type="hidden" value="sign_in_page" name="command" />
                             <button type="submit" class="btn btn-default"><fmt:message key="sign.in"/></button>
                         </form>

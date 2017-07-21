@@ -1,13 +1,7 @@
 package by.htp.onlinecafe.service.factory;
 
-import by.htp.onlinecafe.service.BillService;
-import by.htp.onlinecafe.service.ClientService;
-import by.htp.onlinecafe.service.MenuItemService;
-import by.htp.onlinecafe.service.OrderService;
-import by.htp.onlinecafe.service.impl.BillServiceImpl;
-import by.htp.onlinecafe.service.impl.ClientServiceImpl;
-import by.htp.onlinecafe.service.impl.MenuItemServiceImpl;
-import by.htp.onlinecafe.service.impl.OrderServiceImpl;
+import by.htp.onlinecafe.service.*;
+import by.htp.onlinecafe.service.impl.*;
 
 public class ServiceFactory {
     private static ServiceFactory instance;
@@ -35,5 +29,9 @@ public class ServiceFactory {
 
     public OrderService getOrderService(){
         return OrderServiceImpl.getInstance();
+    }
+
+    public MenuService getMenuService(){
+        return MenuServiceImpl.getInstance();
     }
 }

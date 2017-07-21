@@ -17,7 +17,10 @@ public class MenuItemDAOImpl implements MenuItemDAO{
 
     private static MenuItemDAOImpl instance;
 
-    private static final String SQL_MENU_ITEM_BY_CATEGORY = "SELECT * FROM menu_item WHERE category = ?";
+    private static final String SQL_ACTIVE_MENU_ITEM_BY_CATEGORY = "SELECT menu_item.* FROM menu_item " +
+            "JOIN items_menu ON menu_item.id_menu_item = items_menu.menu_item_id " +
+            "JOIN menu ON menu.menu_id = items_menu.menu_id " +
+            "WHERE category = ? AND menu.menu_id = ?";
     private static final String SQL_MENU_ITEM_BY_TITLE = "SELECT * FROM menu_item WHERE title = ?";
     private static final String SQL_ALL_MENU_ITEM = "SELECT * FROM menu_item";
     private static final String SQL_UPDATE_MENU_ITEM = "UPDATE menu_item SET title = ?, weight = ?," +
@@ -36,10 +39,11 @@ public class MenuItemDAOImpl implements MenuItemDAO{
     }
 
     @Override
-    public List<MenuItem> showByCategory(String category) throws DAOException {
+    public List<MenuItem> getActiveByCategory(String category, Integer menuID) throws DAOException {
         try (Connection connection = SQLConnectionPool.getConnection();
-             PreparedStatement ps = connection.prepareStatement(SQL_MENU_ITEM_BY_CATEGORY)) {
+             PreparedStatement ps = connection.prepareStatement(SQL_ACTIVE_MENU_ITEM_BY_CATEGORY)) {
             ps.setString(1, category);
+            ps.setInt(2, menuID);
             ResultSet resultSet = ps.executeQuery();
             List <MenuItem> menuItemList = new ArrayList<>();
             while (resultSet.next()) {
