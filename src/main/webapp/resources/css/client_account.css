@@ -88,9 +88,9 @@ div.tab button.active {
     width: 80%;
     border-left: none;
     height: 100%;
-    /*background-color:#fff;
-    opacity: 0.6;*/
     background-color:rgba(255, 255, 255, 0.8);
+    margin: 0;
+    border-radius: 0;
 }
 
 .navbar{

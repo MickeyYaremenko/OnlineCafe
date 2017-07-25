@@ -25,10 +25,10 @@ public class MenuItemServiceImpl implements MenuItemService{
     }
 
     @Override
-    public List<MenuItem> showByCategory(String category) throws ServiceException {
+    public List<MenuItem> getAllByCategory(String category) throws ServiceException {
         MenuItemDAO menuItemDAO = DAOFactory.getInstance().getMenuItemDAO();
         try {
-           return menuItemDAO.getActiveByCategory(category, 1); //TO DO delete this
+           return menuItemDAO.getAllByCategory(category); //TO DO delete this
         } catch (DAOException e) {
             throw new ServiceException(e);
         }

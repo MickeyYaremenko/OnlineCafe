@@ -10,7 +10,7 @@ import java.util.Map;
 
 public interface OrderService {
 
-    void makeOrder(Map<MenuItem, Integer> order, Client client) throws ServiceException;
+    Boolean makeOrder(Map<MenuItem, Integer> order, Client client) throws ServiceException;
     List<OrderTO> clientHistory(Client client) throws ServiceException;
     List<OrderTO> currentClientOrders(Client client) throws ServiceException;
     List<OrderTO> showActive() throws ServiceException;

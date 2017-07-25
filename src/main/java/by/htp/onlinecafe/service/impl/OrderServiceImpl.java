@@ -2,7 +2,6 @@ package by.htp.onlinecafe.service.impl;
 
 import by.htp.onlinecafe.dao.exception.DAOException;
 import by.htp.onlinecafe.dao.factory.DAOFactory;
-import by.htp.onlinecafe.dao.impl.OrderDAOImpl;
 import by.htp.onlinecafe.dao.OrderDAO;
 import by.htp.onlinecafe.entity.Client;
 import by.htp.onlinecafe.entity.dto.OrderTO;
@@ -27,17 +26,23 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
-    public void makeOrder(Map<MenuItem, Integer> order, Client client) throws ServiceException {
+    public Boolean makeOrder(Map<MenuItem, Integer> order, Client client) throws ServiceException {
         OrderTO orderTO = new OrderTO();
         orderTO.setItems(order);
         orderTO.setClient(client);
         orderTO.countSum();
         OrderDAO orderDAO = DAOFactory.getInstance().getOrderDAO();
-        try {
-            orderDAO.makeOrder(orderTO);
-        } catch (DAOException e) {
-            throw new ServiceException(e);
+        if (client.getBalance().compareTo(orderTO.getSum()) == 1){
+            try {
+                orderDAO.makeOrder(orderTO);
+                return Boolean.TRUE;
+            } catch (DAOException e) {
+                throw new ServiceException(e);
+            }
+        } else {
+            return Boolean.FALSE;
         }
+
     }
 
     @Override

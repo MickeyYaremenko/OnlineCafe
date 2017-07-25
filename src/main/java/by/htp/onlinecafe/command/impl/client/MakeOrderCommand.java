@@ -22,7 +22,7 @@ public class MakeOrderCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
 //        String page = "/WEB-INF/jsp/client/order_success.jsp";
-        String page = "/Controller?command=open_order_success_page";
+        String page = "/Controller?command=open_order_page";
         OrderService orderService = ServiceFactory.getInstance().getOrderService();
         HttpSession session = request.getSession();
 
@@ -30,8 +30,14 @@ public class MakeOrderCommand implements Command {
         Map<MenuItem, Integer> order = (Map<MenuItem, Integer>) session.getAttribute("order");
 
         try {
-            orderService.makeOrder(order, client);
-            session.removeAttribute("order");
+
+            Boolean success = orderService.makeOrder(order, client);
+            if (success){
+                page = "/Controller?command=open_order_success_page";
+                session.removeAttribute("order");
+            } else{
+                page = "/Controller?command=open_order_fail_page";
+            }
         } catch (ServiceException e) {
             LOGGER.error(e);
         }

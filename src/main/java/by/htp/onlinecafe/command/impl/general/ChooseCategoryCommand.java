@@ -33,7 +33,7 @@ public class ChooseCategoryCommand implements Command{
         try {
             Menu menu = menuService.getActiveByCategory(language, category);
             request.setAttribute("menu", menu);
-//            List<MenuItem> menuItemList =  menuItemService.showByCategory(category);
+//            List<MenuItem> menuItemList =  menuItemService.getAllByCategory(category);
 //            request.setAttribute("menuItemList", menuItemList);
         } catch (ServiceException e) {
             LOGGER.error(e);

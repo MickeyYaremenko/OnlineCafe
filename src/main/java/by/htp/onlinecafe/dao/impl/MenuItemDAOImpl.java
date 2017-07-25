@@ -1,5 +1,6 @@
 package by.htp.onlinecafe.dao.impl;
 
+import by.htp.onlinecafe.entity.Menu;
 import by.htp.onlinecafe.util.SQLConnectionPool;
 import by.htp.onlinecafe.dao.exception.DAOException;
 import by.htp.onlinecafe.dao.MenuItemDAO;
@@ -17,16 +18,21 @@ public class MenuItemDAOImpl implements MenuItemDAO{
 
     private static MenuItemDAOImpl instance;
 
-    private static final String SQL_ACTIVE_MENU_ITEM_BY_CATEGORY = "SELECT menu_item.* FROM menu_item " +
+    private static final String SQL_ACTIVE_MENU_ITEMS_BY_CATEGORY = "SELECT menu_item.* FROM menu_item " +
             "JOIN items_menu ON menu_item.id_menu_item = items_menu.menu_item_id " +
             "JOIN menu ON menu.menu_id = items_menu.menu_id " +
             "WHERE category = ? AND menu.menu_id = ?";
+    private static final String SQL_MENU_ITEMS_BY_CATEGORY = "SELECT * FROM menu_item WHERE category = ?";
     private static final String SQL_MENU_ITEM_BY_TITLE = "SELECT * FROM menu_item WHERE title = ?";
-    private static final String SQL_ALL_MENU_ITEM = "SELECT * FROM menu_item";
+    private static final String SQL_ALL_MENU_ITEMS = "SELECT * FROM menu_item";
     private static final String SQL_UPDATE_MENU_ITEM = "UPDATE menu_item SET title = ?, weight = ?," +
             "price = ?, category = ?, description = ? WHERE id_menu_item = ?";
     private static final String SQL_ADD_NEW_MENU_ITEM = "INSERT INTO menu_item (title, weight, price, category, description)" +
             "VALUES(?,?,?,?,?)";
+    private static final String SQL_GET_BY_MENU = "SELECT menu_item.* FROM menu_item " +
+            "JOIN items_menu ON menu_item.id_menu_item = items_menu.menu_item_id " +
+            "JOIN menu ON menu.menu_id = items_menu.menu_id " +
+            "WHERE menu.menu_id = ?";
 
     private MenuItemDAOImpl(){
     }
@@ -39,11 +45,34 @@ public class MenuItemDAOImpl implements MenuItemDAO{
     }
 
     @Override
-    public List<MenuItem> getActiveByCategory(String category, Integer menuID) throws DAOException {
+    public List<MenuItem> getActiveByCategory(String category, Menu menu) throws DAOException {
         try (Connection connection = SQLConnectionPool.getConnection();
-             PreparedStatement ps = connection.prepareStatement(SQL_ACTIVE_MENU_ITEM_BY_CATEGORY)) {
+             PreparedStatement ps = connection.prepareStatement(SQL_ACTIVE_MENU_ITEMS_BY_CATEGORY)) {
             ps.setString(1, category);
-            ps.setInt(2, menuID);
+            ps.setInt(2, menu.getId());
+            ResultSet resultSet = ps.executeQuery();
+            List <MenuItem> menuItemList = new ArrayList<>();
+            while (resultSet.next()) {
+                MenuItem menuItem = new MenuItem();
+                menuItem.setId(resultSet.getInt(1));
+                menuItem.setTitle(resultSet.getString(2));
+                menuItem.setWeight(resultSet.getString(3));
+                menuItem.setPrice(resultSet.getBigDecimal(4));
+                menuItem.setCategory(resultSet.getString(5));
+                menuItem.setDescription(resultSet.getString(6));
+                menuItemList.add(menuItem);
+            }
+            return menuItemList;
+        } catch (SQLException | NamingException e) {
+            throw new DAOException(e);
+        }
+    }
+
+    @Override
+    public List<MenuItem> getAllByCategory(String category) throws DAOException {
+        try (Connection connection = SQLConnectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(SQL_MENU_ITEMS_BY_CATEGORY)) {
+            ps.setString(1, category);
             ResultSet resultSet = ps.executeQuery();
             List <MenuItem> menuItemList = new ArrayList<>();
             while (resultSet.next()) {
@@ -88,7 +117,7 @@ public class MenuItemDAOImpl implements MenuItemDAO{
     @Override
     public List<MenuItem> showAll() throws DAOException {
         try (Connection connection = SQLConnectionPool.getConnection();
-             PreparedStatement ps = connection.prepareStatement(SQL_ALL_MENU_ITEM)) {
+             PreparedStatement ps = connection.prepareStatement(SQL_ALL_MENU_ITEMS)) {
             ResultSet resultSet = ps.executeQuery();
             List <MenuItem> menuItemList = new ArrayList<>();
             while (resultSet.next()) {
@@ -133,6 +162,29 @@ public class MenuItemDAOImpl implements MenuItemDAO{
             ps.setString(4, menuItem.getCategory());
             ps.setString(5, menuItem.getDescription());
             ps.executeUpdate();
+        } catch (SQLException | NamingException e) {
+            throw new DAOException(e);
+        }
+    }
+
+    @Override
+    public List<MenuItem> getByMenu(Menu menu) throws DAOException {
+        try (Connection connection = SQLConnectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(SQL_GET_BY_MENU)) {
+            ps.setInt(1, menu.getId());
+            ResultSet resultSet = ps.executeQuery();
+            List <MenuItem> menuItemList = new ArrayList<>();
+            while (resultSet.next()) {
+                MenuItem menuItem = new MenuItem();
+                menuItem.setId(resultSet.getInt(1));
+                menuItem.setTitle(resultSet.getString(2));
+                menuItem.setWeight(resultSet.getString(3));
+                menuItem.setPrice(resultSet.getBigDecimal(4));
+                menuItem.setCategory(resultSet.getString(5));
+                menuItem.setDescription(resultSet.getString(6));
+                menuItemList.add(menuItem);
+            }
+            return menuItemList;
         } catch (SQLException | NamingException e) {
             throw new DAOException(e);
         }

@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface MenuItemService {
 
-    List<MenuItem> showByCategory(String category) throws ServiceException;
+    List<MenuItem> getAllByCategory(String category) throws ServiceException;
     MenuItem getByTitle(String title) throws ServiceException;
     List<MenuItem> showAll() throws ServiceException;
     void updateItem(Integer id, String title, String weight, BigDecimal price, String category, String description)

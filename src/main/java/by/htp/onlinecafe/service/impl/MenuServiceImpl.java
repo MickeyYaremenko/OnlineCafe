@@ -32,12 +32,65 @@ public class MenuServiceImpl implements MenuService{
 
         try {
             Menu menu = menuDAO.getActive(Menu.MenuLanguage.valueOf(menuLanguage.toUpperCase()));
-            List<MenuItem> itemList = menuItemDAO.getActiveByCategory(category, menu.getId());
+            List<MenuItem> itemList = menuItemDAO.getActiveByCategory(category, menu);
             menu.setMenuItemList(itemList);
             return menu;
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
-
     }
+
+    @Override
+    public List<Menu> getAll() throws ServiceException {
+        MenuDAO menuDAO = DAOFactory.getInstance().getMenuDAO();
+        MenuItemDAO menuItemDAO = DAOFactory.getInstance().getMenuItemDAO();
+
+        try {
+            List<Menu> menuList = menuDAO.getAll();
+            for (Menu menu: menuList){
+                menu.setMenuItemList(menuItemDAO.getByMenu(menu));
+            }
+            return menuList;
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public Menu getByID(Integer id) throws ServiceException {
+        MenuDAO menuDAO = DAOFactory.getInstance().getMenuDAO();
+        MenuItemDAO menuItemDAO = DAOFactory.getInstance().getMenuItemDAO();
+
+        try {
+            Menu menu = menuDAO.getByID(id);
+            List<MenuItem> itemList = menuItemDAO.getByMenu(menu);
+            menu.setMenuItemList(itemList);
+            return menu;
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public void update(Menu menu, List<Integer> itemsIDList) throws ServiceException {
+        MenuDAO menuDAO = DAOFactory.getInstance().getMenuDAO();
+
+        try {
+            menuDAO.update(menu, itemsIDList);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public void create(Menu menu, List<Integer> itemsIDList) throws ServiceException {
+        MenuDAO menuDAO = DAOFactory.getInstance().getMenuDAO();
+
+        try {
+            menuDAO.create(menu, itemsIDList);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+    }
+
 }
