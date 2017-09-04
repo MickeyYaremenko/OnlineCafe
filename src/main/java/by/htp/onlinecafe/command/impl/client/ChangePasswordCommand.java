@@ -5,6 +5,7 @@ import by.htp.onlinecafe.entity.Client;
 import by.htp.onlinecafe.service.ClientService;
 import by.htp.onlinecafe.service.exception.ServiceException;
 import by.htp.onlinecafe.service.factory.ServiceFactory;
+import by.htp.onlinecafe.util.Encryptor;
 import by.htp.onlinecafe.util.Validator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -28,23 +29,31 @@ public class ChangePasswordCommand implements Command{
         String page = REDIRECT_CHANGE_PASS_FAIL_PAGE;
         HttpSession session = request.getSession();
         Client client = (Client) session.getAttribute(CLIENT);
-        String oldPass = request.getParameter(OLD_PASSWORD);
-        String newPass1 = request.getParameter(NEW_PASSWORD_1);
-        String newPass2 = request.getParameter(NEW_PASSWORD_2);
+        byte[] password = request.getParameter(OLD_PASSWORD).getBytes();
+        String oldPass = Encryptor.encodePassword(password);
+        String newPasstoValidate1 = request.getParameter(NEW_PASSWORD_1);
+        String newPassToValidate2 = request.getParameter(NEW_PASSWORD_2);
 
-        if (null != newPass1 && newPass1.equals(newPass2) && Validator.checkPassword(newPass1)){
-            ClientService clientService = ServiceFactory.getInstance().getClientService();
+        if (!(null != newPasstoValidate1 && newPasstoValidate1.equals(newPassToValidate2)
+                && Validator.checkPassword(newPasstoValidate1))){
+            return page;
+        }
 
-            try {
-                Boolean success = clientService.changePassword(client, oldPass, newPass1, newPass2);
-                if (success){
-                    page = REDIRECT_CHANGE_PASS_SUCCESS_PAGE;
-                } else {
-                    page = REDIRECT_CHANGE_PASS_FAIL_PAGE;
-                }
-            } catch (ServiceException e) {
-                LOGGER.error(e);
+        byte[] newPassArray1 = request.getParameter(NEW_PASSWORD_1).getBytes();
+        String newPass1 = Encryptor.encodePassword(newPassArray1);
+        byte[] newPassArray2 = request.getParameter(NEW_PASSWORD_2).getBytes();
+        String newPass2 = Encryptor.encodePassword(newPassArray2);
+
+        ClientService clientService = ServiceFactory.getInstance().getClientService();
+        try {
+            Boolean success = clientService.changePassword(client, oldPass, newPass1, newPass2);
+            if (success){
+                page = REDIRECT_CHANGE_PASS_SUCCESS_PAGE;
+            } else {
+                page = REDIRECT_CHANGE_PASS_FAIL_PAGE;
             }
+        } catch (ServiceException e) {
+            LOGGER.error(e);
         }
         return page;
     }

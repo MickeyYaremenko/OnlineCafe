@@ -31,6 +31,7 @@ public final class CommandConstant {
     public static final String OPEN_CHANGE_PASS_SUCCESS_PAGE = "open_change_pass_success_page";
     public static final String OPEN_CHANGE_PASS_FAIL_PAGE = "open_change_pass_failed_page";
     public static final String OPEN_ORDER_FAIL_PAGE = "open_order_fail_page";
+    public static final String OPEN_VIEW_ORDER = "open_view_order_page";
 
     public static final String MANAGE_ORDERS = "manage_orders";
     public static final String MANAGE_MENU = "manage_menu";

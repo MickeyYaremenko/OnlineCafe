@@ -96,7 +96,8 @@
             <tbody>
             <c:forEach items = "${current}" var="i" varStatus="commentLoop">
                 <tr>
-                    <td><c:out value = "${commentLoop.index+1}"/></td>
+                    <td><a href="Controller?command=open_view_order_page&orderID=${i.id}">
+                        <c:out value = "${commentLoop.index+1}"/></a></td>
                     <td><c:out value = "${i.dateTime}"/></td>
                     <td><c:out value = "${i.sum}"/></td>
                     <td><fmt:message key="${i.status}"/></td>
@@ -120,7 +121,8 @@
             <tbody>
             <c:forEach items = "${history}" var="i" varStatus="commentLoop">
                 <tr>
-                    <td><c:out value = "${commentLoop.index+1}"/></td>
+                    <td><a href="Controller?command=open_view_order_page&orderID=${i.id}">
+                        <c:out value = "${commentLoop.index+1}"/></a></td>
                     <td><c:out value = "${i.dateTime}"/></td>
                     <td><c:out value = "${i.sum}"/></td>
                 </tr>

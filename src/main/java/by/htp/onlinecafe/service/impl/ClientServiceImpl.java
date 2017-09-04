@@ -24,7 +24,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Client register(String login, String password, String confirmPassword, String firstName, String lastName, String email)
+    public Client register(String login, String password, String firstName, String lastName, String email)
             throws ServiceException {
 
         try {

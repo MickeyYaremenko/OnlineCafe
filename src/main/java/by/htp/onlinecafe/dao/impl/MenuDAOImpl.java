@@ -98,21 +98,27 @@ public class MenuDAOImpl implements MenuDAO{
              PreparedStatement ps = connection.prepareStatement(SQL_DELETE_FROM_MENU);
              PreparedStatement ps2 = connection.prepareStatement(SQL_ADD_ITEMS_TO_MENU);
              PreparedStatement ps3 = connection.prepareStatement(SQL_UPDATE_MENU)) {
-            ps.setInt(1, menuTO.getId());
+            try {
+                connection.setAutoCommit(false);
+                ps.setInt(1, menuTO.getId());
 
-            for (Integer itemID: itemsIDList){
-                ps2.setInt(1, menuTO.getId());
-                ps2.setInt(2, itemID);
-                ps2.addBatch();
+                for (Integer itemID: itemsIDList){
+                    ps2.setInt(1, menuTO.getId());
+                    ps2.setInt(2, itemID);
+                    ps2.addBatch();
+                }
+
+                ps3.setString(1, menuTO.getMenuStatus().toString());
+                ps3.setString(2, menuTO.getMenuLanguage().toString());
+                ps3.setInt(3, menuTO.getId());
+
+                ps.executeUpdate();
+                ps2.executeBatch();
+                ps3.executeUpdate();
+                connection.commit();
+            } catch (SQLException commitException) {
+                connection.rollback();
             }
-
-            ps3.setString(1, menuTO.getMenuStatus().toString());
-            ps3.setString(2, menuTO.getMenuLanguage().toString());
-            ps3.setInt(3, menuTO.getId());
-
-            ps.executeUpdate();
-            ps2.executeBatch();
-            ps3.executeUpdate();
         } catch (SQLException | NamingException e) {
             throw new DAOException(e);
         }
@@ -121,23 +127,36 @@ public class MenuDAOImpl implements MenuDAO{
     @Override
     public void create(MenuTO menuTO, List<Integer> itemsIDList) throws DAOException {
         try (Connection connection = SQLConnectionPool.getConnection();
+             Connection connection1 = SQLConnectionPool.getConnection();
              PreparedStatement ps = connection.prepareStatement(SQL_CREATE_MENU, Statement.RETURN_GENERATED_KEYS);
-             PreparedStatement ps2 = connection.prepareStatement(SQL_ADD_ITEMS_TO_MENU)) {
+             PreparedStatement ps2 = connection1.prepareStatement(SQL_ADD_ITEMS_TO_MENU)) {
+            connection.setAutoCommit(false);
+            connection1.setAutoCommit(false);
 
-            ps.setString(1, menuTO.getMenuStatus().toString());
-            ps.setString(2, menuTO.getMenuLanguage().toString());
-            ps.executeUpdate();
-            ResultSet keys = ps.getGeneratedKeys();
+            try {
+                ps.setString(1, menuTO.getMenuStatus().toString());
+                ps.setString(2, menuTO.getMenuLanguage().toString());
+                ps.executeUpdate();
+                ResultSet keys = ps.getGeneratedKeys();
 
-            if (keys.next()){
-                for (Integer itemID: itemsIDList){
-                    ps2.setInt(1, keys.getInt(1));
-                    ps2.setInt(2, itemID);
-                    ps2.addBatch();
+                if (keys.next()){
+                    try {
+                        for (Integer itemID: itemsIDList){
+                            ps2.setInt(1, keys.getInt(1));
+                            ps2.setInt(2, itemID);
+                            ps2.addBatch();
+                        }
+                        ps2.executeBatch();
+                        connection.commit();
+                        connection1.commit();
+                    } catch (SQLException childException){
+                    connection.rollback();
+                    connection1.rollback();
                 }
-                ps2.executeBatch();
+                }
+            } catch (SQLException parentException){
+                connection.rollback();
             }
-
         } catch (SQLException | NamingException e) {
             throw new DAOException(e);
         }

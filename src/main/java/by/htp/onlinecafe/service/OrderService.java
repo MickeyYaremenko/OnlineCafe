@@ -52,4 +52,12 @@ public interface OrderService {
      * @throws ServiceException
      */
     void setStatus(Integer orderID, String status) throws ServiceException;
+
+    /**
+     * Returns {@link OrderTO} with defined id
+     * @param orderId of order to get
+     * @return {@link OrderTO} object
+     * @throws ServiceException
+     */
+    OrderTO getById(Integer orderId) throws ServiceException;
 }

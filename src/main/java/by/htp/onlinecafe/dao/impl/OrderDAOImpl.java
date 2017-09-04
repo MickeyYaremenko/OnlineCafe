@@ -50,29 +50,35 @@ public class OrderDAOImpl implements OrderDAO {
             try (Connection connection = SQLConnectionPool.getConnection();
                  PreparedStatement ps = connection.prepareStatement(SQL_CREATE_ORDER, Statement.RETURN_GENERATED_KEYS);
                  PreparedStatement ps2 = connection.prepareStatement(SQL_CREATE_BILL);
+                 PreparedStatement ps3 = connection.prepareStatement(SQL_ADD_ORDER_ITEMS);
                  PreparedStatement ps4 = connection.prepareStatement(SQL_UPDATE_CLIENT_BALANCE)) {
-                ps.setInt(1, orderTO.getClient().getId());
-                ps.executeUpdate();
-                ResultSet keys = ps.getGeneratedKeys();
-                if (keys.next()) {
-                    Integer orderID = keys.getInt(1);
-                    ps2.setInt(1, orderID);
-                    ps2.setBigDecimal(2, orderTO.getSum());
-                    ps2.executeUpdate();
-                    orderTO.getClient().setBalance(orderTO.getClient().getBalance().subtract(orderTO.getSum()));
-                    ps4.setBigDecimal(1, orderTO.getClient().getBalance());
-                    ps4.setString(2, orderTO.getClient().getLogin());
-                    ps4.executeUpdate();
-                    for (Map.Entry<MenuItem, Integer> entry : orderTO.getItems().entrySet()) {
-                        try (PreparedStatement ps3 = connection.prepareStatement(SQL_ADD_ORDER_ITEMS)) {
-                            ps3.setInt(1, entry.getKey().getId());
-                            ps3.setInt(2, orderID);
-                            ps3.setInt(3, entry.getValue());
-                            ps3.executeUpdate();
-                        } catch (SQLException e) {
-                            throw new DAOException(e);
-                        }
+                connection.setAutoCommit(false);
+                try {
+                    ps.setInt(1, orderTO.getClient().getId());
+                    ps.executeUpdate();
+                    ResultSet keys = ps.getGeneratedKeys();
+                    if (keys.next()) {
+                            Integer orderID = keys.getInt(1);
+                            ps2.setInt(1, orderID);
+                            ps2.setBigDecimal(2, orderTO.getSum());
+                            ps2.executeUpdate();
+                            orderTO.getClient().setBalance(orderTO.getClient().getBalance().subtract(orderTO.getSum()));
+                            ps4.setBigDecimal(1, orderTO.getClient().getBalance());
+                            ps4.setString(2, orderTO.getClient().getLogin());
+                            ps4.executeUpdate();
+
+                            for (Map.Entry<MenuItem, Integer> entry : orderTO.getItems().entrySet()) {
+                                ps3.setInt(1, entry.getKey().getId());
+                                ps3.setInt(2, orderID);
+                                ps3.setInt(3, entry.getValue());
+                                ps3.addBatch();
+                            }
+                            ps3.executeBatch();
+                            connection.commit();
                     }
+                } catch (SQLException parentException){
+                    connection.rollback();
+                    throw new SQLException(parentException);
                 }
             } catch (SQLException | NamingException e) {
                 throw new DAOException(e);

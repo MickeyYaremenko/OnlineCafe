@@ -5,6 +5,7 @@ import by.htp.onlinecafe.entity.dto.MenuTO;
 import by.htp.onlinecafe.entity.MenuItem;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Provides a DAO-logic for the {@link MenuItem} entity in database
@@ -59,7 +60,7 @@ public interface MenuItemDAO {
     void addNew(MenuItem menuItem) throws DAOException;
 
     /**
-     * Returns all menuTO item by menuTO
+     * Returns all menu item by menu
      * @param menuTO to get items from
      * @return {@link List<MenuItem>} object
      * @throws DAOException
@@ -72,4 +73,12 @@ public interface MenuItemDAO {
      * @throws DAOException
      */
     void deleteById(Integer id) throws DAOException;
+
+    /**
+     * Returns all menu item by orderId
+     * @param orderId to get items from
+     * @return {@link Map<MenuItem, Integer>} object
+     * @throws DAOException
+     */
+    Map<MenuItem, Integer> getByOrderId(Integer orderId) throws DAOException;
 }

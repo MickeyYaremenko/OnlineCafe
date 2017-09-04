@@ -22,7 +22,8 @@
                     <div class="col-lg-3 col-sm-6 item-info-cart">
                         <div class="col-lg-12 row-man-ord">
                             <input type="hidden" name="orderID" value="${order.id}">
-                            <p><c:out value="${order.id}" /> </p>
+                            <p><a href="Controller?command=open_view_order_page&orderID=${order.id}">
+                                <c:out value="${order.id}" /></a> </p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-sm-6 item-info-cart">

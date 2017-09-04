@@ -15,14 +15,13 @@ public interface ClientService {
      * Returns {@link Client} registered in database
      * @param login of a new client
      * @param password of a new client
-     * @param confirmPassword of a new client
      * @param firstName of a new client
      * @param lastName of a new client
      * @param email of a new client
      * @return {@link Client} object
      * @throws ServiceException
      */
-    Client register(String login, String password, String confirmPassword, String firstName, String lastName, String email)
+    Client register(String login, String password, String firstName, String lastName, String email)
             throws ServiceException;
 
     /**

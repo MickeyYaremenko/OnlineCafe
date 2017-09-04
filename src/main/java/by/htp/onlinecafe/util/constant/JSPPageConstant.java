@@ -18,7 +18,7 @@ public final class JSPPageConstant {
     public static final String ORDER_SUCCESS_PAGE = "/WEB-INF/jsp/client/order_success.jsp";
     public static final String ORDER_FAIL_PAGE = "/WEB-INF/jsp/client/order_failed.jsp";
     public static final String CHANGE_PASS_SUCCESS_PAGE = "/WEB-INF/jsp/client/password_changed.jsp";
-    public static final String CHANGE_PASS_FAIL_PAGE = "/WEB-INF/jsp/client/order_failed.jsp";
+    public static final String CHANGE_PASS_FAIL_PAGE = "/WEB-INF/jsp/client/change_pass_failed.jsp";
     public static final String ORDER_MANAGEMENT_PAGE = "/WEB-INF/jsp/admin/order_management.jsp";
     public static final String MENU_MANAGEMENT_PAGE = "/WEB-INF/jsp/admin/menu_management.jsp";
     public static final String MENU_ITEM_MANAGEMENT_PAGE = "/WEB-INF/jsp/admin/menu_item_management.jsp";
@@ -27,6 +27,7 @@ public final class JSPPageConstant {
     public static final String ADMIN_PAGE = "/WEB-INF/jsp/admin/admin_page.jsp";
     public static final String EDIT_MENU_PAGE = "/WEB-INF/jsp/admin/edit_menu.jsp";
     public static final String ADD_NEW_MENU_PAGE = "/WEB-INF/jsp/admin/add_new_menu.jsp";
+    public static final String OPEN_VIEW_ORDER_PAGE = "/WEB-INF/jsp/client/view_order.jsp";
 
 
     public static final String REDIRECT_MAIN_PAGE = "/Controller?command=open_main_page";
@@ -45,6 +46,6 @@ public final class JSPPageConstant {
     public static final String REDIRECT_ERROR404_PAGE = "/Controller?command=error404_page";
     public static final String REDIRECT_SIGN_IN_FAILED = "/Controller?command=sign_in_failed";
     public static final String REDIRECT_ADD_NEW_ITEM_PAGE = "/Controller?command=add_new_item_page";
-    public static final String REDIRECT_add_new_menu_page = "/Controller?command=add_new_menu_page";
+    public static final String REDIRECT_ADD_NEW_MENU_PAGE = "/Controller?command=add_new_menu_page";
 
 }

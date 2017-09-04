@@ -13,7 +13,8 @@ public class ClientDAOImpl implements ClientDAO {
 
     private static ClientDAOImpl instance;
 
-    private static final String SQL_GET_USER_BY_LOGIN = "SELECT * FROM client WHERE login = ? AND password = ?";
+    private static final String SQL_GET_USER_BY_LOGIN = "SELECT * FROM client WHERE login = ?";
+    private static final String SQL_GET_USER_BY_LOGIN_PASS = "SELECT * FROM client WHERE login = ? AND password = ?";
     private static final String SQL_REGISTER= "INSERT INTO client" +
             "(login, password, first_name, last_name, email) VALUES(?,?,?,?,?)";
     private static final String SQL_CHANGE_CLIENT_PASSWORD = "UPDATE client SET password = ? WHERE login = ?";
@@ -55,7 +56,7 @@ public class ClientDAOImpl implements ClientDAO {
     @Override
     public Client signIn(String login, String password) throws DAOException {
         try (Connection connection = SQLConnectionPool.getConnection();
-             PreparedStatement ps = connection.prepareStatement(SQL_GET_USER_BY_LOGIN)) {
+             PreparedStatement ps = connection.prepareStatement(SQL_GET_USER_BY_LOGIN_PASS)) {
             ps.setString(1, login);
             ps.setString(2, password);
             ResultSet resultSet = ps.executeQuery();

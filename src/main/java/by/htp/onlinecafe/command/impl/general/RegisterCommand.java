@@ -5,6 +5,7 @@ import by.htp.onlinecafe.entity.Client;
 import by.htp.onlinecafe.service.ClientService;
 import by.htp.onlinecafe.service.exception.ServiceException;
 import by.htp.onlinecafe.service.factory.ServiceFactory;
+import by.htp.onlinecafe.util.Encryptor;
 import by.htp.onlinecafe.util.Validator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -39,8 +40,11 @@ public class RegisterCommand implements Command {
                 null != lastName && null != email && Validator.checkLogin(login) &&
                 password.equals(confirmPassword) && Validator.checkPassword(password) &&
                 Validator.checkEmail(email)){
+
+            byte[] passwordArray = request.getParameter(PASSWORD).getBytes();
+            String passwordToUse = Encryptor.encodePassword(passwordArray);
             try {
-                Client client = clientService.register(login, password, confirmPassword, firstName, lastName, email);
+                Client client = clientService.register(login, passwordToUse, firstName, lastName, email);
                 HttpSession session = request.getSession();
                 session.setAttribute(CLIENT, client);
             } catch (ServiceException e) {

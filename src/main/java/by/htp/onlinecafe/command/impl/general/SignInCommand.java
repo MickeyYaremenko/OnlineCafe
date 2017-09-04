@@ -5,6 +5,7 @@ import by.htp.onlinecafe.entity.Client;
 import by.htp.onlinecafe.service.ClientService;
 import by.htp.onlinecafe.service.exception.ServiceException;
 import by.htp.onlinecafe.service.factory.ServiceFactory;
+import by.htp.onlinecafe.util.Encryptor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -28,10 +29,11 @@ public class SignInCommand implements Command {
         ClientService clientService = ServiceFactory.getInstance().getClientService();
 
         String login = request.getParameter(LOGIN);
-        String password = request.getParameter(PASSWORD);
+        byte[] password = request.getParameter(PASSWORD).getBytes();
+        String encryptedPass = Encryptor.encodePassword(password);
 
         try {
-            Client client = clientService.signIn(login, password);
+            Client client = clientService.signIn(login, encryptedPass);
             if (client == null){
                 page = REDIRECT_SIGN_IN_FAILED;
                 return page;

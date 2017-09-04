@@ -34,13 +34,14 @@ public class ChooseLanguageCommand implements Command{
         pageMap.put("order_success", REDIRECT_ORDER_SUCCESS_PAGE);
         pageMap.put("change_pass_success", REDIRECT_CHANGE_PASS_SUCCESS_PAGE);
         pageMap.put("add_new_item", REDIRECT_ADD_NEW_ITEM_PAGE);
-        pageMap.put("add_menu", REDIRECT_add_new_menu_page);
+        pageMap.put("add_menu", REDIRECT_ADD_NEW_MENU_PAGE);
         pageMap.put("admin_page", REDIRECT_ADMIN_PAGE);
         pageMap.put("edit_item", REDIRECT_MANAGE_MENU_ITEMS);
         pageMap.put("edit_menu", REDIRECT_MANAGE_MENU);
         pageMap.put("menu_item_management", REDIRECT_MANAGE_MENU_ITEMS);
         pageMap.put("menu_management", REDIRECT_MANAGE_MENU);
         pageMap.put("order_management", REDIRECT_MANAGE_ORDERS);
+        pageMap.put("view_order", REDIRECT_MAIN_PAGE);
     }
 
     @Override

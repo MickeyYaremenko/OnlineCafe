@@ -12,7 +12,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MenuItemDAOImpl implements MenuItemDAO{
 
@@ -34,6 +36,8 @@ public class MenuItemDAOImpl implements MenuItemDAO{
             "JOIN menu ON menu.menu_id = items_menu.menu_id " +
             "WHERE menu.menu_id = ?";
     private static final String SQL_DELETE_BY_ID = "DELETE FROM menu_item WHERE id_menu_item = ?";
+    private static final String SQL_GET_BY_ORDER = "SELECT * FROM order_menu_item JOIN menu_item " +
+            "ON order_menu_item.id_menu_item = menu_item.id_menu_item WHERE id_order = ?";
 
     private MenuItemDAOImpl(){
     }
@@ -197,6 +201,29 @@ public class MenuItemDAOImpl implements MenuItemDAO{
              PreparedStatement ps = connection.prepareStatement(SQL_DELETE_BY_ID)) {
             ps.setInt(1, id);
             ps.executeUpdate();
+        } catch (SQLException | NamingException e) {
+            throw new DAOException(e);
+        }
+    }
+
+    @Override
+    public Map<MenuItem, Integer> getByOrderId(Integer orderId) throws DAOException {
+        try (Connection connection = SQLConnectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(SQL_GET_BY_ORDER)) {
+            ps.setInt(1, orderId);
+            ResultSet resultSet = ps.executeQuery();
+            Map<MenuItem, Integer> itemsInOrder = new HashMap<>();
+            while (resultSet.next()) {
+                MenuItem menuItem = new MenuItem();
+                menuItem.setId(resultSet.getInt(4));
+                menuItem.setTitle(resultSet.getString(5));
+                menuItem.setWeight(resultSet.getString(6));
+                menuItem.setPrice(resultSet.getBigDecimal(7));
+                menuItem.setCategory(resultSet.getString(8));
+                menuItem.setDescription(resultSet.getString(9));
+                itemsInOrder.put(menuItem, resultSet.getInt(3));
+            }
+            return itemsInOrder;
         } catch (SQLException | NamingException e) {
             throw new DAOException(e);
         }

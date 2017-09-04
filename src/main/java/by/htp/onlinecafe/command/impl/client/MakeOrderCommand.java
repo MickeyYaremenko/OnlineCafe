@@ -26,7 +26,7 @@ public class MakeOrderCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request) {
-        String page = ORDER_PAGE;
+        String page;
         OrderService orderService = ServiceFactory.getInstance().getOrderService();
         HttpSession session = request.getSession();
 
@@ -43,6 +43,7 @@ public class MakeOrderCommand implements Command {
                 page = REDIRECT_ORDER_FAIL_PAGE;
             }
         } catch (ServiceException e) {
+            page = REDIRECT_ORDER_FAIL_PAGE;
             LOGGER.error(e);
         }
         return page;

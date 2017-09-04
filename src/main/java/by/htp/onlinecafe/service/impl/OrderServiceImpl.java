@@ -1,5 +1,6 @@
 package by.htp.onlinecafe.service.impl;
 
+import by.htp.onlinecafe.dao.MenuItemDAO;
 import by.htp.onlinecafe.dao.exception.DAOException;
 import by.htp.onlinecafe.dao.factory.DAOFactory;
 import by.htp.onlinecafe.dao.OrderDAO;
@@ -83,6 +84,18 @@ public class OrderServiceImpl implements OrderService{
         try {
             OrderDAO orderDAO = DAOFactory.getInstance().getOrderDAO();
             orderDAO.setStatus(orderID, status);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public OrderTO getById(Integer orderId) throws ServiceException {
+        try {
+            MenuItemDAO menuItemDAO = DAOFactory.getInstance().getMenuItemDAO();
+            OrderTO orderTO = new OrderTO();
+            orderTO.setItems(menuItemDAO.getByOrderId(orderId));
+            return orderTO;
         } catch (DAOException e) {
             throw new ServiceException(e);
         }

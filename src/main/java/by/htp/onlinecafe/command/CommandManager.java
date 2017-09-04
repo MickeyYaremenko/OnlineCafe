@@ -45,6 +45,7 @@ public class CommandManager {
         commandMap.put(OPEN_CHANGE_PASS_SUCCESS_PAGE, new ChangePassSuccessPageCommand());
         commandMap.put(OPEN_CHANGE_PASS_FAIL_PAGE, new ChangePassFailedPageCommand());
         commandMap.put(OPEN_ORDER_FAIL_PAGE, new OrderFailedPageCommand());
+        commandMap.put(OPEN_VIEW_ORDER, new OpenViewOrderPageCommand());
 
         commandMap.put(MANAGE_ORDERS, new ManageOrderPageCommand());
         commandMap.put(MANAGE_MENU, new MenuManagementPageCommand());
