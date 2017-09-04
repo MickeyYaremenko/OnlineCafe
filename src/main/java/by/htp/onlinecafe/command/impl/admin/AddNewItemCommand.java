@@ -9,30 +9,35 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.math.BigDecimal;
 import java.util.List;
 
+import static by.htp.onlinecafe.util.constant.JSPPageConstant.*;
+import static by.htp.onlinecafe.util.constant.ParameterAttributeConstant.*;
+
+/**
+ * Implementation of Command {@link Command}.
+ * Adds new item to database based on request parameters.
+ */
 public class AddNewItemCommand implements Command{
 
     private static final Logger LOGGER = LogManager.getLogger(AddNewItemCommand.class);
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
-//        String page = "/WEB-INF/jsp/admin/menu_item_management.jsp";
-        String page = "/Controller?command=manage_menu_items";
-        String title = request.getParameter("title");
-        String weight = request.getParameter("weight");
-        BigDecimal price =  new BigDecimal(request.getParameter("price"));
-        String category = request.getParameter("category").toLowerCase();
-        String description = request.getParameter("description");
+    public String execute(HttpServletRequest request) {
+        String page = REDIRECT_MANAGE_MENU_ITEMS;
+        String title = request.getParameter(TITLE);
+        String weight = request.getParameter(WEIGHT);
+        BigDecimal price =  new BigDecimal(request.getParameter(PRICE));
+        String category = request.getParameter(CATEGORY).toLowerCase();
+        String description = request.getParameter(DESCRIPTION);
 
         MenuItemService menuItemService = ServiceFactory.getInstance().getMenuItemService();
 
         try {
             menuItemService.addNew(title, weight, price, category, description);
             List<MenuItem> menuItemList = menuItemService.showAll();
-            request.setAttribute("menuItemList", menuItemList);
+            request.setAttribute(MENU_ITEM_LIST, menuItemList);
         } catch (ServiceException e) {
             LOGGER.error(e);
         }

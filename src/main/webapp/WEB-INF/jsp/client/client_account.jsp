@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -9,7 +9,7 @@
     <script src='resources/js/jquery.js'></script>
     <script src='resources/js/bootstrap.js'></script>
     <script src='resources/js/client_account.js'></script>
-    <script src='resources/js/passvalidation.js'></script>
+    <script src='../../../resources/js/pass_validation.js'></script>
     <script src='resources/js/number_validation.js'></script>
     <title>Your Account</title>
 </head>
@@ -99,7 +99,7 @@
                     <td><c:out value = "${commentLoop.index+1}"/></td>
                     <td><c:out value = "${i.dateTime}"/></td>
                     <td><c:out value = "${i.sum}"/></td>
-                    <td><c:out value="${i.status}"/></td>
+                    <td><fmt:message key="${i.status}"/></td>
                 </tr>
             </c:forEach>
             </tbody>

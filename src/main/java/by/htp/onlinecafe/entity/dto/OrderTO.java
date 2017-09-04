@@ -77,7 +77,6 @@ public class OrderTO implements Serializable{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         OrderTO orderTO = (OrderTO) o;
 
         if (getId() != orderTO.getId()) return false;
@@ -89,6 +88,7 @@ public class OrderTO implements Serializable{
         if (getStatus() != orderTO.getStatus()) return false;
         return getSum() != null ? getSum().equals(orderTO.getSum()) : orderTO.getSum() == null;
     }
+
 
     @Override
     public int hashCode() {

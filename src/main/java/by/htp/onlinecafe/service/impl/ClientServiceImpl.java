@@ -3,7 +3,6 @@ package by.htp.onlinecafe.service.impl;
 import by.htp.onlinecafe.dao.ClientDAO;
 import by.htp.onlinecafe.dao.exception.DAOException;
 import by.htp.onlinecafe.dao.factory.DAOFactory;
-import by.htp.onlinecafe.dao.impl.ClientDAOImpl;
 import by.htp.onlinecafe.entity.Client;
 import by.htp.onlinecafe.service.ClientService;
 import by.htp.onlinecafe.service.exception.ServiceException;
@@ -74,10 +73,10 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public boolean addFunds(Client client, BigDecimal sum) throws ServiceException {
+    public void addFunds(Client client, BigDecimal sum) throws ServiceException {
         ClientDAO clientDAO = DAOFactory.getInstance().getClientDAO();
         try {
-            return clientDAO.addFunds(client, sum);
+           clientDAO.addFunds(client, sum);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }

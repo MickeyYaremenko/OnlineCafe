@@ -1,40 +1,40 @@
 package by.htp.onlinecafe.command.impl.general;
 
 import by.htp.onlinecafe.command.Command;
-import by.htp.onlinecafe.entity.Menu;
-import by.htp.onlinecafe.entity.MenuItem;
+import by.htp.onlinecafe.entity.dto.MenuTO;
 import by.htp.onlinecafe.service.MenuService;
 import by.htp.onlinecafe.service.exception.ServiceException;
 import by.htp.onlinecafe.service.factory.ServiceFactory;
-import by.htp.onlinecafe.service.MenuItemService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
+import static by.htp.onlinecafe.util.constant.JSPPageConstant.*;
+import static by.htp.onlinecafe.util.constant.ParameterAttributeConstant.*;
+
+/**
+ * Implementation of Command {@link Command}.
+ * Opens item_list.jsp with items from selected category.
+ */
 public class ChooseCategoryCommand implements Command{
 
     private static final Logger LOGGER = LogManager.getLogger(ChooseCategoryCommand.class);
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
-        String page = "/WEB-INF/jsp/item_list.jsp";
+    public String execute(HttpServletRequest request) {
+        String page = ITEM_LIST_PAGE;
         HttpSession session = request.getSession();
-        String language = (String) session.getAttribute("language");
+        String language = (String) session.getAttribute(LANGUAGE);
         if (language == null){
-            language = "en_EN";
+            language = RUSSIAN;
         }
-        String category = request.getParameter("category");
+        String category = request.getParameter(CATEGORY);
         MenuService menuService = ServiceFactory.getInstance().getMenuService();
-//        MenuItemService menuItemService = ServiceFactory.getInstance().getMenuItemService();
         try {
-            Menu menu = menuService.getActiveByCategory(language, category);
-            request.setAttribute("menu", menu);
-//            List<MenuItem> menuItemList =  menuItemService.getAllByCategory(category);
-//            request.setAttribute("menuItemList", menuItemList);
+            MenuTO menuTO = menuService.getActiveByCategory(language, category);
+            request.setAttribute(MENU, menuTO);
         } catch (ServiceException e) {
             LOGGER.error(e);
         }

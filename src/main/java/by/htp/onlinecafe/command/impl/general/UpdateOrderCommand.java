@@ -9,29 +9,34 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Map;
 
+import static by.htp.onlinecafe.util.constant.JSPPageConstant.*;
+import static by.htp.onlinecafe.util.constant.ParameterAttributeConstant.*;
+
+/**
+ * Implementation of Command {@link Command}.
+ * Updates an order according to new items quantity.
+ */
 public class UpdateOrderCommand implements Command{
 
     private static final Logger LOGGER = LogManager.getLogger(UpdateOrderCommand.class);
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
-//        String page = "/WEB-INF/jsp/order.jsp";
-        String page = "/Controller?command=open_order_page";
+    public String execute(HttpServletRequest request) {
+        String page = REDIRECT_ORDER_PAGE;
         HttpSession session = request.getSession();
-        Map<MenuItem, Integer> order = (Map<MenuItem, Integer>) session.getAttribute("order");
+        Map<MenuItem, Integer> order = (Map<MenuItem, Integer>) session.getAttribute(ORDER);
         order = updateOrder(request, order);
-        session.setAttribute("order", order);
+        session.setAttribute(ORDER, order);
         return page;
     }
 
     private Map<MenuItem, Integer> updateOrder(HttpServletRequest request, Map<MenuItem, Integer> order) {
         MenuItemService menuItemService = ServiceFactory.getInstance().getMenuItemService();
-        String[] tempOrderItems = request.getParameterValues("item");
-        String[] tempItemsQuantity = request.getParameterValues("quant");
+        String[] tempOrderItems = request.getParameterValues(ITEM);
+        String[] tempItemsQuantity = request.getParameterValues(QUANTITY);
         for (int i = 0; i < tempOrderItems.length; i++) {
             Integer tempQuantity = Integer.parseInt(tempItemsQuantity[i]);
             String tempItemTitle = tempOrderItems[i];

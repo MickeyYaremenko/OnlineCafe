@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -44,8 +44,20 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="category" class="control-label"><fmt:message key="category"/>:</label>
-                                    <input type="text" name="category" id="category" tabindex="4" class="form-control"
-                                           value="${item.category}">
+                                    <select id="category" class="form-control" name="category" tabindex="4">
+                                        <option value="salad" ${item.category.equals("salad")?"selected":""}>
+                                            <fmt:message key="salads"/></option>
+                                        <option value="soup" ${item.category.equals("soup")?"selected":""}>
+                                            <fmt:message key="soups"/></option>
+                                        <option value="appetizier" ${item.category.equals("appetizier")?"selected":""}>
+                                            <fmt:message key="appetiziers"/></option>
+                                        <option value="hot" ${item.category.equals("hot")?"selected":""}>
+                                            <fmt:message key="hot"/></option>
+                                        <option value="dessert" ${item.category.equals("dessert")?"selected":""}>
+                                            <fmt:message key="desserts"/></option>
+                                        <option value="drink" ${item.category.equals("drink")?"selected":""}>
+                                            <fmt:message key="drinks"/></option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="description" class="control-label"><fmt:message key="description"/>:</label>

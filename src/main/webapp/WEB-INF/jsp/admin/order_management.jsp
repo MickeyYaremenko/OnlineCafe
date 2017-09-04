@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -27,7 +27,7 @@
                     </div>
                     <div class="col-lg-3 col-sm-6 item-info-cart">
                         <div class="col-lg-12 row-man-ord">
-                            <p><fmt:message key="status"/>: <c:out value="${order.status}"/></p></div>
+                            <p><fmt:message key="status"/>: <fmt:message key="${order.status}"/></p></div>
                     </div>
                     <div class="col-lg-6 col-md-12 item-info-cart">
                         <div class="row row-man-ord">

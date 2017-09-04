@@ -3,12 +3,17 @@ package by.htp.onlinecafe.command.impl.general;
 import by.htp.onlinecafe.command.Command;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
+import static by.htp.onlinecafe.util.constant.JSPPageConstant.*;
+
+/**
+ * Implementation of Command {@link Command}.
+ * Opens order.jsp.
+ */
 public class OpenOrderPageCommand implements Command{
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
-        String page = "/WEB-INF/jsp/order.jsp";
+    public String execute(HttpServletRequest request) {
+        String page = ORDER_PAGE;
         return page;
     }
 }

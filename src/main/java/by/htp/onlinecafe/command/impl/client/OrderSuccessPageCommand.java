@@ -3,15 +3,17 @@ package by.htp.onlinecafe.command.impl.client;
 import by.htp.onlinecafe.command.Command;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
+import static by.htp.onlinecafe.util.constant.JSPPageConstant.*;
 
 /**
- * Created by Mike Yaremenko on 21.07.2017.
+ * Implementation of Command {@link Command}.
+ * Opens order_success.jsp.
  */
 public class OrderSuccessPageCommand implements Command{
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
-        String page = "/WEB-INF/jsp/client/order_success.jsp";
+    public String execute(HttpServletRequest request) {
+        String page = ORDER_SUCCESS_PAGE;
         return page;
     }
 }

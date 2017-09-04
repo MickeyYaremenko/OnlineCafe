@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page pageEncoding="UTF-8" contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -43,8 +43,20 @@
                     </div>
                     <div class="form-group">
                         <label for="category" class="control-label"><fmt:message key="category"/>:</label>
-                        <input type="text" name="category" id="category" tabindex="4" class="form-control"
-                               placeholder="<fmt:message key="enter.category"/>">
+                        <select id="category" class="form-control" name="category" tabindex="4">
+                            <option value="salad">
+                                <fmt:message key="salads"/></option>
+                            <option value="soup">
+                                <fmt:message key="soups"/></option>
+                            <option value="appetizier">
+                                <fmt:message key="appetiziers"/></option>
+                            <option value="hot">
+                                <fmt:message key="hot"/></option>
+                            <option value="dessert">
+                                <fmt:message key="desserts"/></option>
+                            <option value="drink">
+                                <fmt:message key="drinks"/></option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="description" class="control-label"><fmt:message key="description"/>:</label>

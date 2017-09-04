@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
@@ -24,9 +24,10 @@
         <div class="title-container">
             <div class="headline">
                 <img src="resources/images/Cafe%20title.png">
-                <h1>We greet you here! You can
-                    <a href="Controller?command=sign_in_page" class="my-a"> sign in</a> or
-                    <a href="Controller?command=open_menu" class="my-a"> view menu</a>.
+                <h1><fmt:message key="welcome.page.message"/>
+                    <a href="Controller?command=sign_in_page" class="my-a"> <fmt:message key="sign.in"/></a>
+                    <fmt:message key="or"/>
+                    <a href="Controller?command=open_menu" class="my-a"> <fmt:message key="view.menu"/></a>.
                 </h1>
             </div>
         </div>

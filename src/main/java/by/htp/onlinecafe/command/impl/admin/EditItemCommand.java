@@ -9,32 +9,37 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.math.BigDecimal;
 import java.util.List;
 
+import static by.htp.onlinecafe.util.constant.JSPPageConstant.*;
+import static by.htp.onlinecafe.util.constant.ParameterAttributeConstant.*;
+
+/**
+ * Implementation of Command {@link Command}.
+ * Edits information about menu item.
+ */
 public class EditItemCommand implements Command{
 
     private static final Logger LOGGER = LogManager.getLogger(EditItemCommand.class);
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
-//        String page = "/WEB-INF/jsp/admin/menu_item_management.jsp";
-        String page = "/Controller?command=manage_menu_items";
+    public String execute(HttpServletRequest request) {
+        String page = REDIRECT_MANAGE_MENU_ITEMS;
 
-        Integer id = Integer.parseInt(request.getParameter("item_id"));
-        String title = request.getParameter("title");
-        String weight = request.getParameter("weight");
-        BigDecimal price =  new BigDecimal(request.getParameter("price"));
-        String category = request.getParameter("category").toLowerCase();
-        String description = request.getParameter("description");
+        Integer id = Integer.parseInt(request.getParameter(ITEM_ID));
+        String title = request.getParameter(TITLE);
+        String weight = request.getParameter(WEIGHT);
+        BigDecimal price =  new BigDecimal(request.getParameter(PRICE));
+        String category = request.getParameter(CATEGORY).toLowerCase();
+        String description = request.getParameter(DESCRIPTION);
 
         MenuItemService menuItemService = ServiceFactory.getInstance().getMenuItemService();
 
         try {
             menuItemService.updateItem(id, title, weight, price, category, description);
             List<MenuItem> menuItemList = menuItemService.showAll();
-            request.setAttribute("menuItemList", menuItemList);
+            request.setAttribute(MENU_ITEM_LIST, menuItemList);
         } catch (ServiceException e) {
             LOGGER.error(e);
         }

@@ -9,33 +9,39 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
+import static by.htp.onlinecafe.util.constant.JSPPageConstant.*;
+import static by.htp.onlinecafe.util.constant.ParameterAttributeConstant.*;
+
+/**
+ * Implementation of Command {@link Command}.
+ * Opens add_new_menu.jsp.
+ */
 public class AddNewMenuPageCommand implements Command{
 
     private static final Logger LOGGER = LogManager.getLogger(AddNewMenuPageCommand.class);
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
-        String page = "/WEB-INF/jsp/admin/add_new_menu.jsp";
+    public String execute(HttpServletRequest request) {
+        String page = ADD_NEW_MENU_PAGE;
 
         MenuItemService menuItemService = ServiceFactory.getInstance().getMenuItemService();
 
         try {
-            List<MenuItem> salad = menuItemService.getAllByCategory("salad");
-            List<MenuItem> soup = menuItemService.getAllByCategory("soup");
-            List<MenuItem> appetizier = menuItemService.getAllByCategory("appetizier");
-            List<MenuItem> hot = menuItemService.getAllByCategory("hot");
-            List<MenuItem> dessert = menuItemService.getAllByCategory("dessert");
-            List<MenuItem> drink = menuItemService.getAllByCategory("drink");
+            List<MenuItem> salad = menuItemService.getAllByCategory(SALAD);
+            List<MenuItem> soup = menuItemService.getAllByCategory(SOUP);
+            List<MenuItem> appetizier = menuItemService.getAllByCategory(APPETIZIER);
+            List<MenuItem> hot = menuItemService.getAllByCategory(HOT);
+            List<MenuItem> dessert = menuItemService.getAllByCategory(DESSERT);
+            List<MenuItem> drink = menuItemService.getAllByCategory(DRINK);
 
-            request.setAttribute("salad", salad);
-            request.setAttribute("soup", soup);
-            request.setAttribute("appetizier", appetizier);
-            request.setAttribute("hot", hot);
-            request.setAttribute("dessert", dessert);
-            request.setAttribute("drink", drink);
+            request.setAttribute(SALAD, salad);
+            request.setAttribute(SOUP, soup);
+            request.setAttribute(APPETIZIER, appetizier);
+            request.setAttribute(HOT, hot);
+            request.setAttribute(DESSERT, dessert);
+            request.setAttribute(DRINK, drink);
         } catch (ServiceException e) {
             LOGGER.error(e);
         }

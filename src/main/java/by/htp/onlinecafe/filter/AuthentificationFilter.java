@@ -9,22 +9,32 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
+import by.htp.onlinecafe.util.constant.RoleCommandListConstant;
+import static by.htp.onlinecafe.util.constant.CommandConstant.*;
+import static by.htp.onlinecafe.util.constant.ParameterAttributeConstant.*;
+import by.htp.onlinecafe.util.constant.JSPPageConstant;
+
+/**
+ * This filter checks if client's role match his request.
+ */
 @WebFilter(servletNames = "Controller",
-    initParams = {@WebInitParam(name = "main_page", value = "/Controller?command=open_main_page"),
-                @WebInitParam(name = "sign_in", value = "/Controller?command=sign_in_page")})
+    initParams = {@WebInitParam(name = OPEN_MAIN_PAGE, value = JSPPageConstant.REDIRECT_MAIN_PAGE),
+                @WebInitParam(name = SIGN_IN_PAGE, value = JSPPageConstant.REDIRECT_SIGN_IN_PAGE),
+                @WebInitParam(name = ERROR404_PAGE, value = JSPPageConstant.REDIRECT_ERROR404_PAGE)})
+
 public class AuthentificationFilter implements Filter{
 
     private String mainPage;
     private String signInPage;
-
+    private String error404Page;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        mainPage = filterConfig.getInitParameter("main_page");
-        signInPage = filterConfig.getInitParameter("sign_in");
+        mainPage = filterConfig.getInitParameter(OPEN_MAIN_PAGE);
+        signInPage = filterConfig.getInitParameter(SIGN_IN_PAGE);
+        error404Page = filterConfig.getInitParameter(ERROR404_PAGE);
     }
 
     @Override
@@ -34,55 +44,36 @@ public class AuthentificationFilter implements Filter{
         HttpSession session = servletRequest.getSession(false);
 
         if (session != null){
-            String command = servletRequest.getParameter("command");
-            Client client = (Client) session.getAttribute("client");
+            String command = servletRequest.getParameter(COMMAND);
+            Client client = (Client) session.getAttribute(CLIENT);
             validate(client, command, servletRequest, servletResponse, chain);
         } else {
             chain.doFilter(request, response);
         }
-
     }
 
     @Override
     public void destroy() {
-
     }
 
-    private void validate(Client client, String command, ServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
+    /**
+     * Checks client's role to process the command
+     * @param client for check
+     * @param command command for check
+     * @param request
+     * @param response
+     * @param chain
+     */
+    private void validate(Client client, String command, ServletRequest request, HttpServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
 
-        List<String> publicCommandList = new ArrayList<>();
-        List<String> clientCommandList = new ArrayList<>();
-        List<String> adminCommandList = new ArrayList<>();
+        List<String> generalCommandList = RoleCommandListConstant.getGeneralCommandList();
+        List<String> clientCommandList = RoleCommandListConstant.getClientCommandList();
+        List<String> adminCommandList = RoleCommandListConstant.getAdminCommandList();
 
-        publicCommandList.add("open_main_page");
-        publicCommandList.add("sign_in");
-        publicCommandList.add("sign_in_page");
-        publicCommandList.add("register");
-        publicCommandList.add("choose_category");
-        publicCommandList.add("open_menu");
-        publicCommandList.add("add_to_order");
-        publicCommandList.add("update_order");
-        publicCommandList.add("open_order_page");
-        publicCommandList.add("choose_language");
-
-        clientCommandList.add("sign_out");
-        clientCommandList.add("make_order");
-        clientCommandList.add("add_funds");
-        clientCommandList.add("open_client_acc");
-        clientCommandList.add("change_client_pass");
-
-        adminCommandList.add("manage_orders");
-        adminCommandList.add("manage_menu");
-        adminCommandList.add("view_menu_history");
-        adminCommandList.add("manage_menu_items");
-        adminCommandList.add("edit_item");
-        adminCommandList.add("save_item_changes");
-        adminCommandList.add("add_new_item_page");
-        adminCommandList.add("add_new_item");
-        adminCommandList.add("open_admin_page");
-        adminCommandList.add("set_order_status");
-
-        if (client == null && (clientCommandList.contains(command) || adminCommandList.contains(command))){
+        if (!(generalCommandList.contains(command) || clientCommandList.contains(command) || adminCommandList.contains(command))){
+            response.sendRedirect(error404Page);
+        } else if (client == null && (clientCommandList.contains(command) || adminCommandList.contains(command))){
             response.sendRedirect(signInPage);
         } else if (!(client == null) && client.getRole().equals(Client.Role.CLIENT) && adminCommandList.contains(command)){
             response.sendRedirect(mainPage);

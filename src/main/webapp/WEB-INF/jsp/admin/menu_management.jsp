@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
@@ -14,8 +14,8 @@
 
 <div class="wrapper">
     <div class="container-fluid">
-        <form action="Controller" method="GET">
-            <c:forEach items="${menuList}" var="menu">
+        <c:forEach items="${menuList}" var="menu">
+            <form action="Controller" method="GET">
             <div class="row item-box-cart">
                 <div class="col-lg-1 col-md-1 item-info-cart">
                     <div class="col-lg-12 item-text-cart">
@@ -29,19 +29,20 @@
                 </div>
                 <div class="col-lg-3 col-md-5 item-info-cart">
                     <div class="col-lg-12 item-text-cart">
-                        <p><fmt:message key="language"/>: <c:out value="${menu.menuLanguage}"/></p></div>
+                        <p><fmt:message key="language"/>: <fmt:message key="${menu.menuLanguage}"/></p></div>
                 </div>
                 <div class="col-lg-3 col-md-6 item-info-cart">
                     <div class="col-lg-12 item-text-cart">
-                        <p><fmt:message key="status"/>: <c:out value="${menu.menuStatus}"/></p></div>
+                        <p><fmt:message key="status"/>: <fmt:message key="${menu.menuStatus}"/></p></div>
                 </div>
                 <div class="col-lg-2 col-md-6 item-info-cart">
                         <button type="submit" class="btn btn-md my-btn"
                                 name="command" value="edit_menu_page"><fmt:message key="edit"/></button>
                 </div>
             </div>
-            </c:forEach>
-        </form>
+            </form>
+        </c:forEach>
+
 
 
         <div class="row" style="margin-bottom: auto">

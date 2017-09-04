@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -56,27 +56,33 @@
                                 <input type="hidden" value="register" name="command">
                                 <div class="form-group">
                                     <input type="text" name="login" id="login" tabindex="1"
-                                           class="form-control" placeholder="<fmt:message key="login"/>" value="">
+                                           class="form-control" placeholder="<fmt:message key="login"/>"
+                                           pattern="[A-z0-9_-]{3,10}" title="<fmt:message key="login.rules"/>">
                                 </div>
                                 <div class="form-group">
                                     <input type="password" name="password" id="password" tabindex="2"
-                                           class="form-control" placeholder="<fmt:message key="password"/>">
+                                           class="form-control" placeholder="<fmt:message key="password"/>"
+                                           pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{3,}$" title="<fmt:message key="password.rules"/>">
                                 </div>
                                 <div class="form-group">
                                     <input type="password" name="confirm_password" id="confirm_password"
-                                           tabindex="2" class="form-control" placeholder="<fmt:message key="confirm.password"/>">
+                                           tabindex="2" class="form-control" placeholder="<fmt:message key="confirm.password"/>"
+                                           pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{3,}$" title="<fmt:message key="password.rules"/>">
                                 </div>
                                 <div class="form-group">
                                     <input type="text" name="first_name" id="first_name" tabindex="1"
-                                           class="form-control" placeholder="<fmt:message key="first.name"/>">
+                                           class="form-control" placeholder="<fmt:message key="first.name"/>"
+                                           pattern=".+{1, }" title="<fmt:message key="name.rules"/>">
                                 </div>
                                 <div class="form-group">
                                     <input type="text" name="last_name" id="last_name" tabindex="1"
-                                           class="form-control" placeholder="<fmt:message key="last.name"/>">
+                                           class="form-control" placeholder="<fmt:message key="last.name"/>"
+                                           pattern=".+{1, }" title="<fmt:message key="name.rules"/>">
                                 </div>
                                 <div class="form-group">
                                     <input type="email" name="email" id="email" tabindex="1"
-                                           class="form-control" placeholder="<fmt:message key="email"/>">
+                                           class="form-control" placeholder="<fmt:message key="email"/>"
+                                           pattern="[A-z0-9_\.-]+@[A-z0-9.-]+\.[a-z]{2,6}" title="<fmt:message key="email.rules"/>">
                                 </div>
                                 <div class="form-group">
                                     <div class="row">

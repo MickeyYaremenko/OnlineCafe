@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page session="true" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
@@ -33,6 +33,12 @@
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
+                                <c:if test="${sessionScope.client.role eq 'ADMIN'}">
+                                    <li><a href="Controller?command=open_admin_page">
+                                        <fmt:message key="open.admin.page"/>
+                                    </a>
+                                    </li>
+                                </c:if>
                                 <li><a href="Controller?command=open_client_acc">
                                     <fmt:message key="open.account"/>
                                 </a></li>

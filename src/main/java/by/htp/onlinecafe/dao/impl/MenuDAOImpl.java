@@ -2,8 +2,8 @@ package by.htp.onlinecafe.dao.impl;
 
 import by.htp.onlinecafe.dao.MenuDAO;
 import by.htp.onlinecafe.dao.exception.DAOException;
-import by.htp.onlinecafe.entity.Menu;
-import by.htp.onlinecafe.util.SQLConnectionPool;
+import by.htp.onlinecafe.entity.dto.MenuTO;
+import by.htp.onlinecafe.dao.util.SQLConnectionPool;
 
 import javax.naming.NamingException;
 import java.sql.*;
@@ -35,80 +35,80 @@ public class MenuDAOImpl implements MenuDAO{
     }
 
     @Override
-    public Menu getActive(Menu.MenuLanguage language) throws DAOException{
+    public MenuTO getActive(MenuTO.MenuLanguage language) throws DAOException{
         try (Connection connection = SQLConnectionPool.getConnection();
              PreparedStatement ps = connection.prepareStatement(SQL_ACTIVE_MENU_BY_LANGUAGE)) {
             ps.setString(1, language.toString());
             ResultSet resultSet = ps.executeQuery();
-            Menu menu = new Menu();
+            MenuTO menuTO = new MenuTO();
             if (resultSet.next()) {
-                menu.setId(resultSet.getInt(1));
-                menu.setCreationTime(resultSet.getTimestamp(2).toLocalDateTime());
-                menu.setMenuStatus(Menu.MenuStatus.valueOf(resultSet.getString(3)));
-                menu.setMenuLanguage(Menu.MenuLanguage.valueOf(resultSet.getString(4)));
+                menuTO.setId(resultSet.getInt(1));
+                menuTO.setCreationTime(resultSet.getTimestamp(2).toLocalDateTime());
+                menuTO.setMenuStatus(MenuTO.MenuStatus.valueOf(resultSet.getString(3)));
+                menuTO.setMenuLanguage(MenuTO.MenuLanguage.valueOf(resultSet.getString(4)));
             }
-            return menu;
+            return menuTO;
         } catch (SQLException | NamingException e) {
             throw new DAOException(e);
         }
     }
 
     @Override
-    public List<Menu> getAll() throws DAOException {
+    public List<MenuTO> getAll() throws DAOException {
         try (Connection connection = SQLConnectionPool.getConnection();
              PreparedStatement ps = connection.prepareStatement(SQL_GET_ALL_MENUS)) {
             ResultSet resultSet = ps.executeQuery();
-            List<Menu> menuList = new ArrayList<>();
+            List<MenuTO> menuTOList = new ArrayList<>();
             while (resultSet.next()) {
-                Menu menu = new Menu();
-                menu.setId(resultSet.getInt(1));
-                menu.setCreationTime(resultSet.getTimestamp(2).toLocalDateTime());
-                menu.setMenuStatus(Menu.MenuStatus.valueOf(resultSet.getString(3)));
-                menu.setMenuLanguage(Menu.MenuLanguage.valueOf(resultSet.getString(4)));
-                menuList.add(menu);
+                MenuTO menuTO = new MenuTO();
+                menuTO.setId(resultSet.getInt(1));
+                menuTO.setCreationTime(resultSet.getTimestamp(2).toLocalDateTime());
+                menuTO.setMenuStatus(MenuTO.MenuStatus.valueOf(resultSet.getString(3)));
+                menuTO.setMenuLanguage(MenuTO.MenuLanguage.valueOf(resultSet.getString(4)));
+                menuTOList.add(menuTO);
             }
-            return menuList;
+            return menuTOList;
         } catch (SQLException | NamingException e) {
             throw new DAOException(e);
         }
     }
 
     @Override
-    public Menu getByID(Integer id) throws DAOException {
+    public MenuTO getByID(Integer id) throws DAOException {
         try (Connection connection = SQLConnectionPool.getConnection();
              PreparedStatement ps = connection.prepareStatement(SQL_GET_MENU_BY_ID)) {
             ps.setInt(1, id);
             ResultSet resultSet = ps.executeQuery();
-            Menu menu = new Menu();
+            MenuTO menuTO = new MenuTO();
             if (resultSet.next()) {
-                menu.setId(resultSet.getInt(1));
-                menu.setCreationTime(resultSet.getTimestamp(2).toLocalDateTime());
-                menu.setMenuStatus(Menu.MenuStatus.valueOf(resultSet.getString(3)));
-                menu.setMenuLanguage(Menu.MenuLanguage.valueOf(resultSet.getString(4)));
+                menuTO.setId(resultSet.getInt(1));
+                menuTO.setCreationTime(resultSet.getTimestamp(2).toLocalDateTime());
+                menuTO.setMenuStatus(MenuTO.MenuStatus.valueOf(resultSet.getString(3)));
+                menuTO.setMenuLanguage(MenuTO.MenuLanguage.valueOf(resultSet.getString(4)));
             }
-            return menu;
+            return menuTO;
         } catch (SQLException | NamingException e) {
             throw new DAOException(e);
         }
     }
 
     @Override
-    public void update(Menu menu, List<Integer> itemsIDList) throws DAOException {
+    public void update(MenuTO menuTO, List<Integer> itemsIDList) throws DAOException {
         try (Connection connection = SQLConnectionPool.getConnection();
              PreparedStatement ps = connection.prepareStatement(SQL_DELETE_FROM_MENU);
              PreparedStatement ps2 = connection.prepareStatement(SQL_ADD_ITEMS_TO_MENU);
              PreparedStatement ps3 = connection.prepareStatement(SQL_UPDATE_MENU)) {
-            ps.setInt(1, menu.getId());
+            ps.setInt(1, menuTO.getId());
 
             for (Integer itemID: itemsIDList){
-                ps2.setInt(1, menu.getId());
+                ps2.setInt(1, menuTO.getId());
                 ps2.setInt(2, itemID);
                 ps2.addBatch();
             }
 
-            ps3.setString(1, menu.getMenuStatus().toString());
-            ps3.setString(2, menu.getMenuLanguage().toString());
-            ps3.setInt(3, menu.getId());
+            ps3.setString(1, menuTO.getMenuStatus().toString());
+            ps3.setString(2, menuTO.getMenuLanguage().toString());
+            ps3.setInt(3, menuTO.getId());
 
             ps.executeUpdate();
             ps2.executeBatch();
@@ -119,13 +119,13 @@ public class MenuDAOImpl implements MenuDAO{
     }
 
     @Override
-    public void create(Menu menu, List<Integer> itemsIDList) throws DAOException {
+    public void create(MenuTO menuTO, List<Integer> itemsIDList) throws DAOException {
         try (Connection connection = SQLConnectionPool.getConnection();
              PreparedStatement ps = connection.prepareStatement(SQL_CREATE_MENU, Statement.RETURN_GENERATED_KEYS);
              PreparedStatement ps2 = connection.prepareStatement(SQL_ADD_ITEMS_TO_MENU)) {
 
-            ps.setString(1, menu.getMenuStatus().toString());
-            ps.setString(2, menu.getMenuLanguage().toString());
+            ps.setString(1, menuTO.getMenuStatus().toString());
+            ps.setString(2, menuTO.getMenuLanguage().toString());
             ps.executeUpdate();
             ResultSet keys = ps.getGeneratedKeys();
 

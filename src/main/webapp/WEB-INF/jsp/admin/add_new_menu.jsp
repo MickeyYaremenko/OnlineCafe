@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
@@ -22,16 +22,16 @@
                 <div class="col-lg-6 col-sm-12 item-info-cart">
                     <div class="col-lg-12 item-text-cart">
                         <select class="form-control" name="menu_language">
-                            <option value="RU_RU">RU_RU</option>
-                            <option value="EN_EN">EN_EN</option>
+                            <option value="RU_RU"><fmt:message key="RU_RU"/></option>
+                            <option value="EN_EN"><fmt:message key="EN_EN"/></option>
                         </select>
                     </div>
                 </div>
                 <div class="col-lg-6 col-sm-12 item-info-cart">
                     <div class="col-lg-12 item-text-cart">
                         <select class="form-control" name="menu_status">
-                            <option value="IDLE">IDLE</option>
-                            <option value="ACTIVE">ACTIVE</option>
+                            <option value="IDLE"><fmt:message key="IDLE"/></option>
+                            <option value="ACTIVE"><fmt:message key="ACTIVE"/></option>
                         </select>
                     </div>
                 </div>

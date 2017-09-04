@@ -1,10 +1,12 @@
-package by.htp.onlinecafe.entity;
+package by.htp.onlinecafe.entity.dto;
+
+import by.htp.onlinecafe.entity.MenuItem;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class Menu implements Serializable{
+public class MenuTO implements Serializable{
 
     private static final long serialVersionUID = -7724289072200931588L;
     private Integer id;
@@ -58,14 +60,14 @@ public class Menu implements Serializable{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Menu menu = (Menu) o;
+        MenuTO menuTO = (MenuTO) o;
 
-        if (getId() != null ? !getId().equals(menu.getId()) : menu.getId() != null) return false;
-        if (getCreationTime() != null ? !getCreationTime().equals(menu.getCreationTime()) : menu.getCreationTime() != null)
+        if (getId() != null ? !getId().equals(menuTO.getId()) : menuTO.getId() != null) return false;
+        if (getCreationTime() != null ? !getCreationTime().equals(menuTO.getCreationTime()) : menuTO.getCreationTime() != null)
             return false;
-        if (getMenuStatus() != menu.getMenuStatus()) return false;
-        if (getMenuLanguage() != menu.getMenuLanguage()) return false;
-        return getMenuItemList() != null ? getMenuItemList().equals(menu.getMenuItemList()) : menu.getMenuItemList() == null;
+        if (getMenuStatus() != menuTO.getMenuStatus()) return false;
+        if (getMenuLanguage() != menuTO.getMenuLanguage()) return false;
+        return getMenuItemList() != null ? getMenuItemList().equals(menuTO.getMenuItemList()) : menuTO.getMenuItemList() == null;
     }
 
     @Override
@@ -80,7 +82,7 @@ public class Menu implements Serializable{
 
     @Override
     public String toString() {
-        return "Menu{" +
+        return "MenuTO{" +
                 "id=" + id +
                 ", creationTime=" + creationTime +
                 ", menuStatus=" + menuStatus +

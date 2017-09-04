@@ -5,6 +5,7 @@
     <Resource name="jdbc/cafe"
               auth="Container"
               type="javax.sql.DataSource"
+              connectionProperties="useUnicode=yes;characterEncoding=utf8;"
               initialSize="10"
               minIdle="10"
               maxActive="100"
@@ -12,5 +13,5 @@
               username="root"
               password="root"
               driverClassName="com.mysql.jdbc.Driver"
-              url="jdbc:mysql://localhost:3306/cafe"/>
+              url="jdbc:mysql://localhost:3306/cafe?useUnicode=true&amp;characterEncoding=utf8"/>
 </Context>

@@ -2,7 +2,7 @@
 
 Online Cafe:
 
-View categorized menu, choose menu items, add them to an order.
+View categorized menuTO, choose menuTO items, add them to an order.
 You should sign in and have enough money on your balance to make an order.
 
 Types of uses:
@@ -12,7 +12,7 @@ Types of uses:
 
 Guest can do:
 * pass the authorization or registration
-* view menu
+* view menuTO
 * add items to an order
 * change the interface language between two languages (English, Russian)
 
@@ -25,6 +25,6 @@ Client can do:
 
 Admin can do:
 * manage orders (view active orders, and set their status)
-* manage menus (choose which items menu include, choose active menus)
-* view menu history
-* manage menu items (add new item, edit or delete current items)
+* manage menus (choose which items menuTO include, choose active menus)
+* view menuTO history
+* manage menuTO items (add new item, edit or delete current items)

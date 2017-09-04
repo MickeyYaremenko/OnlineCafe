@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <html>
 <head>
     <link rel='stylesheet' href='resources/css/bootstrap.css' type='text/css' media='all'>
@@ -7,7 +7,8 @@
     <script src='resources/js/bootstrap.js'></script>
     <title>Success</title>
 </head>
-<body>
+<body class="body-one">
+<c:set var="page" value="change_pass_success" scope="session"/>
 <%@include file="/WEB-INF/jsp/parts/navbar.jsp"%>
 
 <div id="menu-container" class="container text-center">

@@ -28,7 +28,7 @@ public class MenuItemServiceImpl implements MenuItemService{
     public List<MenuItem> getAllByCategory(String category) throws ServiceException {
         MenuItemDAO menuItemDAO = DAOFactory.getInstance().getMenuItemDAO();
         try {
-           return menuItemDAO.getAllByCategory(category); //TO DO delete this
+           return menuItemDAO.getAllByCategory(category); //TODO delete this (recheck)
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
@@ -88,6 +88,16 @@ public class MenuItemServiceImpl implements MenuItemService{
 
         try {
             menuItemDAO.addNew(menuItem);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public void deleteById(Integer id) throws ServiceException {
+        MenuItemDAO menuItemDAO = DAOFactory.getInstance().getMenuItemDAO();
+        try {
+            menuItemDAO.deleteById(id);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }

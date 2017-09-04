@@ -1,6 +1,6 @@
 package by.htp.onlinecafe.dao.impl;
 
-import by.htp.onlinecafe.util.SQLConnectionPool;
+import by.htp.onlinecafe.dao.util.SQLConnectionPool;
 import by.htp.onlinecafe.dao.ClientDAO;
 import by.htp.onlinecafe.dao.exception.DAOException;
 import by.htp.onlinecafe.entity.Client;
@@ -13,11 +13,11 @@ public class ClientDAOImpl implements ClientDAO {
 
     private static ClientDAOImpl instance;
 
-    private static final String SQL_GET_USER_BY_LOGIN = "SELECT * FROM client WHERE login=?";
+    private static final String SQL_GET_USER_BY_LOGIN = "SELECT * FROM client WHERE login = ? AND password = ?";
     private static final String SQL_REGISTER= "INSERT INTO client" +
             "(login, password, first_name, last_name, email) VALUES(?,?,?,?,?)";
     private static final String SQL_CHANGE_CLIENT_PASSWORD = "UPDATE client SET password = ? WHERE login = ?";
-    private static final String SQL_CLIENT_ADD_FUNDS = "UPDATE client SET balance = ? WHERE login = ?";
+    private static final String SQL_CLIENT_ADD_FUNDS = "UPDATE client SET balance = balance + ? WHERE login = ?";
 
     private ClientDAOImpl(){
     }
@@ -57,6 +57,7 @@ public class ClientDAOImpl implements ClientDAO {
         try (Connection connection = SQLConnectionPool.getConnection();
              PreparedStatement ps = connection.prepareStatement(SQL_GET_USER_BY_LOGIN)) {
             ps.setString(1, login);
+            ps.setString(2, password);
             ResultSet resultSet = ps.executeQuery();
             if (resultSet.next()) {
                 Client client = new Client();
@@ -92,20 +93,18 @@ public class ClientDAOImpl implements ClientDAO {
     }
 
     @Override
-    public boolean addFunds(Client client, BigDecimal sum) throws DAOException {
+    public void addFunds(Client client, BigDecimal sum) throws DAOException {
         try (Connection connection = SQLConnectionPool.getConnection();
             PreparedStatement ps = connection.prepareStatement(SQL_CLIENT_ADD_FUNDS)){
-            ps.setBigDecimal(1, client.getBalance().add(sum));
+            ps.setBigDecimal(1, sum);
             ps.setString(2, client.getLogin());
             int rows = ps.executeUpdate();
             if (rows > 0){
                 client.setBalance(client.getBalance().add(sum));
-                return true;
             }
         } catch (SQLException | NamingException e) {
             throw new DAOException(e);
         }
-        return false;
     }
 
     private boolean alreadyExist(Client client) throws DAOException {

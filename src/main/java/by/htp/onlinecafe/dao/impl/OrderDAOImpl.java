@@ -1,6 +1,6 @@
 package by.htp.onlinecafe.dao.impl;
 
-import by.htp.onlinecafe.util.SQLConnectionPool;
+import by.htp.onlinecafe.dao.util.SQLConnectionPool;
 import by.htp.onlinecafe.dao.exception.DAOException;
 import by.htp.onlinecafe.dao.OrderDAO;
 import by.htp.onlinecafe.entity.Client;

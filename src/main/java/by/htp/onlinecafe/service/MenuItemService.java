@@ -14,4 +14,5 @@ public interface MenuItemService {
     void updateItem(Integer id, String title, String weight, BigDecimal price, String category, String description)
             throws ServiceException;
     void addNew(String title, String weight, BigDecimal price, String category, String description) throws ServiceException;
+    void deleteById(Integer id) throws ServiceException;
 }

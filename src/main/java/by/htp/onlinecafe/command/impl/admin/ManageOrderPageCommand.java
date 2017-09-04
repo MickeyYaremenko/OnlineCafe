@@ -9,20 +9,26 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
+import static by.htp.onlinecafe.util.constant.JSPPageConstant.*;
+import static by.htp.onlinecafe.util.constant.ParameterAttributeConstant.*;
+
+/**
+ * Implementation of Command {@link Command}.
+ * Opens order_management.jsp.
+ */
 public class ManageOrderPageCommand implements Command{
 
     private static final Logger LOGGER = LogManager.getLogger(ManageOrderPageCommand.class);
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
-        String page = "/WEB-INF/jsp/admin/order_management.jsp";
+    public String execute(HttpServletRequest request) {
+        String page = ORDER_MANAGEMENT_PAGE;
         OrderService orderService = ServiceFactory.getInstance().getOrderService();
         try {
             List<OrderTO> orderTOList = orderService.showActive();
-            request.setAttribute("order_list", orderTOList);
+            request.setAttribute(ORDER_LIST, orderTOList);
         } catch (ServiceException e) {
             LOGGER.error(e);
         }

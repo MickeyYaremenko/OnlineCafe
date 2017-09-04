@@ -1,7 +1,7 @@
 package by.htp.onlinecafe.dao.impl;
 
-import by.htp.onlinecafe.entity.Menu;
-import by.htp.onlinecafe.util.SQLConnectionPool;
+import by.htp.onlinecafe.entity.dto.MenuTO;
+import by.htp.onlinecafe.dao.util.SQLConnectionPool;
 import by.htp.onlinecafe.dao.exception.DAOException;
 import by.htp.onlinecafe.dao.MenuItemDAO;
 import by.htp.onlinecafe.entity.MenuItem;
@@ -33,6 +33,7 @@ public class MenuItemDAOImpl implements MenuItemDAO{
             "JOIN items_menu ON menu_item.id_menu_item = items_menu.menu_item_id " +
             "JOIN menu ON menu.menu_id = items_menu.menu_id " +
             "WHERE menu.menu_id = ?";
+    private static final String SQL_DELETE_BY_ID = "DELETE FROM menu_item WHERE id_menu_item = ?";
 
     private MenuItemDAOImpl(){
     }
@@ -45,11 +46,11 @@ public class MenuItemDAOImpl implements MenuItemDAO{
     }
 
     @Override
-    public List<MenuItem> getActiveByCategory(String category, Menu menu) throws DAOException {
+    public List<MenuItem> getActiveByCategory(String category, MenuTO menuTO) throws DAOException {
         try (Connection connection = SQLConnectionPool.getConnection();
              PreparedStatement ps = connection.prepareStatement(SQL_ACTIVE_MENU_ITEMS_BY_CATEGORY)) {
             ps.setString(1, category);
-            ps.setInt(2, menu.getId());
+            ps.setInt(2, menuTO.getId());
             ResultSet resultSet = ps.executeQuery();
             List <MenuItem> menuItemList = new ArrayList<>();
             while (resultSet.next()) {
@@ -168,10 +169,10 @@ public class MenuItemDAOImpl implements MenuItemDAO{
     }
 
     @Override
-    public List<MenuItem> getByMenu(Menu menu) throws DAOException {
+    public List<MenuItem> getByMenu(MenuTO menuTO) throws DAOException {
         try (Connection connection = SQLConnectionPool.getConnection();
              PreparedStatement ps = connection.prepareStatement(SQL_GET_BY_MENU)) {
-            ps.setInt(1, menu.getId());
+            ps.setInt(1, menuTO.getId());
             ResultSet resultSet = ps.executeQuery();
             List <MenuItem> menuItemList = new ArrayList<>();
             while (resultSet.next()) {
@@ -185,6 +186,17 @@ public class MenuItemDAOImpl implements MenuItemDAO{
                 menuItemList.add(menuItem);
             }
             return menuItemList;
+        } catch (SQLException | NamingException e) {
+            throw new DAOException(e);
+        }
+    }
+
+    @Override
+    public void deleteById(Integer id) throws DAOException {
+        try (Connection connection = SQLConnectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(SQL_DELETE_BY_ID)) {
+            ps.setInt(1, id);
+            ps.executeUpdate();
         } catch (SQLException | NamingException e) {
             throw new DAOException(e);
         }

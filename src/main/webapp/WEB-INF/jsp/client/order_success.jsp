@@ -1,4 +1,7 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <html>
 <head>
     <link rel='stylesheet' href='resources/css/bootstrap.css' type='text/css' media='all'>
@@ -12,9 +15,11 @@
 <%@include file="/WEB-INF/jsp/parts/navbar.jsp"%>
 
 <div id="menu-container" class="container text-center">
-    <h3>Your order will be approved by administrator soon!</h3>
+    <h3><fmt:message key="order.success.message"/></h3>
     <form action="Controller" method="GET">
-        <button class="btn-success btn-lg" type="submit" name="command" value="open_client_acc">Go to your account</button>
+        <button class="btn-success btn-lg" type="submit" name="command" value="open_client_acc">
+            <fmt:message key="go.to.account"/>
+        </button>
     </form>
 </div>
 </body>

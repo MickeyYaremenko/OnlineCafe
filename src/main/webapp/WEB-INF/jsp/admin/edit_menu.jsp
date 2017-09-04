@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
@@ -31,9 +31,9 @@
                         <div class="col-lg-12 item-text-cart">
                             <select class="form-control" name="menu_language">
                                 <option value="RU_RU" ${menu.menuLanguage.toString().equals("RU_RU")?"selected":""}>
-                                    RU_RU</option>
+                                    <fmt:message key="RU_RU"/></option>
                                 <option value="EN_EN" ${menu.menuLanguage.toString().equals("EN_EN")?"selected":""}>
-                                    EN_EN</option>
+                                    <fmt:message key="EN_EN"/></option>
                             </select>
                         </div>
                     </div>
@@ -41,9 +41,9 @@
                         <div class="col-lg-12 item-text-cart">
                             <select class="form-control" name="menu_status">
                                 <option value="IDLE" ${menu.menuStatus.toString().equals("IDLE")?"selected":""}>
-                                    IDLE</option>
+                                    <fmt:message key="IDLE"/></option>
                                 <option value="ACTIVE" ${menu.menuStatus.toString().equals("ACTIVE")?"selected":""}>
-                                    ACTIVE</option>
+                                    <fmt:message key="ACTIVE"/></option>
                             </select>
                         </div>
                     </div>

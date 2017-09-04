@@ -9,20 +9,26 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
+import static by.htp.onlinecafe.util.constant.JSPPageConstant.*;
+import static by.htp.onlinecafe.util.constant.ParameterAttributeConstant.*;
+
+/**
+ * Implementation of Command {@link Command}.
+ * Opens menu_item_management.jsp.
+ */
 public class MenuItemManagementCommand implements Command{
 
     private static final Logger LOGGER = LogManager.getLogger(MenuItemManagementCommand.class);
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
-        String page = "/WEB-INF/jsp/admin/menu_item_management.jsp";
+    public String execute(HttpServletRequest request) {
+        String page = MENU_ITEM_MANAGEMENT_PAGE;
         MenuItemService menuItemService = ServiceFactory.getInstance().getMenuItemService();
         try {
             List<MenuItem> menuItemList =  menuItemService.showAll();
-            request.setAttribute("menuItemList", menuItemList);
+            request.setAttribute(MENU_ITEM_LIST, menuItemList);
         } catch (ServiceException e) {
             LOGGER.error(e);
         }
